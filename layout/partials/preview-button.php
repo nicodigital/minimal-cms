@@ -56,35 +56,55 @@
         .replace(/^-+|-+$/g, '');     // Eliminar guiones al inicio y final
     }
     
-    if (currentFile.includes('/')) {
-      // Si el path tiene formato "colección/archivo.md"
-      const pathParts = currentFile.split('/');
-      collection = pathParts[0];
-      const fileName = pathParts[pathParts.length - 1];
-      // Obtener el nombre sin extensión y convertir a slug
-      const fileNameWithoutExt = fileName.replace(/\.md$/, '');
-      slug = slugify(fileNameWithoutExt);
-    } else {
-      // Si solo tenemos el nombre del archivo sin ruta a colección
-      // Intentar obtener colecciones del espacio global
-      collection = '';
-      
-      // Obtener la primera colección disponible si existe en window.knownCollections
-      if (window.knownCollections && window.knownCollections.length > 0) {
-        collection = window.knownCollections[0];
+    // Obtener colección de la URL actual
+    try {
+      // Obtener la URL actual y extraer la colección como el último directorio
+      const currentUrl = window.location.pathname;
+      // Eliminar cualquier parámetro de consulta o hash
+      const cleanUrl = currentUrl.split('?')[0].split('#')[0];
+      // Dividir por '/' y filtrar elementos vacíos
+      const urlParts = cleanUrl.split('/').filter(part => part.length > 0);
+      // El último directorio en la URL es la colección actual
+      if (urlParts.length > 0) {
+        collection = urlParts[urlParts.length - 1];
+        console.log('Colección obtenida de la URL:', collection);
       }
-      
-      // Obtener el nombre sin extensión y convertir a slug
-      const fileNameWithoutExt = currentFile.replace(/\.md$/, '');
+    } catch (e) {
+      console.error('Error al obtener colección de la URL:', e);
+    }
+    
+    // Si aún no tenemos colección, intentar obtenerla del currentFile
+    if (!collection && currentFile) {
+      if (currentFile.includes('/')) {
+        // Si el path tiene formato "colección/archivo.md"
+        const pathParts = currentFile.split('/');
+        // La colección es el primer elemento de la ruta
+        collection = pathParts[0];
+        const fileName = pathParts[pathParts.length - 1];
+        // Obtener el nombre sin extensión y convertir a slug
+        const fileNameWithoutExt = fileName.replace(/\.md$/, '');
+        slug = slugify(fileNameWithoutExt);
+      } else {
+        // Obtener el nombre sin extensión y convertir a slug
+        const fileNameWithoutExt = currentFile.replace(/\.md$/, '');
+        slug = slugify(fileNameWithoutExt);
+      }
+    } else if (!slug && currentFile) {
+      // Si ya tenemos colección pero no slug, extraer slug del currentFile
+      const fileName = currentFile.includes('/') 
+        ? currentFile.split('/').pop() 
+        : currentFile;
+      const fileNameWithoutExt = fileName.replace(/\.md$/, '');
       slug = slugify(fileNameWithoutExt);
     }
     
-    // console.log('Colección:', collection);
-    // console.log('Slug:', slug);
+    console.log('Colección final:', collection);
+    console.log('Slug final:', slug);
     
-    // Construir la URL de preview
-    const previewUrl = `../../../${collection}/${slug}`;
-    // console.log('URL de preview generada:', previewUrl);
+    // Construir la URL de preview - Asegurarnos de que collection tenga un valor
+    // Usar 'blog' como valor predeterminado si no se detecta la colección
+    const previewUrl = `../../../${collection || 'blog'}/${slug}`;
+    console.log('URL de preview generada:', previewUrl);
     
     // Actualizar el botón
     previewButton.href = previewUrl;
