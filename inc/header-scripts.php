@@ -39,7 +39,7 @@
         CSS: document.documentElement.dataset.parent ? document.documentElement.dataset.parent + 'css/' : '../css/'
     };
     
-    console.log('System paths loaded:', window.PATHS);
+    // console.log('System paths loaded:', window.PATHS);
 </script>
 
 <!-- Define API base path and collection for collection-based structure -->

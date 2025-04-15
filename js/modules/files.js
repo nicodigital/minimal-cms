@@ -117,7 +117,7 @@ export const FileManager = {
     // Usar la función getApiUrl que maneja correctamente la colección
     const url = window.getApiUrl ? window.getApiUrl('?action=list') : 'process.php?action=list'
 
-    console.log('Loading file list from URL:', url)
+    // console.log('Loading file list from URL:', url)
 
     fetch(url, {
       credentials: 'include',
@@ -243,7 +243,7 @@ export const FileManager = {
     const apiUrl = window.API_BASE_PATH || 'api.php'
     const url = `${apiUrl}?action=read&file=${encodeURIComponent(filename)}&t=${cacheBuster}&collection=${encodeURIComponent(collection)}`
 
-    console.log('Loading file from URL:', url)
+    // console.log('Loading file from URL:', url)
 
     fetch(url, {
       credentials: 'include',
@@ -483,7 +483,7 @@ export const FileManager = {
       if (formattedPath && !formattedPath.startsWith('/')) {
         formattedPath = '/' + formattedPath
       }
-      
+
       newFrontMatter += `main_img: "${formattedPath}"\n`
     }
 
@@ -741,29 +741,29 @@ export const FileManager = {
 
     // Crear contenido inicial con la fecha actual en el frontmatter
     const today = new Date().toISOString().split('T')[0] // Formato YYYY-MM-DD
-    
+
     // Obtener valores por defecto de los campos configurados
     const defaultValues = {}
-    
+
     // Recorrer todos los campos personalizados para obtener sus valores por defecto
     const customFields = document.querySelectorAll('.custom-field')
     customFields.forEach(field => {
       const fieldName = field.dataset.fieldName
       const defaultValue = field.dataset.defaultValue
-      
+
       // Si el campo tiene un valor por defecto configurado, guardarlo
       if (fieldName && defaultValue) {
         defaultValues[fieldName] = defaultValue
       }
     })
-    
+
     // Establecer valores por defecto conocidos para campos específicos
     defaultValues.publish_date = today
     defaultValues.status = 'published'
-    
+
     // Construir el frontmatter con todos los valores por defecto
     let frontMatter = '---\n'
-    
+
     // Añadir cada valor por defecto al frontmatter
     for (const [name, value] of Object.entries(defaultValues)) {
       if (value !== undefined && value !== null && value !== '') {
@@ -775,9 +775,9 @@ export const FileManager = {
         }
       }
     }
-    
+
     frontMatter += '---\n\n'
-    
+
     const initialContent = frontMatter
 
     const apiUrl = window.API_BASE_PATH || 'api.php'
