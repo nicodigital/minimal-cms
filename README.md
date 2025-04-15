@@ -137,13 +137,24 @@ A simple, embeddable JavaScript Markdown editor with features like:
 ### [Knock](https://github.com/jenstornell/knock#create-a-user)
 A lightweight authentication library that provides secure user management without the need for a database.
 
+## Installation Requirements
+
+For Minimal CMS to function properly, you must follow these specific directory structure requirements:
+
+1. **CMS Location**: The CMS software must be placed in a subdirectory named `content` within your main project(website). Example: /content.
+
+2. **Media Library**: The media library must be located at `/public/img/` relative to your main project directory
+
+Failure to maintain this directory structure will result in the CMS not working correctly.
+
 ## Getting Started
 
 1. Clone or download the repository
-2. Place the files on your web server (PHP required)
-3. Configure your site settings in `config.php`
-4. Create users in the `users` directory
-5. Begin creating collections and adding content
+2. Place the files in the `content` subdirectory of your web server (PHP required)
+3. Ensure the `public/img` directories exist for the media library
+4. Configure your site settings in `config.php`
+5. Create users in the `users` directory
+6. Begin creating collections and adding content
 
 ## Best Practices
 
