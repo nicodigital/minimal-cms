@@ -67,7 +67,7 @@
       // El último directorio en la URL es la colección actual
       if (urlParts.length > 0) {
         collection = urlParts[urlParts.length - 1];
-        console.log('Colección obtenida de la URL:', collection);
+        // console.log('Colección obtenida de la URL:', collection);
       }
     } catch (e) {
       console.error('Error al obtener colección de la URL:', e);
@@ -98,13 +98,13 @@
       slug = slugify(fileNameWithoutExt);
     }
     
-    console.log('Colección final:', collection);
-    console.log('Slug final:', slug);
+    // console.log('Colección final:', collection);
+    // console.log('Slug final:', slug);
     
     // Construir la URL de preview - Asegurarnos de que collection tenga un valor
     // Usar 'blog' como valor predeterminado si no se detecta la colección
     const previewUrl = `../../../${collection || 'blog'}/${slug}`;
-    console.log('URL de preview generada:', previewUrl);
+    // console.log('URL de preview generada:', previewUrl);
     
     // Actualizar el botón
     previewButton.href = previewUrl;
