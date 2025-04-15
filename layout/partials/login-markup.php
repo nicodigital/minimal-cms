@@ -29,10 +29,11 @@ if (!isset($basePath)) {
   <style>
     /* Estilos adicionales específicos para la página de login */
     .login-page {
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#424242+0,000000+100 */
       background: radial-gradient(ellipse at center, rgba(66, 66, 66, 1) 0%, rgba(0, 0, 0, 1) 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
+    }
+    .brand svg{
+      width: 46px;
+      height: 46px;
     }
   </style>
 </head>
@@ -40,10 +41,8 @@ if (!isset($basePath)) {
 <body class="min-h-screen flex items-center justify-center bg-neutral-700 login-page">
   <div class="w-full max-w-md p-8 space-y-8 bg-neutral-700/75 rounded-lg shadow-xl">
     <div class="text-center">
-      <div class="flex flex-col items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M9.86 21.43L9 22l-3-2l-3 2V3h18v7.2c-.63-.27-1.36-.27-2 .02V5H5v13.26l1-.66l3 2l.86-.6zm2-1.47L18 13.83l2.03 2.04L13.9 22h-2.04zm8.87-4.79l.98-.98c.2-.19.2-.52 0-.72l-1.32-1.32a.24.24 0 0 0-.08-.06a.5.5 0 0 0-.62.04l-.02.02l-.98.98z"></path>
-        </svg>
+      <div class="brand flex flex-col items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="white" d="M20.56 18H3.44C2.65 18 2 17.37 2 16.59V7.41C2 6.63 2.65 6 3.44 6h17.12c.79 0 1.44.63 1.44 1.41v9.18c0 .78-.65 1.41-1.44 1.41M6.81 15.19v-3.66l1.92 2.35l1.92-2.35v3.66h1.93V8.81h-1.93l-1.92 2.35l-1.92-2.35H4.89v6.38zM19.69 12h-1.92V8.81h-1.92V12h-1.93l2.89 3.28z"/></svg>
         <h1 class="text-3xl font-bold text-white mb-2"> Minimal CMS </h1>
       </div>
       <p class="text-neutral-400">Inicia sesión para administrar tu contenido</p>

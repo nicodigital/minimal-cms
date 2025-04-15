@@ -1031,14 +1031,29 @@ export const MediaManager = {
    */
   showFlashMessage: function (message, type = 'success') {
     const flashElement = document.createElement('div')
-    const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500'
-
-    flashElement.className = `fixed top-4 right-4 ${bgColor} text-white px-4 py-2 rounded shadow-lg z-50`
+    flashElement.className = 'flash-message'
+    
+    // Añadir clases de color según el tipo
+    if (type === 'success') {
+      flashElement.classList.add('bg-green-500', 'text-white')
+    } else if (type === 'error') {
+      flashElement.classList.add('bg-red-500', 'text-white')
+    } else if (type === 'warning') {
+      flashElement.classList.add('bg-yellow-500', 'text-white')
+    } else {
+      flashElement.classList.add('bg-blue-500', 'text-white')
+    }
+    
     flashElement.textContent = message
     document.body.appendChild(flashElement)
 
+    // Add the active class after a small delay to trigger the animation
     setTimeout(() => {
-      flashElement.classList.add('opacity-0', 'transition-opacity', 'duration-500')
+      flashElement.classList.add('active')
+    }, 10)
+
+    setTimeout(() => {
+      flashElement.classList.remove('active')
       setTimeout(() => {
         document.body.removeChild(flashElement)
       }, 500)

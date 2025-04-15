@@ -894,24 +894,24 @@ export const FileManager = {
       flashMessage = document.createElement('div')
       flashMessage.className = 'flash-message'
       document.body.appendChild(flashMessage)
+    } else {
+      // Si existe, asegurarse de que solo tenga la clase .flash-message
+      flashMessage.className = 'flash-message'
     }
 
-    // Establecer el tipo de mensaje
-    flashMessage.className = flashMessage.className.replace(/bg-\w+-\d+/g, '')
-    flashMessage.className = flashMessage.className.replace(/text-\w+-\d+/g, '')
-
+    // Establecer el tipo de mensaje con clases de color apropiadas
     switch (type) {
       case 'success':
-        flashMessage.className += ' bg-green-500 text-white'
+        flashMessage.classList.add('bg-green-500', 'text-white')
         break
       case 'error':
-        flashMessage.className += ' bg-red-500 text-white'
+        flashMessage.classList.add('bg-red-500', 'text-white')
         break
       case 'warning':
-        flashMessage.className += ' bg-yellow-500 text-white'
+        flashMessage.classList.add('bg-yellow-500', 'text-white')
         break
       default:
-        flashMessage.className += ' bg-blue-500 text-white'
+        flashMessage.classList.add('bg-blue-500', 'text-white')
     }
 
     // Establecer el mensaje
