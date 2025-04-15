@@ -153,8 +153,43 @@ Failure to maintain this directory structure will result in the CMS not working 
 2. Place the files in the `content` subdirectory of your web server (PHP required)
 3. Ensure the `public/img` directories exist for the media library
 4. Configure your site settings in `config.php`
-5. Create users in the `users` directory. Here is documentation: https://github.com/jenstornell/knock#create-a-user
-6. Begin creating collections and adding content. You only have to duplicate the “demo” directory, inside the collections directory and rename it with the name of the new collection.
+5. Configure the `.htaccess` file, especially updating the CORS configuration with your specific domain (see Security Configuration below)
+6. Create users in the `users` directory. Here is documentation: https://github.com/jenstornell/knock#create-a-user
+7. Begin creating collections and adding content. You only have to duplicate the "demo" directory, inside the collections directory and rename it with the name of the new collection.
+
+## Security Configuration
+
+Minimal CMS requires proper `.htaccess` configuration to ensure both security and functionality. The included `.htaccess` file contains several important security measures:
+
+### CORS Configuration
+
+You must update the CORS configuration to specify which domains are allowed to make requests to your CMS:
+
+```apache
+# Basic CORS configuration
+<IfModule mod_headers.c>
+    # Allow specific origins (replace with your domain and development environments)
+    SetEnvIf Origin "^(https://your-domain\.com|http://localhost|http://127\.0\.0\.1)" ALLOWED_ORIGIN=$1
+    Header set Access-Control-Allow-Origin %{ALLOWED_ORIGIN}e env=ALLOWED_ORIGIN
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS" env=ALLOWED_ORIGIN
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept" env=ALLOWED_ORIGIN
+</IfModule>
+```
+
+Replace `your-domain\.com` with your actual domain name. This prevents cross-origin requests from unauthorized domains.
+
+### Additional Security Measures
+
+The `.htaccess` file also includes:
+
+- Protection against common web attacks
+- Basic XSS protection
+- MIME type sniffing prevention
+- Protection against clickjacking
+- Directory listing prevention
+- File inclusion attack prevention
+
+These measures help secure your CMS while allowing the SimpleMDE editor to function properly.
 
 ## Best Practices
 
