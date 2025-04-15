@@ -5,7 +5,7 @@
     <div class="border-b border-neutral-300 dark:border-neutral-700 p-4 flex justify-between items-center">
       <div class="flex items-center">
         <h2 class="text-xl font-semibold">Biblioteca de Medios</h2>
-        <span id="media-mode-indicator" class="ml-3 text-sm px-2 py-1 rounded bg-red-800 text-white hidden"></span>
+        <span id="media-mode-indicator" class="ml-3 text-sm px-2 py-1 rounded bg-red-500 text-white hidden"></span>
       </div>
       <button id="close-media-modal" class="text-neutral-500 hover:text-red-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
