@@ -1,66 +1,45 @@
-# Configuración para permitir solicitudes de escritura y resolver errores 403
-# Archivo .htaccess para GridBox 2.0 CMS
+# Configuration to allow write requests and resolve 403 errors
+# .htaccess file for Minimal CMS
 
-# Deshabilitar módulos de seguridad que causan problemas comunes
-<IfModule mod_security.c>
-    # Desactivar mod_security para este directorio
-    SecFilterEngine Off
-    SecFilterScanPOST Off
+# Protection against common web attacks
+<IfModule mod_headers.c>
+    # Basic XSS protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Protection against clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Control referrer information in HTTP requests
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Aumentar límites de procesamiento
-<IfModule mod_php.c>
-    php_value max_execution_time 300
-    php_value max_input_time 300
-    php_value post_max_size 50M
-    php_value upload_max_filesize 50M
-    php_value memory_limit 256M
+# Disable directory listing
+<IfModule mod_autoindex.c>
+    Options -Indexes
 </IfModule>
 
-# Permitir métodos HTTP necesarios
+# Basic CORS configuration
+<IfModule mod_headers.c>
+    # Allow specific origins (your domain and localhost for development)
+    SetEnvIf Origin "^(https://nicolasgonzalez\.dev|http://localhost|http://127\.0\.0\.1)" ALLOWED_ORIGIN=$1
+    Header set Access-Control-Allow-Origin %{ALLOWED_ORIGIN}e env=ALLOWED_ORIGIN
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS" env=ALLOWED_ORIGIN
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept" env=ALLOWED_ORIGIN
+</IfModule>
+
+# Protection against file inclusion attacks
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
-    # Permitir solicitudes a process.php y api.php
-    RewriteCond %{REQUEST_URI} ^/process\.php [OR]
-    RewriteCond %{REQUEST_URI} ^/api\.php
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+    # Block suspicious patterns in the URL
+    RewriteCond %{QUERY_STRING} \.\./ [OR]
+    RewriteCond %{QUERY_STRING} \.\.%2F [OR]
+    RewriteCond %{QUERY_STRING} :(include|require)(_once)? [OR]
+    RewriteCond %{QUERY_STRING} \?\?PHPSESSID= [OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|'|\"|%3C).*iframe.*(\>|'|\"|%3E) [NC]
+    RewriteRule .* - [F,L]
 </IfModule>
-
-# Configuración CORS para permitir solicitudes
-<IfModule mod_headers.c>
-    Header always set Access-Control-Allow-Origin "*"
-    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
-    Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    
-    # Responder OK a las solicitudes preflight OPTIONS
-    RewriteEngine On
-    RewriteCond %{REQUEST_METHOD} OPTIONS
-    RewriteRule ^(.*)$ $1 [R=200,L]
-</IfModule>
-
-# Desactivar filtros que causan errores 403 en operaciones de escritura
-<Files "process.php">
-    # Desactivar filtros específicos para este archivo
-    <IfModule mod_security2.c>
-        SecRuleEngine Off
-    </IfModule>
-    
-    # Asegurar que PHP pueda procesar correctamente el archivo
-    <IfModule mod_mime.c>
-        AddType application/x-httpd-php .php
-    </IfModule>
-    
-    # Permitir todos los métodos HTTP
-    <LimitExcept GET POST PUT DELETE>
-        Order deny,allow
-        Allow from all
-    </LimitExcept>
-</Files>
-
-# Permitir escritura en directorios específicos
-#<Directory "content">
-#    Options +FollowSymLinks
-#    AllowOverride All
-#    Require all granted
-#</Directory>
