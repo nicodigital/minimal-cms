@@ -154,7 +154,7 @@ Failure to maintain this directory structure will result in the CMS not working 
 3. Ensure the `public/img` directories exist for the media library
 4. Configure your site settings in `config.php`
 5. Create users in the `users` directory. Here is documentation: https://github.com/jenstornell/knock#create-a-user
-6. Begin creating collections and adding content
+6. Begin creating collections and adding content. You only have to duplicate the “demo” directory, inside the collections directory and rename it with the name of the new collection.
 
 ## Best Practices
 
