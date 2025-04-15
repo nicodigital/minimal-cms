@@ -171,6 +171,10 @@ Minimal CMS is intentionally simple and may not be suitable for:
 - Complex applications requiring advanced user permissions
 - Sites needing real-time content updates or complex search functionality
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Conclusion
 
 Minimal CMS provides a streamlined approach to content management for small websites where simplicity, performance, and ease of use are priorities. Its file-based architecture and collection system make it perfect for developers who want a lightweight solution without the overhead of larger CMS platforms.
