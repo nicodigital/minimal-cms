@@ -1,0 +1,7 @@
+.trash-item{
+  @apply bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded shadow p-4 flex flex-col;
+}
+
+.trash-image{
+  @apply bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded shadow overflow-hidden flex flex-col;
+}

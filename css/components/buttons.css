@@ -1,0 +1,15 @@
+.btn{
+  @apply flex items-center justify-center gap-2 px-4 py-2 rounded cursor-pointer transition;
+
+  svg{
+    @apply size-5;
+  }
+}
+
+.btn.red, .btn.active{
+   @apply bg-red-500 text-white hover:bg-red-600
+}
+
+.btn.neutral{
+  @apply bg-neutral-300 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white;
+}

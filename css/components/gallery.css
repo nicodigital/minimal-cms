@@ -1,0 +1,25 @@
+.gallery-checkbox{
+  @apply bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center;
+}
+
+.image-item{
+  @apply p-1 border border-neutral-200 dark:border-neutral-700 rounded relative;
+  --tw-ring-color: red;
+}
+
+.gallery-images-container{
+  @apply flex flex-wrap gap-2 mb-3;
+}
+
+.gallery-image-item{
+  @apply relative border border-neutral-200 dark:border-neutral-700 rounded overflow-hidden;
+
+  img{
+    @apply aspect-square;
+  }
+  
+}
+
+.gallery-remove-image{
+  @apply absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center;
+}

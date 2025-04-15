@@ -1,0 +1,66 @@
+# Configuración para permitir solicitudes de escritura y resolver errores 403
+# Archivo .htaccess para GridBox 2.0 CMS
+
+# Deshabilitar módulos de seguridad que causan problemas comunes
+<IfModule mod_security.c>
+    # Desactivar mod_security para este directorio
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+# Aumentar límites de procesamiento
+<IfModule mod_php.c>
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_value post_max_size 50M
+    php_value upload_max_filesize 50M
+    php_value memory_limit 256M
+</IfModule>
+
+# Permitir métodos HTTP necesarios
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Permitir solicitudes a process.php y api.php
+    RewriteCond %{REQUEST_URI} ^/process\.php [OR]
+    RewriteCond %{REQUEST_URI} ^/api\.php
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+</IfModule>
+
+# Configuración CORS para permitir solicitudes
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+    Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    
+    # Responder OK a las solicitudes preflight OPTIONS
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>
+
+# Desactivar filtros que causan errores 403 en operaciones de escritura
+<Files "process.php">
+    # Desactivar filtros específicos para este archivo
+    <IfModule mod_security2.c>
+        SecRuleEngine Off
+    </IfModule>
+    
+    # Asegurar que PHP pueda procesar correctamente el archivo
+    <IfModule mod_mime.c>
+        AddType application/x-httpd-php .php
+    </IfModule>
+    
+    # Permitir todos los métodos HTTP
+    <LimitExcept GET POST PUT DELETE>
+        Order deny,allow
+        Allow from all
+    </LimitExcept>
+</Files>
+
+# Permitir escritura en directorios específicos
+#<Directory "content">
+#    Options +FollowSymLinks
+#    AllowOverride All
+#    Require all granted
+#</Directory>

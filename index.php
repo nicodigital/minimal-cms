@@ -1,0 +1,1 @@
+<?php // el silencio de los inocentes

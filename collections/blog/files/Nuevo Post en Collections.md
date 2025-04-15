@@ -1,0 +1,11 @@
+---
+excerpt: "Aenean commodo ligula eget dolor. Suspendisse non nisl sit amet velit hendrerit rutrum. Pellentesque dapibus hendrerit tortor. Vestibulum facilisis,"
+publish_date: "2025-04-14"
+status: "draft"
+gallery: ["/img/home/can-2.webp", "/img/home/GFC3Dwcr5AEJ823k7fY6Vy-4096x4096.webp"]
+tags: ["News"]
+category: "featured"
+featured: "true"
+comments_enabled: "false"
+main_img: "/img/home/newsletter.webp"
+---

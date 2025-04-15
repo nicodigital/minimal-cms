@@ -1,0 +1,17 @@
+/* css/tailwind.css */
+@import "./components/typography.css";
+@import "./components/file-item.css";
+@import "./components/brand.css";
+@import "./components/buttons.css";
+@import "./components/custom-fields.css";
+@import "./components/modal.css";
+@import "./components/trash-item.css";
+@import "./components/flash-message.css";
+@import "./components/gallery.css";
+@import "./components/scrollbars.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+

@@ -1,0 +1,9 @@
+.flash-message{
+  @apply fixed bottom-4 left-[50%] translate-x-[-50%] translate-y-[5rem]
+  p-4 rounded shadow-lg z-[9999] 
+  transform transition-all duration-500;
+}
+
+.flash-message.active{
+  @apply translate-y-0;
+}
