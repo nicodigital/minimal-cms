@@ -144,6 +144,20 @@ function renderField($field, $values = []) {
             $html .= '<input type="text" name="custom_fields[' . $name . ']" value="' . htmlspecialchars($value) . '" placeholder="' . htmlspecialchars($placeholder) . '" class="w-full border rounded p-2 bg-transparent border-neutral-300 dark:border-neutral-700">';
             break;
             
+        case 'number':
+            $min = isset($field['min']) ? ' min="' . htmlspecialchars($field['min']) . '"' : '';
+            $max = isset($field['max']) ? ' max="' . htmlspecialchars($field['max']) . '"' : '';
+            $step = isset($field['step']) ? ' step="' . htmlspecialchars($field['step']) . '"' : '';
+            $description = isset($field['description']) ? $field['description'] : '';
+            
+            $html .= '<input type="number" name="custom_fields[' . $name . ']" value="' . htmlspecialchars($value) . '"' . $min . $max . $step . ' placeholder="' . htmlspecialchars($placeholder) . '" class="w-full border rounded p-2 bg-transparent border-neutral-300 dark:border-neutral-700">';
+            
+            // If there's a description, show it below the input
+            if (!empty($description)) {
+                $html .= '<p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">' . htmlspecialchars($description) . '</p>';
+            }
+            break;
+            
         case 'textarea':
             $html .= '<textarea name="custom_fields[' . $name . ']" placeholder="' . htmlspecialchars($placeholder) . '" class="w-full border rounded p-2 bg-transparent border-neutral-300 dark:border-neutral-700" rows="3">' . htmlspecialchars($value) . '</textarea>';
             break;
@@ -502,6 +516,19 @@ function updateFrontMatterWithFieldValues($content, $fieldValues) {
                         $date = strtotime($value);
                         if ($date !== false) {
                             $value = '"' . date('Y-m-d', $date) . '"';
+                        }
+                    }
+                    break;
+                case 'number':
+                    // Ensure number values are stored as actual numbers
+                    if (!empty($value)) {
+                        // Convert string to float or integer based on the value
+                        if (strpos($value, '.') !== false) {
+                            // Value has decimal point, convert to float
+                            $value = (float)$value;
+                        } else {
+                            // Value is a whole number, convert to integer
+                            $value = (int)$value;
                         }
                     }
                     break;

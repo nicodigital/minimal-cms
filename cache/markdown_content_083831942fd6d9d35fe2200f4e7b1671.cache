@@ -1,4 +1,4 @@
-a:2:{s:7:"content";s:1096:"---
+a:2:{s:7:"content";s:1111:"---
 excerpt: "Vestibulum ullamcorper mauris at ligula. Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolo"
 publish_date: "2025-04-16"
 status: "published"
@@ -7,6 +7,7 @@ tags: []
 category: "featured"
 featured: "true"
 comments_enabled: "false"
+price: 1999.60
 main_img: "/img/home/newsletter.webp"
 ---
 # Nuevo artículo de prueba
@@ -19,4 +20,4 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
 
 ![hero.webp](/img/home/hero.webp)
 
-Etiam ut purus mattis mauris sodales aliquam. Phasellus nec sem in justo pellentesque facilisis. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Donec venenatis vulputate lorem.";s:12:"lastModified";i:1744765997;}
+Etiam ut purus mattis mauris sodales aliquam. Phasellus nec sem in justo pellentesque facilisis. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Donec venenatis vulputate lorem.";s:12:"lastModified";i:1744807189;}

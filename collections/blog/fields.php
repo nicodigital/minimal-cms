@@ -104,6 +104,18 @@ return [
         'type' => 'checkbox',
         'description' => 'Permitir comentarios en este artículo'
     ],
+    
+    // Ejemplo de campo número
+    [
+        'name' => 'price',
+        'label' => 'Precio',
+        'location' => 'right',
+        'type' => 'number',
+        'min' => 0,
+        'max' => 999999,
+        'step' => 0.01,
+        'description' => 'Precio del producto o servicio'
+    ],
 
     // Add more fields as needed
 ];

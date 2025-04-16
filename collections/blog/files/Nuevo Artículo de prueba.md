@@ -7,6 +7,7 @@ tags: []
 category: "featured"
 featured: "true"
 comments_enabled: "false"
+price: 1999.60
 main_img: "/img/home/newsletter.webp"
 ---
 # Nuevo artículo de prueba
