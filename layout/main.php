@@ -1,4 +1,4 @@
-<main class="relative lg:sticky top-[5rem] w-full md:w-[50%] px-4 pt-6 h-[calc(100vh-5rem)] overflow-y-auto">
+<main class="relative lg:sticky top-[5rem] w-full md:w-[50%] px-4 mt-6 pb-6">
   
   <!-- SimpleMDE Editor -->
   <div id="editor-container" class="<?php echo isEditorEnabled() ? '' : 'hidden'; ?>">
@@ -6,7 +6,7 @@
   </div>
   
   <!-- Custom Fields for Main Area -->
-  <div class="custom-fields-section main-fields mt-4">
+  <div class="custom-fields-section main-fields">
     <div class="custom-fields-container">
       <?php
       // Include the fields helper if it exists

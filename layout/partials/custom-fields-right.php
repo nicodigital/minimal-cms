@@ -1,5 +1,5 @@
  <!-- Custom Fields Section (Right) -->
-  <div class="custom-fields-section right-fields mb-6 pb-4">
+  <div class="custom-fields-section right-fields">
   
     <div class="custom-fields-container">
       <?php

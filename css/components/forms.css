@@ -1,4 +1,8 @@
 /* Estilos para los elementos select y option */
+main textarea{
+  @apply min-h-[12rem];
+}
+
 select {
   background-color: var(--select-bg);
   color: var(--select-text);

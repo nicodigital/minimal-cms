@@ -1,6 +1,7 @@
-main textarea{
-  @apply min-h-[12rem];
+.custom-fields-section{
+  @apply mt-4 pb-[4rem] !important;
 }
+  
 
 input[name^="custom_fields"]:focus,
 select[name^="custom_fields"]:focus,

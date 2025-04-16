@@ -2,3 +2,15 @@
     background-color: var(--bg-main);
     color: var(--text-main);
   }
+
+  aside{
+    @apply sticky top-[5rem] w-full md:w-[25%] px-4 mt-6 pb-6 overflow-y-auto;
+  }
+
+  body:has(.CodeMirror-focused) aside{
+    @apply opacity-20 transition-all duration-[0.4s] !important;
+  }
+
+  body main{
+    @apply h-[calc(100vh-5rem)] overflow-y-auto;
+  }

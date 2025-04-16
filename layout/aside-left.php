@@ -1,4 +1,4 @@
-<aside id="files-list" class="sticky top-[5rem] w-full md:w-[25%] px-4 py-6 h-fit overflow-y-auto">
+<aside id="files-list" class="h-fit overflow-y-auto">
       
       <div class="flex justify-between items-center mb-2">
         <h2 class="text-xl font-semibold">Files</h2>
@@ -6,7 +6,7 @@
       </div>
       
       <form class="search-form mb-6">
-        <input type="search" class="search-input border rounded p-2 flex-grow w-full bg-transparent border-neutral-400 dark:border-neutral-700" placeholder="Search files...">
+        <input type="search" class="search-input border rounded p-2 flex-grow w-full bg-transparent border-neutral-300 dark:border-neutral-700" placeholder="Search files...">
       </form>
       
       <div class="form-create hidden mb-4">

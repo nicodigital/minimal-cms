@@ -11,5 +11,5 @@
 }
 
 .btn.neutral{
-  @apply bg-neutral-300 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white;
+  @apply bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:hover:text-white;
 }

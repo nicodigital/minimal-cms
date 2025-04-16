@@ -24,7 +24,7 @@ export const FieldManager = {
     
     // Configurar listener para el evento de nuevo archivo creado
     document.addEventListener('newFileCreated', () => {
-      console.log('Nuevo archivo creado: aplicando valores por defecto a los campos')
+      // console.log('Nuevo archivo creado: aplicando valores por defecto a los campos')
       this.handleNewFile()
     })
 

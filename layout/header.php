@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50 p-4 flex justify-between items-center bg-[var(--bg-main)] h-[5rem]">
+<header class="sticky top-0 z-50 p-4 flex gap-4 justify-between items-center bg-[var(--bg-main)] h-[5rem]">
 
   <div class="md:w-[25%] flex justify-between items-center pr-2">
     <?php //include __DIR__ . '/partials/brand.php'; 
@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="tabs md:w-[50%] flex flex-1 justify-between pr-2">
+  <div class="tabs md:w-[50%] flex flex-1 justify-between">
     <?php include __DIR__ . '/partials/collection-buttons.php'; ?>
     <div class="flex gap-2">
       <?php

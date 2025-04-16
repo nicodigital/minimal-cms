@@ -1,16 +1,25 @@
-.editor-toolbar,
-.CodeMirror {
-  border-color: var(--border-color) !important;
+.editor-toolbar:before{
+  @apply hidden !important;
 }
 
-.editor-toolbar {
-  opacity: 1;
+.CodeMirror.CodeMirror{
+  @apply px-6 md:h-[calc(100vh-13rem)];
+}
+
+.editor-toolbar,
+.CodeMirror {
+  border: none !important;
 }
 
 .CodeMirror {
   height: calc(100vh - 17rem);
-  background-color: var(--bg-main) !important;
+  background-color: var(--bg-main-dark) !important;
+  border-radius: 15px !important;
   color: var(--text-main) !important;
+}
+
+.editor-toolbar {
+  @apply sticky top-0 bg-[var(--bg-main)] z-[999] opacity-100 pt-[1px] !important;
 }
 
 .editor-toolbar.editor-toolbar a {
