@@ -55,6 +55,12 @@ if (!isset($basePath)) {
     <?php endif; ?>
 
     <form method="post" class="mt-8 space-y-6">
+      
+      <div style="display:none !important; visibility:hidden; position:absolute; left:-9999px;">
+        <label for="email_address">Email (no completar)</label>
+        <input type="text" id="email_address" name="email_address" autocomplete="off">
+      </div>
+      
       <div class="space-y-4">
         <div>
           <label for="username" class="block text-sm font-medium text-gray-300">Usuario</label>

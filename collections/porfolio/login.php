@@ -63,6 +63,7 @@ if ($knock->isLoggedIn()) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $_POST['username'] ?? '';
   $password = $_POST['password'] ?? '';
+  $honeypot = $_POST['email_address'] ?? null; // Capturar el campo honeypot
   
   // Verificar reCAPTCHA si está habilitado
   $recaptcha_valid = true; // Por defecto, asumimos válido si no está habilitado
@@ -91,9 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Añadir info de login al debug
     $debugInfo['loginAttempt'] = true;
     $debugInfo['username'] = $username;
+    $debugInfo['honeypot_triggered'] = !empty($honeypot);
     
     // Intentar login y capturar resultado
-    $loginResult = $knock->login($username, $password);
+    $loginResult = $knock->login($username, $password, $honeypot);
     $debugInfo['loginResult'] = $loginResult ? 'SUCCESS' : 'FAILED';
     
     if ($loginResult) {

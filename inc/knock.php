@@ -25,7 +25,16 @@ class Knock {
         }
     }
 
-    public function login($username, $password) {
+    public function login($username, $password, $honeypot_data = null) {
+        // Verificación del honeypot - Si el campo honeypot tiene datos, es un bot
+        if ($honeypot_data !== null && !empty($honeypot_data)) {
+            // Podríamos registrar este intento en un log para análisis
+            if ($this->options['debug']) {
+                error_log("Posible ataque de bot detectado: campo honeypot rellenado");
+            }
+            return false;
+        }
+        
         $user_file = $this->options['users_dir'] . '/' . $username . '.php';
         
         if (!file_exists($user_file)) {
@@ -42,6 +51,9 @@ class Knock {
         if (hash('sha256', $password) !== $user['password']) {
             return false;
         }
+        
+        // Regenerar el ID de sesión para prevenir session fixation
+        session_regenerate_id(true);
         
         // Set session
         $_SESSION[$this->options['session_key']] = $username;
