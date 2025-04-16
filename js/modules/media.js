@@ -48,13 +48,13 @@ export const MediaManager = {
     const result = basePath + cleanPath
 
     // Debug - verificar la construcción de paths
-    console.log('MediaManager.buildImagePath:', {
-      input: path,
-      cleanPath,
-      basePath,
-      result,
-      configPaths: this.config
-    })
+    // console.log('MediaManager.buildImagePath:', {
+    //   input: path,
+    //   cleanPath,
+    //   basePath,
+    //   result,
+    //   configPaths: this.config
+    // })
 
     return result
   },
