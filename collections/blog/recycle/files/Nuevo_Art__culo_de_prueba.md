@@ -1,0 +1,23 @@
+---
+excerpt: "Vestibulum ullamcorper mauris at ligula. Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolo"
+publish_date: "2025-04-30"
+status: "published"
+gallery: ["/img/home/hero.webp", "/img/home/newsletter.webp", "/img/home/can-3.webp"]
+tags: ["News"]
+category: "featured"
+featured: "true"
+comments_enabled: "false"
+price: 3000
+main_img: "/img/home/newsletter.webp"
+---
+# Nuevo artículo de prueba
+
+Maecenas malesuada. Praesent congue erat at massa. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+
+![newsletter.webp](/img/home/newsletter.webp)
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Nullam cursus lacinia erat. Curabitur blandit mollis lacus.
+
+![hero.webp](/img/home/hero.webp)
+
+Etiam ut purus mattis mauris sodales aliquam. Phasellus nec sem in justo pellentesque facilisis. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Donec venenatis vulputate lorem.
