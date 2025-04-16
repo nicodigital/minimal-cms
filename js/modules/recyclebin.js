@@ -299,9 +299,23 @@ export const RecycleBinManager = {
       // Dividir por '/' y filtrar elementos vacíos
       const pathSegments = pathname.split('/').filter(segment => segment.trim() !== '');
       
-      // Si hay al menos un segmento, tomar el último como nombre de colección
-      if (pathSegments.length > 0) {
-        return pathSegments[pathSegments.length - 1];
+      // Buscar el patrón '/collections/{nombre-coleccion}/' en la URL
+      const collectionsIndex = pathSegments.indexOf('collections');
+      if (collectionsIndex !== -1 && collectionsIndex + 1 < pathSegments.length) {
+        // El segmento después de 'collections' es el nombre de la colección
+        return pathSegments[collectionsIndex + 1];
+      }
+      
+      // Si el último segmento tiene extensión de archivo (como .php), tomar el penúltimo
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      if (lastSegment && lastSegment.includes('.')) {
+        // Probablemente es un archivo, intentar con el penúltimo segmento si existe
+        if (pathSegments.length > 1) {
+          return pathSegments[pathSegments.length - 2];
+        }
+      } else if (pathSegments.length > 0) {
+        // Si el último segmento no tiene extensión, es probablemente un directorio
+        return lastSegment;
       }
       
       // Intentar obtener desde cualquier elemento de datos
