@@ -1,0 +1,18 @@
+# Deny access to all files in this directory
+Order Allow,Deny
+Deny from all
+
+# Prevent directory listing
+Options -Indexes
+
+# Disable script execution
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent viewing of .htaccess file
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
