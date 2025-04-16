@@ -6,9 +6,9 @@ featured: "false"
 comments_enabled: "true"
 main_img: "/img/home/can-3.webp"
 ---
-# Este es el título de mi Fantastic New Post
+# This is a great new article!
 
-## Subtítulo
+## This is a very cool subtitle
 
 Etiam ut purus mattis mauris sodales aliquam. Donec vitae orci sed dolor rutrum auctor. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Phasellus magna. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.
 

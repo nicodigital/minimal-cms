@@ -1,6 +1,10 @@
 # Minimal CMS
 
+![Minimal CMS Screenshot](screenshot.png)
+
 A lightweight, file-based content management system designed for simplicity and flexibility.
+
+**Developed by Nicolás González**
 
 ## Overview
 
