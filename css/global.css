@@ -2,6 +2,7 @@
 @import "./components/variables.css";
 @import "./components/layout.css";
 @import "./components/typography.css";
+@import "./simplemde.min.css";
 @import "./components/editor.css";
 @import "./components/brand.css";
 @import "./components/buttons.css";
