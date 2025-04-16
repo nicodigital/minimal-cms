@@ -1,0 +1,94 @@
+.md-list {
+  view-transition-name: md-list;
+}
+
+/* Estilos para los elementos de la lista de archivos */
+.md-list li {
+  background-color: var(--bg-secondary);
+  border: none !important;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.md-list li .file-name {
+  padding: 0.25rem 0;
+  display: block;
+  width: 100%;
+}
+
+/* Asegurar que el botón de eliminar tenga un área de clic adecuada */
+.md-list li .delete-file {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* Tema claro */
+
+.md-list li:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.md-list li.active {
+  background-color: var(--bg-tertiary);
+}
+
+/* Tema oscuro */
+html.dark .md-list li {
+  background-color: rgba(115, 115, 115, 0.2);
+}
+
+html.dark .md-list li:hover {
+  background-color: rgba(115, 115, 115, 0.3);
+}
+
+html.dark .md-list li.active {
+  background-color: rgba(115, 115, 115, 0.4);
+}
+
+
+.file-item {
+  @apply py-2 hover:bg-neutral-700 dark:hover:bg-neutral-700 cursor-pointer flex justify-between items-center;
+}
+
+/* View Transitions API styles */
+.file-item {
+  view-transition-name: file-item;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+::view-transition-old(file-item) {
+  animation: 0.2s fade-out ease forwards;
+}
+
+::view-transition-new(file-item) {
+  animation: 0.3s fade-in ease forwards;
+}

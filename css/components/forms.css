@@ -1,0 +1,18 @@
+/* Estilos para los elementos select y option */
+select {
+  background-color: var(--select-bg);
+  color: var(--select-text);
+  border-color: var(--border-color);
+}
+
+select option {
+  background-color: var(--option-bg);
+  color: var(--option-text);
+}
+
+/* Estilos para el date picker en modo oscuro */
+.dark input[type="date"] {
+  color-scheme: dark;
+  color: var(--text-main);
+  border-color: var(--border-color);
+}

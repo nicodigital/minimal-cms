@@ -1,8 +1,14 @@
 /* css/tailwind.css */
+@import "./components/variables.css";
+@import "./components/layout.css";
 @import "./components/typography.css";
-@import "./components/file-item.css";
+@import "./components/editor.css";
 @import "./components/brand.css";
 @import "./components/buttons.css";
+@import "./components/color-theme.css";
+@import "./components/forms.css";
+@import "./components/md-list.css";
+@import "./components/tags.css";
 @import "./components/custom-fields.css";
 @import "./components/modal.css";
 @import "./components/trash-item.css";

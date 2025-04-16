@@ -1,0 +1,65 @@
+.editor-toolbar,
+.CodeMirror {
+  border-color: var(--border-color) !important;
+}
+
+.editor-toolbar {
+  opacity: 1;
+}
+
+.CodeMirror {
+  height: calc(100vh - 17rem);
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+.editor-toolbar.editor-toolbar a {
+  color: var(--text-main) !important;
+}
+
+.editor-toolbar.editor-toolbar a.active,
+.editor-toolbar.editor-toolbar a:hover {
+  background-color: var(--border-color);
+}
+
+.CodeMirror .CodeMirror-code .cm-link,
+.CodeMirror .CodeMirror-code .cm-tag {
+  @apply text-red-500 !important;
+}
+
+/* SimpleMDE Editor Selection - Light mode */
+.CodeMirror .CodeMirror-selected {
+  background-color: #d1d5db !important;
+  /* gray-300 */
+}
+
+/* SimpleMDE Editor Selection - Dark mode */
+html.dark .CodeMirror .CodeMirror-selected {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
+/* SimpleMDE Cursor - Dark mode */
+html.dark .CodeMirror .CodeMirror-cursor {
+  border-left: 1px solid white !important;
+}
+
+/* SimpleMDE Active Line - Dark mode */
+html.dark .CodeMirror .CodeMirror-activeline-background {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Solución específica para las líneas delimitadoras del Front Matter */
+.CodeMirror-line:nth-child(1) .cm-hr,
+.CodeMirror-line:nth-child(3) .cm-header {
+  font-size: 160% !important;
+  font-weight: bold !important;
+  line-height: inherit !important;
+}
+
+/* Estilos adicionales para mejorar la apariencia del editor */
+.CodeMirror-gutters {
+  border-right: 1px solid var(--border-color) !important;
+  background-color: var(--bg-secondary) !important;
+}
+

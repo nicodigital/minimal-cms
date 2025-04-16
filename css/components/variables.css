@@ -1,0 +1,39 @@
+  :root {
+    --bg-main: #f3f4f6;
+    --bg-main-switch: #cacaca;
+    --bg-secondary: rgba(115, 115, 115, 0.1);
+    --bg-tertiary: rgba(115, 115, 115, 0.2);
+    --text-main: #111827;
+    --text-secondary: #4b5563;
+    --border-color: rgb(163 163 163);
+    --primary: #6b7280;
+    --primary-hover: #4b5563;
+    --success: #10b981;
+    --success-hover: #059669;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --select-bg: #ffffff;
+    --select-text: #111827;
+    --option-bg: #ffffff;
+    --option-text: #111827;
+  }
+
+  .dark {
+    --bg-main: #262626;
+    --bg-main-switch: #555;
+    --bg-secondary: rgba(115, 115, 115, 0.2);
+    --bg-tertiary: rgba(115, 115, 115, 0.3);
+    --text-main: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #4f4f4f;
+    --primary: #5d5d5d;
+    --primary-hover: #888888;
+    --success: #10b981;
+    --success-hover: #34d399;
+    --danger: #ef4444;
+    --danger-hover: #f87171;
+    --select-bg: #333333;
+    --select-text: #ffffff;
+    --option-bg: #333333;
+    --option-text: #ffffff;
+  }

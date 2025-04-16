@@ -1,3 +1,0 @@
-.file-item {
-  @apply py-2 hover:bg-neutral-700 dark:hover:bg-neutral-700 cursor-pointer flex justify-between items-center;
-}

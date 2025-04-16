@@ -1,0 +1,7 @@
+.tag-item {
+    transition: all 0.2s;
+  }
+
+  .tag-item:hover .delete-tag {
+    display: inline;
+  }

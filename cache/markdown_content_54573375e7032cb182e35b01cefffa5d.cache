@@ -1,7 +1,9 @@
-a:2:{s:7:"content";s:2611:"---
+a:2:{s:7:"content";s:2672:"---
 excerpt: "Duis lobortis massa imperdiet quam Etiam sollicitudin ipsum eu pulvinar"
 gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp"]
 tags: ["News", "Destacados"]
+featured: "false"
+comments_enabled: "false"
 main_img: "/img/home/can-1.webp"
 ---
 # Título 2x4
@@ -10,7 +12,7 @@ main_img: "/img/home/can-1.webp"
 
 ![can-1.jpg](/img/home/can-1.jpg)
 
-Nunc nulla. Phasellus blandit leo ut odio. Quisque ut nisi. Nunc nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+Nunc nulla. Phasellus **blandit **leo ut odio. *Quisque* ut nisi. [Nunc nulla](http://). Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
 ![single-blog-1.webp](../../public/img/home/single-blog-1.webp)
 
@@ -40,4 +42,4 @@ Vivamus laoreet. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rut
 
 ![400x240.png](/img/demo/400x240.png)
 
-Nulla consequat massa quis enim. Morbi mattis ullamcorper velit. Quisque id odio. Aenean massa. Fusce commodo aliquam arcu.";s:12:"lastModified";i:1744653289;}
+Nulla consequat massa quis enim. Morbi mattis ullamcorper velit. Quisque id odio. Aenean massa. Fusce commodo aliquam arcu.";s:12:"lastModified";i:1744761887;}

@@ -20,6 +20,7 @@ export const EditorManager = {
       autosave: {
         enabled: true
       },
+      toolbar: ["heading","bold", "italic", "quote", "unordered-list", "ordered-list", "code", "link", "image"],
       shortcuts: {
         // Override and extend default shortcuts
         toggleBold: 'Ctrl-B',
