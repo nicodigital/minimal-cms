@@ -209,6 +209,9 @@ If you prefer to use only custom fields without the default Markdown editor, you
 
 Minimal CMS is built with modern, lightweight technologies:
 
+### Languages Used
+HTML, CSS, JavaScript and PHP
+
 ### [Tailwind CSS](https://tailwindcss.com/)
 A utility-first CSS framework that allows for rapid UI development without leaving your HTML. Tailwind provides a clean, consistent design system for the admin interface.
 
