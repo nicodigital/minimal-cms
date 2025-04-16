@@ -3,9 +3,10 @@ main textarea{
 }
 
 input[name^="custom_fields"]:focus,
+select[name^="custom_fields"]:focus,
 textarea[name^="custom_fields"]:focus,
 input[type="search"]:focus{
-  @apply outline-none ring-2 ring-red-500;
+  @apply outline-none ring-2 ring-red-500 !important;
 }
 
 /* Estilos para campos checkbox */
@@ -14,11 +15,10 @@ input[type="search"]:focus{
 }
 
 .checkbox-input {
-  @apply h-5 w-5 text-red-500 rounded border-neutral-300 dark:border-neutral-700 bg-transparent focus:ring-red-500 focus:ring-2;
+  @apply relative h-5 w-5 text-red-500 rounded border-neutral-300 dark:border-neutral-700 bg-transparent focus:ring-red-500 focus:ring-2;
   -webkit-appearance: none;
   appearance: none;
   border: 1px solid;
-  position: relative;
 }
 
 .checkbox-input:checked {

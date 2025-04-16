@@ -16,3 +16,22 @@ select option {
   color: var(--text-main);
   border-color: var(--border-color);
 }
+
+/* Estilos específicos para el campo de búsqueda para prevenir conflictos con SimpleMDE */
+.search-input,
+.no-simplemde-autocomplete {
+  /* Prevenir que SimpleMDE active autocomplete en este campo */
+  pointer-events: auto !important;
+}
+
+/* Asegurar que el autocompletado de SimpleMDE no interfiera con este campo */
+.search-input::after,
+.search-input::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ocultar posibles errores de autocompletado de SimpleMDE */
+.CodeMirror-hints {
+  display: none !important;
+}
