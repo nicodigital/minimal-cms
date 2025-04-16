@@ -288,6 +288,66 @@ export const RecycleBinManager = {
   },
 
   /**
+   * Obtener el nombre de la colección a partir de la URL del navegador
+   * @returns {string} - Nombre de la colección
+   */
+  getCollectionFromUrl: function() {
+    try {
+      // Obtener la URL del navegador y eliminar cualquier parámetro o hash
+      const pathname = window.location.pathname.split('?')[0].split('#')[0];
+      
+      // Dividir por '/' y filtrar elementos vacíos
+      const pathSegments = pathname.split('/').filter(segment => segment.trim() !== '');
+      
+      // Si hay al menos un segmento, tomar el último como nombre de colección
+      if (pathSegments.length > 0) {
+        return pathSegments[pathSegments.length - 1];
+      }
+      
+      // Intentar obtener desde cualquier elemento de datos
+      const pageData = document.querySelector('[data-collection]');
+      if (pageData && pageData.dataset.collection) {
+        return pageData.dataset.collection;
+      }
+    } catch (error) {
+      console.error('Error al obtener la colección de la URL:', error);
+    }
+    
+    // Si todo falla, intentar con window.currentCollection
+    return window.currentCollection || 'blog'; // Usamos 'blog' como fallback en lugar de 'default'
+  },
+
+  /**
+   * Corregir una URL para que incluya la ruta correcta a la colección
+   * @param {string} url - URL a corregir
+   * @returns {string} - URL corregida
+   */
+  normalizeUrl: function(url) {
+    if (!url) return url;
+    
+    // 1. Obtener el nombre de la colección de la URL del navegador
+    const collection = this.getCollectionFromUrl();
+    
+    // 2. Comprobar si la URL ya está formada correctamente
+    if (url.includes(`/collections/${collection}/recycle/images/`)) {
+      return url; // Ya tiene la ruta correcta
+    }
+    
+    // 3. Reemplazar la ruta incorrecta con la correcta
+    if (url.includes('/recycle/images/')) {
+      // Obtener la parte relevante de la ruta (después de '/recycle/images/')
+      const relevantPath = url.split('/recycle/images/')[1] || '';
+      // Reconstruir la URL con la colección correcta
+      url = `/content/collections/${collection}/recycle/images/${relevantPath}`;
+    }
+    
+    // 4. Limpiar posibles barras dobles
+    url = url.replace(/([^:])\/{2,}/g, '$1/');
+    
+    return url;
+  },
+
+  /**
    * Renderizar imágenes en la papelera
    */
   renderImages: function (images) {
@@ -300,10 +360,11 @@ export const RecycleBinManager = {
       const imagePreview = document.createElement('div')
       imagePreview.className = 'h-32 bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center overflow-hidden'
 
-      // Si la imagen tiene una URL de vista previa
+      // Si la imagen tiene una URL de vista previa, normalizarla
       if (image.preview_url) {
         const img = document.createElement('img')
-        img.src = image.preview_url
+        // Normalizar la URL antes de asignarla
+        img.src = this.normalizeUrl(image.preview_url)
         img.className = 'max-h-full max-w-full object-contain'
         img.onerror = function () {
           // Si la imagen no se puede cargar, mostrar un icono genérico
@@ -330,11 +391,14 @@ export const RecycleBinManager = {
       imageName.className = 'font-medium truncate'
       imageName.textContent = image.original_name || image.name
 
-      // Si hay una ruta, mostrarla
+      // Si hay una ruta, mostrarla (normalizarla antes)
+      let normalizedPath = '';
       if (image.path) {
+        // Normalizar la ruta antes de mostrarla
+        normalizedPath = this.normalizeUrl(image.path);
         const imagePath = document.createElement('div')
         imagePath.className = 'text-xs text-neutral-400 dark:text-neutral-500 mt-1 truncate'
-        imagePath.textContent = `Ruta: ${image.path}`
+        imagePath.textContent = `Ruta: ${normalizedPath}`
         imageInfo.appendChild(imagePath)
       }
 
@@ -360,12 +424,14 @@ export const RecycleBinManager = {
       const restoreBtn = document.createElement('button')
       restoreBtn.className = 'bg-green-500 text-white px-2 py-1 rounded text-xs flex-1 hover:bg-green-600 transition'
       restoreBtn.textContent = 'Restaurar'
-      restoreBtn.addEventListener('click', () => this.restoreImage(image.name, image.path || ''))
+      // Usar la ruta normalizada para restaurar
+      restoreBtn.addEventListener('click', () => this.restoreImage(image.name, normalizedPath || ''))
 
       const deleteBtn = document.createElement('button')
       deleteBtn.className = 'bg-red-500 text-white px-2 py-1 rounded text-xs flex-1 hover:bg-red-600 transition'
       deleteBtn.textContent = 'Eliminar'
-      deleteBtn.addEventListener('click', () => this.permanentlyDeleteImage(image.name, image.path || ''))
+      // Usar la ruta normalizada para la eliminación permanente
+      deleteBtn.addEventListener('click', () => this.permanentlyDeleteImage(image.name, normalizedPath || ''))
 
       actions.appendChild(restoreBtn)
       actions.appendChild(deleteBtn)

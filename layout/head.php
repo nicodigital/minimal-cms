@@ -1,6 +1,6 @@
 <?php 
-$clear_cache = "";
-// $clear_cache = "?v=" . time();
+// $clear_cache = "";
+$clear_cache = "?v=" . time();
 ?>
 <!DOCTYPE html>
 <html lang="en" data-parent="<?= PARENT_URI ?>" data-media-library="<?= MEDIA_URI ?>" data-assets-uri="<?= ASSETS_URI ?>" data-root-uri="<?= ROOT_URI ?>">
