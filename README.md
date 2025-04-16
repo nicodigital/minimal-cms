@@ -76,6 +76,7 @@ Each collection can define its own custom fields in the `fields.php` file. This 
 - **Select**: Dropdown selection with configurable options
 - **Checkbox**: True/false toggle
 - **Date**: Date picker with formatting options
+- **Number**: Numeric input with optional min, max, and step attributes
 - **Gallery**: Multiple image selection
 - **Tags**: Tag input field for categorization
 
@@ -85,14 +86,95 @@ Fields are defined in the `fields.php` file as an array of field configurations:
 
 ```php
 return [
+    // Text field example
     [
-        'name' => 'title',         // Field identifier
-        'label' => 'Title',        // Display label
-        'location' => 'main',      // Field placement (main, right, left)
-        'type' => 'text',          // Field type
-        'description' => 'Optional explanation text' // Helper text
+        'name' => 'title',          // Field identifier
+        'label' => 'Title',         // Display label
+        'location' => 'main',       // Field placement (main, right, left)
+        'type' => 'text',           // Field type
+        'description' => 'Post title', // Helper text
+        'placeholder' => 'Enter title here' // Placeholder text (optional)
     ],
-    // More fields...
+    
+    // Textarea field example
+    [
+        'name' => 'excerpt',
+        'label' => 'Excerpt',
+        'location' => 'right',
+        'type' => 'textarea',
+        'description' => 'Short summary of the content'
+    ],
+    
+    // Editor field example (SimpleMDE)
+    [
+        'name' => 'editor',
+        'label' => '',
+        'location' => 'main',
+        'type' => 'editor'
+    ],
+    
+    // Select field example
+    [
+        'name' => 'status',
+        'label' => 'Publication Status',
+        'location' => 'right',
+        'type' => 'select',
+        'default' => 'published',   // Default value (optional)
+        'options' => [              // Available options as key-value pairs
+            'draft' => 'Draft',
+            'published' => 'Published',
+            'archived' => 'Archived'
+        ]
+    ],
+    
+    // Checkbox field example
+    [
+        'name' => 'featured',
+        'label' => 'Featured',
+        'location' => 'right',
+        'type' => 'checkbox',
+        'default' => 'false',       // Default value (optional)
+        'description' => 'Mark as featured content'
+    ],
+    
+    // Date field example
+    [
+        'name' => 'publish_date',
+        'label' => 'Publish Date',
+        'location' => 'right',
+        'type' => 'date',
+        'format' => 'YYYY-MM-DD'    // Date format (optional)
+    ],
+    
+    // Number field example
+    [
+        'name' => 'price',
+        'label' => 'Price',
+        'location' => 'right',
+        'type' => 'number',
+        'min' => 0,                 // Minimum value (optional)
+        'max' => 999999,            // Maximum value (optional)
+        'step' => 0.01,             // Step increment (optional, for decimal precision)
+        'description' => 'Product price'
+    ],
+    
+    // Gallery field example
+    [
+        'name' => 'gallery',
+        'label' => 'Image Gallery',
+        'location' => 'right',
+        'type' => 'gallery',
+        'description' => 'Select multiple images for the gallery'
+    ],
+    
+    // Tags field example
+    [
+        'name' => 'tags',
+        'label' => 'Tags',
+        'location' => 'right',
+        'type' => 'tags',
+        'description' => 'Add tags to categorize your content'
+    ]
 ];
 ```
 
