@@ -14,7 +14,7 @@ function getConfiguredFields() {
     // Si el parámetro collection fue proporcionado y el directorio existe, usarlo directamente
     if (!empty($collection) && is_dir(__DIR__ . '/../collections/' . $collection)) {
         // Log para depuración
-        error_log("Colección detectada desde parámetro GET: {$collection}");
+        // error_log("Colección detectada desde parámetro GET: {$collection}");
     } else {
         // Reset collection si no existe el directorio
         $collection = '';
@@ -27,7 +27,7 @@ function getConfiguredFields() {
         foreach ($uriParts as $part) {
             if (is_dir(__DIR__ . '/../collections/' . $part)) {
                 $collection = $part;
-                error_log("Colección detectada desde URL: {$collection}");
+                // error_log("Colección detectada desde URL: {$collection}");
                 break;
             }
         }
@@ -50,16 +50,16 @@ function getConfiguredFields() {
     
     // Cargar la configuración de la colección detectada
     if (!empty($collection) && file_exists(__DIR__ . '/../collections/' . $collection . '/fields.php')) {
-        error_log("Cargando campos desde: /../collections/{$collection}/fields.php");
+        // error_log("Cargando campos desde: /../collections/{$collection}/fields.php");
         $fieldsConfig = include __DIR__ . '/../collections/' . $collection . '/fields.php';
     } else {
         // Intentar cargar desde la ubicación antigua por compatibilidad
         if (!empty($collection) && file_exists(__DIR__ . '/../' . $collection . '/fields.php')) {
-            error_log("Cargando campos desde ubicación antigua: /../{$collection}/fields.php");
+            // error_log("Cargando campos desde ubicación antigua: /../{$collection}/fields.php");
             $fieldsConfig = include __DIR__ . '/../' . $collection . '/fields.php';
         } else {
             // Si no hay configuración disponible, devolver el editor por defecto
-            error_log("No se encontró configuración de campos para la colección: {$collection}");
+    //   error_log("No se encontró configuración de campos para la colección: {$collection}");
             $fieldsConfig = [
                 [
                     'name' => 'editor',

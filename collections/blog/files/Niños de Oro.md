@@ -1,13 +1,9 @@
 ---
 excerpt: "Morbi mattis ullamcorper velit. Quisque malesuada placerat nisl. Pellentesque ut neque."
-publish_date: "2025-04-24"
-status: "published"
-gallery: ["/img/home/alcohol.jpg", "/img/home/can-1.webp", "/img/home/can-2.webp"]
+gallery: ["/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 tags: ["Niños"]
-category: "blog"
-featured: "true"
+featured: "false"
 comments_enabled: "false"
-price: 8000
 main_img: "/img/home/can-2.webp"
 ---
 # Título de los niños de oro
