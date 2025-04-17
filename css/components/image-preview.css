@@ -1,7 +1,11 @@
 .image-preview-wrapper{
-  @apply relative mb-2;
+  @apply relative w-fit mb-2;
 }
 
 .image-preview-wrapper img{
   @apply aspect-square size-[10rem] object-contain border border-neutral-300 dark:border-neutral-700 rounded;
+}
+
+.image-preview-wrapper button.image-remove{
+  @apply absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600;
 }

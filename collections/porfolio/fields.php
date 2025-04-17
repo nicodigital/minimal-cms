@@ -94,5 +94,13 @@ return [
         'description' => 'Selecciona una imagen.'
     ],
 
+    [
+        'name' => 'desktop_image',
+        'label' => 'Imagen Desktop',
+        'location' => 'main',
+        'type' => 'image',
+        'description' => 'Selecciona una imagen.'
+    ],
+
     // Add more fields as needed
 ];
