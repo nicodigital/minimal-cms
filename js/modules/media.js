@@ -390,7 +390,46 @@ export const MediaManager = {
     // Actualizar breadcrumbs
     if (this.currentPath) {
       if (path) {
-        this.currentPath.textContent = ' / ' + path
+        // Crear breadcrumbs navegables
+        this.currentPath.innerHTML = ''
+        
+        // Dividir la ruta en partes
+        const pathParts = path.split('/')
+        
+        // Agregar separador inicial
+        this.currentPath.appendChild(document.createTextNode(' / '))
+        
+        // Variable para construir rutas acumulativas
+        let accumulatedPath = ''
+        
+        // Crear enlaces para cada parte de la ruta
+        pathParts.forEach((part, index) => {
+          // Actualizar la ruta acumulada
+          if (accumulatedPath) {
+            accumulatedPath += '/' + part
+          } else {
+            accumulatedPath = part
+          }
+          
+          // Crear enlace para esta parte de la ruta
+          const link = document.createElement('button')
+          link.className = 'text-neutral-600 dark:text-neutral-300 hover:underline'
+          link.textContent = part
+          
+          // Crear una copia de la ruta acumulada para la clausura
+          const pathToNavigate = accumulatedPath
+          
+          link.addEventListener('click', () => {
+            this.loadMedia(pathToNavigate)
+          })
+          
+          this.currentPath.appendChild(link)
+          
+          // Añadir otro separador si no es el último elemento
+          if (index < pathParts.length - 1) {
+            this.currentPath.appendChild(document.createTextNode(' / '))
+          }
+        })
       } else {
         this.currentPath.textContent = ''
       }
@@ -1207,6 +1246,10 @@ export const MediaManager = {
 
     // Obtener la ruta actual
     const path = this.currentMediaPath || ''
+    
+    // Construir la ruta completa del directorio a eliminar
+    // Si estamos en un subdirectorio, necesitamos incluir la ruta completa
+    const fullDirPath = path ? `${path}/${dirName}` : dirName
 
     // Enviar solicitud para eliminar el directorio
     fetch(window.getApiUrl('?action=deletedir'), {
@@ -1216,7 +1259,7 @@ export const MediaManager = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'X-Requested-With': 'XMLHttpRequest'
       },
-      body: `dirname=${encodeURIComponent(dirName)}&path=${encodeURIComponent(path)}`
+      body: `fullpath=${encodeURIComponent(fullDirPath)}`
     })
       .then(response => response.json())
       .then(data => {
