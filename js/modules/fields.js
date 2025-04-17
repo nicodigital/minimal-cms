@@ -389,6 +389,9 @@ export const FieldManager = {
             this.updateGalleryField(field, [])
           } else if (input.classList.contains('tags-data')) {
             this.updateTagsField(field, [])
+          } else if (input.classList.contains('image-data')) {
+            // Para campos de tipo image cuando no existe en el front matter
+            this.updateImageField(field, '')
           } else {
             input.value = ''
             input.dispatchEvent(new Event('input', { bubbles: true }))
@@ -658,8 +661,6 @@ export const FieldManager = {
   
   // Actualizar campo de tipo imagen con la imagen seleccionada
   updateImageField: function (imageField, imagePath) {
-    if (!imagePath) return
-    
     const imageContainer = imageField.querySelector('.image-container')
     const hiddenInput = imageField.querySelector('.image-data')
     
@@ -667,6 +668,20 @@ export const FieldManager = {
     
     // Limpiar el contenedor de imagen
     imageContainer.innerHTML = ''
+    
+    // Si no hay imagen o la ruta está vacía, limpiar el campo y actualizar el botón
+    if (!imagePath || imagePath === '') {
+      // Limpiar el valor del input oculto
+      hiddenInput.value = ''
+      
+      // Actualizar el texto del botón a "Select Image"
+      const selectButton = imageField.querySelector('.image-select')
+      if (selectButton) {
+        selectButton.textContent = 'Select Image'
+      }
+      
+      return
+    }
     
     // Establecer el valor en el input oculto
     hiddenInput.value = imagePath
@@ -678,7 +693,7 @@ export const FieldManager = {
       displayPath = `../../../public${imagePath}`
     } else if (imagePath.includes('public/img')) {
       // Si ya contiene public/img, asegurarse de que tenga la estructura correcta
-      displayPath = imagePath.replace(/^(\.\.\/)*/, '../../../')
+      displayPath = imagePath.replace(/^(\.\.\/)*/,'../../../')
     } else if (!imagePath.startsWith('../../../public/') && !imagePath.startsWith('http')) {
       // Para otros casos, añadir el prefijo completo
       displayPath = `../../../public/${imagePath}`
@@ -686,10 +701,10 @@ export const FieldManager = {
     
     // Crear el elemento de vista previa
     const previewWrapper = document.createElement('div')
-    previewWrapper.className = 'image-preview-wrapper relative mb-2'
+    previewWrapper.className = 'image-preview-wrapper'
     
     previewWrapper.innerHTML = `
-      <img src="${displayPath}" class="w-full h-auto max-h-48 object-contain border border-neutral-300 dark:border-neutral-700 rounded">
+      <img src="${displayPath}">
       <button type="button" class="image-remove absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600" data-path="${imagePath}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />

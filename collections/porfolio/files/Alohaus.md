@@ -5,6 +5,7 @@ publish_date: "2025-04-10"
 status: "archived"
 gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp", "/img/home/can-3.webp"]
 category: "blog"
+mobile_image: "/img/home/alcohol.jpg"
 main_img: "/img/home/can-3.webp"
 tags: []
 ---

@@ -86,5 +86,13 @@ return [
         ]
     ],
 
+    [
+        'name' => 'mobile_image',
+        'label' => 'Imagen Mobile',
+        'location' => 'main',
+        'type' => 'image',
+        'description' => 'Selecciona una imagen.'
+    ],
+
     // Add more fields as needed
 ];

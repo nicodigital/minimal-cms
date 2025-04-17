@@ -1,0 +1,7 @@
+.image-preview-wrapper{
+  @apply relative mb-2;
+}
+
+.image-preview-wrapper img{
+  @apply aspect-square size-[10rem] object-contain border border-neutral-300 dark:border-neutral-700 rounded;
+}

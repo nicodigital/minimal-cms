@@ -9,6 +9,7 @@
 @import "./components/color-theme.css";
 @import "./components/forms.css";
 @import "./components/md-list.css";
+@import "./components/image-preview.css";
 @import "./components/tags.css";
 @import "./components/custom-fields.css";
 @import "./components/modal.css";
