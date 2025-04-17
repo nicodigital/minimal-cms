@@ -98,20 +98,41 @@ writeToLog("Cuerpo de la solicitud: " . file_get_contents('php://input'));
 writeToLog("Encabezados: " . json_encode(getallheaders()));
 
 
-// Permitir solicitudes CORS desde dominios específicos
+// Permitir solicitudes CORS únicamente desde dominios específicos
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+
+// Validar que ALLOWED_ORIGINS está definido correctamente
+if (!defined('ALLOWED_ORIGINS') || !is_array(ALLOWED_ORIGINS)) {
+    define('ALLOWED_ORIGINS', ['http://localhost', 'http://127.0.0.1']);
+    writeToLog("ADVERTENCIA: ALLOWED_ORIGINS no estaba definido correctamente", "WARN");
+}
 
 if (in_array($origin, ALLOWED_ORIGINS)) {
     header("Access-Control-Allow-Origin: {$origin}");
     header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-TOKEN, Authorization');
     header('Access-Control-Allow-Credentials: true');
 } else {
-    // Para desarrollo local y otros casos, permitir cualquier origen
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+    // Restringir a solo localhost en modo desarrollo
+    // En producción, eliminar esta parte y solo permitir orígenes específicos
+    $localOrigins = ['http://localhost', 'http://127.0.0.1'];
+    if (in_array($origin, $localOrigins)) {
+        header("Access-Control-Allow-Origin: {$origin}");
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-TOKEN, Authorization');
+        header('Access-Control-Allow-Credentials: true');
+    } else {
+        // Para mayor seguridad, no establecer encabezados CORS para orígenes desconocidos
+        // Esto bloqueará solicitudes de orígenes no permitidos
+        writeToLog("Intento de acceso desde origen no permitido: {$origin}", "WARN");
+    }
 }
+
+// Agregar encabezados de seguridad adicionales
+header('X-Content-Type-Options: nosniff');
+header('X-XSS-Protection: 1; mode=block');
+header('X-Frame-Options: SAMEORIGIN');
+header('Referrer-Policy: same-origin');
 
 // Si es una solicitud OPTIONS (preflight), responder inmediatamente con éxito
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -481,11 +502,24 @@ function readMarkdownFile($filename)
 {
     global $markdownDir;
     
+    // Sanitizar el nombre de archivo - preservar espacios y caracteres especiales
+    // pero eliminar cualquier posible trayectoria de directorio maliciosa
+    $filename = basename(str_replace(['../', '..\\'], '', $filename));
+    
     // Generar clave de caché
     $cacheKey = generateCacheKey('markdown_content', ['file' => $filename]);
     
     // Obtener la ruta completa del archivo
     $filepath = $markdownDir . '/' . $filename;
+    
+    // Verificar path traversal - validación de seguridad adicional
+    $realMarkdownDir = realpath($markdownDir);
+    $realFilepath = realpath($filepath);
+    
+    if (!$realFilepath || !$realMarkdownDir || strpos($realFilepath, $realMarkdownDir) !== 0) {
+        writeToLog("Security violation: Attempted to read file outside permitted directory: {$filename}", "ERROR");
+        return false;
+    }
     
     // Verificar si el archivo existe
     if (!file_exists($filepath)) {
@@ -523,12 +557,30 @@ function saveMarkdownFile($filename, $content)
 {
     global $markdownDir;
     
+    // Sanitizar nombre de archivo - preservando espacios y caracteres especiales según requisito
+    // pero eliminando posibles componentes de ruta que podrían ser maliciosos
+    $filename = basename(str_replace(['../', '..\\', '/', '\\'], '', $filename));
+    
+    // Validar extensión de archivo permitida
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    if ($ext !== 'md') {
+        writeToLog("ERROR: Extensión de archivo no permitida: $ext", "ERROR");
+        return false;
+    }
+    
     // Registrar información de diagnóstico
     writeToLog("Iniciando saveMarkdownFile para: $filename", "DEBUG");
     
     // Obtener la ruta completa del archivo
     $filepath = $markdownDir . '/' . $filename;
     writeToLog("Ruta completa del archivo: $filepath", "DEBUG");
+    
+    // Verificar path traversal - validación de seguridad
+    $realMarkdownDir = realpath($markdownDir);
+    if (!$realMarkdownDir) {
+        writeToLog("ERROR: No se puede resolver la ruta real del directorio de markdown", "ERROR");
+        return false;
+    }
     
     // Verificar permisos del directorio
     if (!is_dir($markdownDir)) {
@@ -570,6 +622,13 @@ function saveMarkdownFile($filename, $content)
             $content = "---\n" . $frontMatter . "\n---\n" . $mainContent;
             writeToLog("Tags añadidos al front matter", "DEBUG");
         }
+    }
+    
+    // Limitar tamaño máximo de archivo para evitar ataques de DoS
+    $maxFileSize = 10 * 1024 * 1024; // 10MB
+    if (strlen($content) > $maxFileSize) {
+        writeToLog("ERROR: Tamaño de archivo excede el límite permitido", "ERROR");
+        return false;
     }
     
     // Método 1: Intento directo con file_put_contents
@@ -618,6 +677,9 @@ function saveMarkdownFile($filename, $content)
     }
     
     if ($result !== false) {
+        // Establecer permisos de archivo restrictivos
+        @chmod($filepath, 0644); // Propietario: leer/escribir, Grupo/Otros: solo leer
+        
         // Invalidar cachés relacionadas con este archivo
         invalidateCache(generateCacheKey('markdown_content', ['file' => $filename]));
         invalidateCacheByPrefix('markdown_files');
@@ -633,10 +695,18 @@ function saveMarkdownFile($filename, $content)
 function deleteMarkdownFile($filename)
 {
     global $markdownDir, $recycleDir;
+    
+    // Sanitize filename - remove any potentially dangerous path components
+    // but preserve special characters and spaces as per requirements
+    $filename = basename(str_replace(['../', '..\\'], '', $filename));
     $filepath = $markdownDir . '/' . $filename;
 
-    // Security check - prevent directory traversal
-    if (strpos(realpath($filepath), realpath($markdownDir)) !== 0) {
+    // Security check - prevent directory traversal with realpath
+    $realMarkdownDir = realpath($markdownDir);
+    $realFilepath = realpath($filepath);
+    
+    if (!$realFilepath || strpos($realFilepath, $realMarkdownDir) !== 0) {
+        writeToLog("Security violation: Attempted file deletion outside permitted directory: {$filename}", "ERROR");
         return false;
     }
 

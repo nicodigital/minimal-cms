@@ -1,9 +1,7 @@
 <header class="sticky top-0 z-50 p-4 flex gap-4 justify-between items-center bg-[var(--bg-main)] h-[5rem]">
 
-  <div class="md:w-[25%] flex justify-between items-center pr-2">
-    <?php //include __DIR__ . '/partials/brand.php'; 
-    ?>
-    <div class="save-wrapper flex justify-between mb-[1.7rem]">
+  <div class="md:w-[25%] flex justify-between items-center">
+    <div class="save-wrapper flex justify-between">
       <h2 class="text-xl font-semibold current-file">Select a file</h2>
     </div>
   </div>
