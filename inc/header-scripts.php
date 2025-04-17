@@ -25,20 +25,6 @@
       // console.log('Initial theme applied:', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     })();
   </script>
-<!-- Define system paths and constants for JavaScript -->
-<script>
-    // Path constants from PHP - más limpio y directo
-    window.PATHS = {
-        ROOT: "<?php echo ROOT_URI; ?>" || '/',
-        CMS: '/content/',
-        PARENT: "<?php echo PARENT_URI; ?>" || '../',
-        ASSETS: "<?php echo ASSETS_URI; ?>" || '../public/',
-        MEDIA: "<?php echo MEDIA_URI; ?>" || '../public/img',
-        JS: "<?php echo JS_URI; ?>" || '../js/',
-        CSS: "<?php echo CSS_URI; ?>" || '../css/'
-    };
-    // console.log('System paths loaded:', window.PATHS);
-</script>
 
 <!-- Define API base path and collection for collection-based structure -->
 <?php
@@ -60,6 +46,7 @@ $collectionsJson = json_encode($collections);
 ?>
 
 <script>
+    // This code is used to set files into MD LIST
     // Detect if we're in a collection subdirectory and set API path accordingly
     (function() {
       const pathParts = window.location.pathname.split('/');
