@@ -6,16 +6,18 @@ gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg
 tags: ["Imagenes"]
 category: "featured"
 featured: "true"
-comments_enabled: "false"
-price: 3300
+comments_enabled: "true"
+price: 3350
 featured_image: "/img/home/bananas.jpg"
 main_img: "/img/home/pepsi.jpg"
 ---
-# Título de test de imágnes
+# This is the best title
 
 Maecenas malesuada. Phasellus blandit leo ut odio. Integer tincidunt. Etiam rhoncus. Ut tincidunt tincidunt erat.
 
 Morbi vestibulum volutpat enim. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Pellentesque commodo eros a enim. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.
+
+## This is a great subtitle
 
 ![alcohol.jpg](/img/home/alcohol.jpg)
 
