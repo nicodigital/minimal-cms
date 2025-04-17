@@ -81,9 +81,11 @@ Each collection can define its own custom fields in the `fields.php` file. This 
 - **Checkbox**: True/false toggle
 - **Date**: Date picker with formatting options
 - **Number**: Numeric input with optional min, max, and step attributes
-- **Image**: Single image selection with preview
+- **Image**: Single image selection with preview (recommended for all image content)
 - **Gallery**: Multiple image selection
 - **Tags**: Tag input field for categorization
+
+> **Note**: The legacy "Main Image" feature has been removed. Please use the **Image** field type for all single image selections in your content.
 
 ### Field Configuration
 

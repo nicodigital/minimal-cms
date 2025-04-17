@@ -12,7 +12,7 @@ import { TagsManager } from './modules/tags.js'
 import { SearchManager } from './modules/search.js'
 import { MediaManager } from './modules/media.js'
 import { FieldManager } from './modules/fields.js'
-import { mainImageManager } from './modules/mainImage.js'
+// Removed mainImageManager import
 import { RecycleBinManager } from './modules/recyclebin.js'
 
 // Crear objeto global App
@@ -24,7 +24,7 @@ window.App = {
   SearchManager,
   MediaManager,
   FieldManager,
-  mainImageManager,
+  // Removed mainImageManager
   RecycleBinManager
 }
 
@@ -79,9 +79,7 @@ function initializeModules () {
   MediaManager.init()
   // console.log('Media manager initialized')
 
-  // Inicializar gestor de imagen principal
-  mainImageManager.init()
-  // console.log('Main image manager initialized')
+  // Removed mainImageManager initialization
 
   // Inicializar gestor de papelera de reciclaje
   RecycleBinManager.init()

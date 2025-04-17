@@ -2,14 +2,14 @@
 excerpt: "Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede."
 publish_date: "2025-05-01"
 status: "published"
-gallery: ["/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 tags: ["News"]
 category: "blog"
 featured: "true"
 comments_enabled: "false"
 price: 33000
-featured_image: "/img/home/newsletter.webp"
-main_img: "/img/home/alcohol.jpg"
+featured_image: "/img/home/alcohol.jpg"
+main_img: "/img/home/pepsi.jpg"
 ---
 # Título del artículo
 

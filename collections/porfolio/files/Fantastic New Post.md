@@ -4,9 +4,11 @@ project_title: "Este será el título custom de este proyecto"
 project_text: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent ut ligula non mi varius sagittis. Nam adipiscing. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Etiam imperdiet imperdiet orci."
 publish_date: "2025-04-15"
 status: "draft"
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/face_8.jpg"]
 category: "featured"
-main_img: "/img/home/can-3.webp"
+mobile_image: "/img/home/face_8.jpg"
+desktop_image: "/img/home/pepsi.jpg"
+main_img: "/img/home/face_8.jpg"
 tags: []
 ---
 # Este es el título de mi Fantastic New Post

@@ -1,15 +1,15 @@
-a:2:{s:7:"content";s:1483:"---
+a:2:{s:7:"content";s:1502:"---
 excerpt: "Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede."
 publish_date: "2025-05-01"
 status: "published"
-gallery: ["/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 tags: ["News"]
 category: "blog"
 featured: "true"
 comments_enabled: "false"
 price: 33000
-featured_image: "/img/home/newsletter.webp"
-main_img: "/img/home/alcohol.jpg"
+featured_image: "/img/home/alcohol.jpg"
+main_img: "/img/home/pepsi.jpg"
 ---
 # Título del artículo
 
@@ -30,4 +30,4 @@ Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam erat vo
 ![bananas.jpg](/img/home/bananas.jpg)
 
 Pellentesque posuere. Aenean viverra rhoncus pede. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Cras non dolor. Donec id justo.
-";s:12:"lastModified";i:1744904155;}
+";s:12:"lastModified";i:1744908858;}

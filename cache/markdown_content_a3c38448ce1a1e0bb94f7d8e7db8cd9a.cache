@@ -1,12 +1,14 @@
-a:2:{s:7:"content";s:2342:"---
+a:2:{s:7:"content";s:2442:"---
 excerpt: "Nulla facilisi. Cras varius. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Etiam rhoncus. Curabitur ullamcorper ultricies nisi."
 project_title: "Este será el título custom de este proyecto"
 project_text: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent ut ligula non mi varius sagittis. Nam adipiscing. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Etiam imperdiet imperdiet orci."
 publish_date: "2025-04-15"
 status: "draft"
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/face_8.jpg"]
 category: "featured"
-main_img: "/img/home/can-3.webp"
+mobile_image: "/img/home/face_8.jpg"
+desktop_image: "/img/home/pepsi.jpg"
+main_img: "/img/home/face_8.jpg"
 tags: []
 ---
 # Este es el título de mi Fantastic New Post
@@ -36,4 +38,4 @@ Phasellus tempus. Praesent egestas neque eu enim. Pellentesque habitant morbi tr
 Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Nulla sit amet est. Quisque rutrum. Quisque id odio. Nunc interdum lacus sit amet orci.
 
 ![GFC3Dwcr5AEJ823k7fY6Vy-4096x4096.webp](/img/home/GFC3Dwcr5AEJ823k7fY6Vy-4096x4096.webp)
-";s:12:"lastModified";i:1744665294;}
+";s:12:"lastModified";i:1744908906;}

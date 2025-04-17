@@ -1,111 +1,24 @@
 /**
- * Main Image Manager
+ * Main Image Manager - Empty Implementation
  *
- * Módulo para manejar la selección y visualización de la imagen principal
+ * This is an empty implementation to maintain compatibility after removing the Main Image feature
  */
 
 export class MainImageManager {
   constructor () {
-    // Path configuration
-    this.paths = {
-      root: window.PATHS ? window.PATHS.ROOT : '/',
-      cms: window.PATHS ? window.PATHS.CMS : '/content/',
-      media: window.PATHS ? window.PATHS.MEDIA : '../../../public/img'
-    }
-    
-    // Elementos del DOM
-    this.mainImageSection = document.querySelector('.main-image-section')
-    this.mainImageStatus = document.querySelector('.main-image-status')
-    this.mainImagePreview = document.getElementById('main-image-preview')
-    this.mainImagePlaceholder = document.getElementById('main-image-placeholder')
-    this.mainImagePath = document.getElementById('main-image-path')
-    this.selectMainImageBtn = document.getElementById('select-main-image')
-    this.clearMainImageBtn = document.getElementById('clear-main-image')
-
-    // Estado
-    this.selectingForMainImage = false
-
-    // Inicializar
-    this.init()
+    // Empty constructor
   }
 
-  // Inicializar el módulo
+  // Empty initialization method
   init () {
-    if (!this.mainImageSection) {
-      return
-    }
-
-    // Si no se encontró el botón, intentar buscarlo de nuevo
-    if (!this.selectMainImageBtn) {
-      this.selectMainImageBtn = document.getElementById('select-main-image')
-
-      if (!this.selectMainImageBtn) {
-        // Intentar con un selector más general
-        const possibleButtons = document.querySelectorAll('button')
-
-        possibleButtons.forEach((btn, index) => {
-        })
-      } else {
-      }
-    }
-
-    this.setupEventListeners()
+    // No initialization needed
+    return;
   }
 
-  // Configurar los event listeners
+  // Empty event listener setup
   setupEventListeners () {
-    // Botón para seleccionar imagen principal
-    if (this.selectMainImageBtn) {
-      // Eliminar eventos anteriores para evitar duplicados
-      this.selectMainImageBtn.removeEventListener('click', this.showMediaSelectionModal.bind(this))
-
-      // Añadir evento con un manejador directo para depuración
-      this.selectMainImageBtn.addEventListener('click', (e) => {
-        this.showMediaSelectionModal()
-      })
-
-      // Añadir también un evento directo para pruebas
-      this.selectMainImageBtn.onclick = (e) => {
-        // No llamar a showMediaSelectionModal aquí para evitar duplicados
-      }
-    } else {
-      // Intentar configurar los eventos después de un breve retraso
-      setTimeout(() => {
-        // Buscar los elementos de nuevo
-        this.selectMainImageBtn = document.getElementById('select-main-image')
-        this.clearMainImageBtn = document.getElementById('clear-main-image')
-
-        if (this.selectMainImageBtn) {
-          this.selectMainImageBtn.addEventListener('click', (e) => {
-            this.showMediaSelectionModal()
-          })
-
-          // Detener el observer una vez que se ha encontrado el botón
-          // observer.disconnect()
-        }
-      }, 1000)
-    }
-
-    // Botón para limpiar imagen principal
-    if (this.clearMainImageBtn) {
-      // Eliminar eventos anteriores para evitar duplicados
-      this.clearMainImageBtn.removeEventListener('click', this.clearMainImage.bind(this))
-
-      // Añadir evento con un manejador directo para depuración
-      this.clearMainImageBtn.addEventListener('click', (e) => {
-        this.clearMainImage()
-      })
-    } else {
-    }
-
-    // Escuchar eventos de selección de imagen desde la biblioteca de medios
-    document.removeEventListener('mediaSelected', this.handleMediaSelection.bind(this))
-    document.addEventListener('mediaSelected', (e) => {
-      this.handleMediaSelection(e)
-    })
-
-    // Configurar un MutationObserver para detectar cuando se añade el botón al DOM
-    this.setupMutationObserver()
+    // No event listeners needed
+    return;
   }
 
   // Configurar un MutationObserver para detectar cambios en el DOM
@@ -432,5 +345,5 @@ export class MainImageManager {
   }
 }
 
-// Exportar una instancia del módulo para uso global
+// Export an empty instance for compatibility
 export const mainImageManager = new MainImageManager()

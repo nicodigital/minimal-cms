@@ -6,7 +6,7 @@ category: "featured"
 featured: "true"
 comments_enabled: "false"
 price: 6750
-featured_image: "/img/home/alcohol.jpg"
+featured_image: "/img/home/pepsi.jpg"
 main_img: "/img/home/alcohol.jpg"
 ---
 # Título de los niños de oro
