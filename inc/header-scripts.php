@@ -25,20 +25,18 @@
       // console.log('Initial theme applied:', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     })();
   </script>
-
 <!-- Define system paths and constants for JavaScript -->
 <script>
-    // Path constants from PHP
+    // Path constants from PHP - más limpio y directo
     window.PATHS = {
-        ROOT: document.documentElement.dataset.rootUri || '/',
-        CMS: document.documentElement.dataset.cmsUri || '/content/',
-        PARENT: document.documentElement.dataset.parent || '../',
-        ASSETS: document.documentElement.dataset.assetsUri || '../public/',
-        MEDIA: document.documentElement.dataset.mediaLibrary || '../public/img',
-        JS: document.documentElement.dataset.parent ? document.documentElement.dataset.parent + 'js/' : '../js/',
-        CSS: document.documentElement.dataset.parent ? document.documentElement.dataset.parent + 'css/' : '../css/'
+        ROOT: "<?php echo ROOT_URI; ?>" || '/',
+        CMS: '/content/',
+        PARENT: "<?php echo PARENT_URI; ?>" || '../',
+        ASSETS: "<?php echo ASSETS_URI; ?>" || '../public/',
+        MEDIA: "<?php echo MEDIA_URI; ?>" || '../public/img',
+        JS: "<?php echo JS_URI; ?>" || '../js/',
+        CSS: "<?php echo CSS_URI; ?>" || '../css/'
     };
-    
     // console.log('System paths loaded:', window.PATHS);
 </script>
 
@@ -113,9 +111,5 @@ $collectionsJson = json_encode($collections);
           : baseUrl;
       };
       
-      // console.log('API configuration:', {
-      //   basePath: window.API_BASE_PATH,
-      //   collection: window.CURRENT_COLLECTION
-      // });
     })();
 </script>

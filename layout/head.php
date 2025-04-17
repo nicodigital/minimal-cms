@@ -3,7 +3,7 @@
 $clear_cache = "?v=" . time();
 ?>
 <!DOCTYPE html>
-<html lang="en" data-parent="<?= PARENT_URI ?>" data-media-library="<?= MEDIA_URI ?>" data-assets-uri="<?= ASSETS_URI ?>" data-root-uri="<?= ROOT_URI ?>">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

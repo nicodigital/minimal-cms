@@ -2,6 +2,7 @@
 // Definición de constantes para rutas
 define('ROOT_URI', '/');
 define('CURRENT_URI', './');
+define('CMS_URI', '/content/');
 define('PARENT_URI', '../../');
 define('ASSETS_URI', '../../../public/'); // Ruta absoluta desde collections/blog/ a public/
 define('MEDIA_URI', ASSETS_URI . 'img');
