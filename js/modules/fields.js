@@ -18,6 +18,9 @@ export const FieldManager = {
 
     // Inicializar botones de galería
     this.initializeGalleryButtons()
+    
+    // Inicializar botones de imagen
+    this.initializeImageButtons()
 
     // Ocultar campos personalizados inicialmente
     this.hideCustomFields()
@@ -29,6 +32,113 @@ export const FieldManager = {
     })
 
     // console.log('Field manager initialized')
+  },
+  
+  // Inicializar botones para abrir el modal de selección de imagen
+  initializeImageButtons: function () {
+    // Buscar todos los botones de selección de imagen
+    const imageButtons = document.querySelectorAll('.image-select')
+    
+    // Depuración: Mostrar los botones encontrados
+    // console.log('Botones de imagen encontrados:', imageButtons.length)
+    // imageButtons.forEach((btn, index) => {
+    //   console.log(`Botón ${index}:`, {
+    //     id: btn.getAttribute('data-image-id'),
+    //     mode: btn.getAttribute('data-media-mode'),
+    //     text: btn.textContent.trim()
+    //   })
+    // })
+
+    // Configurar evento para cada botón
+    imageButtons.forEach(button => {
+      // Remover eventos anteriores para evitar duplicados
+      const oldClickListener = button._clickListener
+      if (oldClickListener) {
+        button.removeEventListener('click', oldClickListener)
+      }
+
+      // Crear nuevo manejador de eventos
+      const clickHandler = (e) => {
+        e.preventDefault()
+        // Depuración: Mostrar información del evento de clic
+        console.log('Clic en botón de imagen:', e.target)
+        
+        // Obtener el ID del campo de imagen
+        const imageId = button.getAttribute('data-image-id')
+        console.log('ID de imagen:', imageId)
+
+        // Verificar si el modal existe
+        const mediaModal = document.getElementById('media-modal')
+        if (!mediaModal) {
+          console.error('Error: El modal de la biblioteca de medios no existe en el DOM')
+          alert('Error: No se pudo abrir la biblioteca de medios. Por favor, recarga la página.')
+          return
+        }
+
+        // Abrir directamente el modal de la Biblioteca de Medios
+        if (window.App && window.App.MediaManager) {
+          console.log('Abriendo modal directamente con MediaManager')
+          try {
+            // Asegurarse de que el modal esté visible
+            mediaModal.classList.remove('hidden')
+            mediaModal.style.display = ''
+            document.body.classList.add('overflow-hidden')
+            
+            // Llamar al método openModal
+            window.App.MediaManager.openModal('image', imageId)
+          } catch (error) {
+            console.error('Error al abrir el modal:', error)
+            // Mostrar el modal manualmente como último recurso
+            mediaModal.classList.remove('hidden')
+            mediaModal.style.display = ''
+            document.body.classList.add('overflow-hidden')
+          }
+        } else {
+          console.error('MediaManager no está disponible')
+          // Intentar con el evento como fallback
+          console.log('Disparando evento selectForImage como fallback')
+          document.dispatchEvent(new CustomEvent('selectForImage', {
+            detail: {
+              active: true,
+              imageId
+            }
+          }))
+          
+          // Mostrar el modal manualmente como último recurso
+          mediaModal.classList.remove('hidden')
+          mediaModal.style.display = ''
+          document.body.classList.add('overflow-hidden')
+        }
+      }
+
+      // Guardar referencia al manejador para poder eliminarlo más tarde
+      button._clickListener = clickHandler
+      
+      // Añadir el evento
+      button.addEventListener('click', clickHandler)
+    })
+    
+    // Configurar eventos para los botones de eliminar imagen
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.image-remove')) {
+        const removeBtn = e.target.closest('.image-remove')
+        const imageWrapper = removeBtn.closest('.image-preview-wrapper')
+        const imageField = removeBtn.closest('.image-field')
+        const hiddenInput = imageField.querySelector('.image-data')
+        
+        // Limpiar la vista previa y el valor del campo
+        if (imageWrapper && hiddenInput) {
+          imageWrapper.remove()
+          hiddenInput.value = ''
+          
+          // Actualizar el texto del botón
+          const selectButton = imageField.querySelector('.image-select')
+          if (selectButton) {
+            selectButton.textContent = 'Select Image'
+          }
+        }
+      }
+    })
   },
 
   // Inicializar botones para abrir el modal de galería
@@ -230,6 +340,9 @@ export const FieldManager = {
           } else if (input.classList.contains('tags-data')) {
             // Para campos de tipo tags
             this.updateTagsField(field, fieldValue)
+          } else if (input.classList.contains('image-data')) {
+            // Para campos de tipo image
+            this.updateImageField(field, fieldValue)
           } else {
             // Para campos normales (text, textarea, etc.)
             input.value = fieldValue
@@ -527,23 +640,73 @@ export const FieldManager = {
 
   // Actualizar el campo oculto con los datos de las etiquetas
   updateTagsDataField: function (tagsField) {
-    const tagsList = tagsField.querySelector('.tags-list')
-    const tagsData = tagsField.querySelector('.tags-data')
-    if (!tagsList || !tagsData) return
-
-    // Recolectar todas las etiquetas actuales
-    const tags = Array.from(tagsList.querySelectorAll('.tag-item span')).map(span => span.textContent)
-
-    // Actualizar el campo oculto con el valor JSON
-    tagsData.value = JSON.stringify(tags)
-
-    // Actualizar los valores en memoria
-    const fieldName = tagsField.dataset.fieldName
-    if (fieldName) {
-      this.customFieldValues[fieldName] = tags
+    const tagsItems = tagsField.querySelectorAll('.tag-item')
+    const hiddenInput = tagsField.querySelector('.tags-data')
+    
+    if (!hiddenInput) return
+    
+    const tags = []
+    tagsItems.forEach(item => {
+      const tagText = item.querySelector('span').textContent
+      tags.push(tagText)
+    })
+    
+    // Actualizar el valor del input oculto
+    hiddenInput.value = JSON.stringify(tags)
+    // console.log('Tags actualizados:', tags)
+  },
+  
+  // Actualizar campo de tipo imagen con la imagen seleccionada
+  updateImageField: function (imageField, imagePath) {
+    if (!imagePath) return
+    
+    const imageContainer = imageField.querySelector('.image-container')
+    const hiddenInput = imageField.querySelector('.image-data')
+    
+    if (!imageContainer || !hiddenInput) return
+    
+    // Limpiar el contenedor de imagen
+    imageContainer.innerHTML = ''
+    
+    // Establecer el valor en el input oculto
+    hiddenInput.value = imagePath
+    
+    // Construir la ruta correcta para la vista previa
+    let displayPath = imagePath
+    if (imagePath.startsWith('/')) {
+      // Si comienza con /, añadir el prefijo ../../../public
+      displayPath = `../../../public${imagePath}`
+    } else if (imagePath.includes('public/img')) {
+      // Si ya contiene public/img, asegurarse de que tenga la estructura correcta
+      displayPath = imagePath.replace(/^(\.\.\/)*/, '../../../')
+    } else if (!imagePath.startsWith('../../../public/') && !imagePath.startsWith('http')) {
+      // Para otros casos, añadir el prefijo completo
+      displayPath = `../../../public/${imagePath}`
+    }
+    
+    // Crear el elemento de vista previa
+    const previewWrapper = document.createElement('div')
+    previewWrapper.className = 'image-preview-wrapper relative mb-2'
+    
+    previewWrapper.innerHTML = `
+      <img src="${displayPath}" class="w-full h-auto max-h-48 object-contain border border-neutral-300 dark:border-neutral-700 rounded">
+      <button type="button" class="image-remove absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600" data-path="${imagePath}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    `
+    
+    // Añadir al contenedor
+    imageContainer.appendChild(previewWrapper)
+    
+    // Actualizar el texto del botón
+    const selectButton = imageField.querySelector('.image-select')
+    if (selectButton) {
+      selectButton.textContent = 'Change Image'
     }
   },
-
+  
   // Recolectar valores de campos personalizados
   collectCustomFieldValues: function () {
     const values = {}

@@ -65,9 +65,10 @@ export const MediaManager = {
 
   // Estado
   currentMediaPath: '',
-  currentMode: 'editor', // 'editor', 'main-image', 'gallery'
+  currentMode: 'editor', // 'editor', 'main-image', 'gallery', 'image'
   selectedImages: [],
   currentGalleryId: null,
+  currentImageId: null,
   isLoading: false,
 
   /**
@@ -190,6 +191,18 @@ export const MediaManager = {
         this.openModal('gallery', e.detail.galleryId)
       }
     })
+    
+    // Escuchar eventos de selección para imagen
+    document.addEventListener('selectForImage', (e) => {
+      console.log('Evento selectForImage recibido:', e.detail)
+      if (e.detail && e.detail.active) {
+        const imageId = e.detail.imageId || null
+        console.log('Abriendo modal en modo imagen con ID:', imageId)
+        this.openModal('image', imageId)
+      } else {
+        console.log('El evento no tiene los detalles necesarios')
+      }
+    })
   },
 
   /**
@@ -198,21 +211,59 @@ export const MediaManager = {
   setupOpenMediaButtonEvent: function () {
     if (this.openMediaBtn) {
       // Eliminar eventos anteriores para evitar duplicados
-      this.openMediaBtn.removeEventListener('click', this._openModalHandler)
+      if (this._openModalHandler) {
+        this.openMediaBtn.removeEventListener('click', this._openModalHandler)
+      }
 
-      // Crear manejador de eventos
+      // Crear manejador de eventos robusto
       this._openModalHandler = (e) => {
         e.preventDefault()
+        console.log('Clic en botón principal de la biblioteca de medios')
 
         // Determinar el modo basado en el atributo data-media-mode
         const mode = this.openMediaBtn.getAttribute('data-media-mode') || 'editor'
         const galleryId = this.openMediaBtn.getAttribute('data-gallery-id') || null
 
-        this.openModal(mode, galleryId)
+        // Verificar si el modal existe
+        const mediaModal = document.getElementById('media-modal')
+        if (!mediaModal) {
+          console.error('Error: El modal de la biblioteca de medios no existe en el DOM')
+          alert('Error: No se pudo abrir la biblioteca de medios. Por favor, recarga la página.')
+          return
+        }
+        
+        try {
+          // Asegurarse de que el modal esté visible
+          mediaModal.classList.remove('hidden')
+          mediaModal.style.display = ''
+          document.body.classList.add('overflow-hidden')
+          
+          // Llamar al método openModal
+          this.openModal(mode, galleryId)
+        } catch (error) {
+          console.error(`Error al abrir el modal en modo ${mode}:`, error)
+          // Mostrar el modal manualmente como último recurso
+          mediaModal.classList.remove('hidden')
+          mediaModal.style.display = ''
+          document.body.classList.add('overflow-hidden')
+          
+          // Actualizar el estado interno del MediaManager
+          this.currentMode = mode
+          if (mode === 'gallery') {
+            this.currentGalleryId = galleryId
+            this.currentImageId = null
+          }
+          
+          // Cargar el contenido de la carpeta actual o la raíz
+          this.loadMedia(this.currentMediaPath || '')
+        }
       }
 
       // Añadir evento
       this.openMediaBtn.addEventListener('click', this._openModalHandler)
+      // console.log('Evento configurado para el botón principal de la biblioteca de medios')
+    } else {
+      console.warn('Botón principal de la biblioteca de medios no encontrado')
     }
   },
 
@@ -225,11 +276,9 @@ export const MediaManager = {
       console.warn('MutationObserver no está disponible')
       return
     }
-
-    if (typeof window.MutationObserver === 'undefined') {
-      console.warn('MutationObserver no está disponible en este navegador')
-      return
-    }
+    
+    // Configurar inmediatamente los botones existentes
+    this.setupMediaButtons()
 
     const observer = new window.MutationObserver((mutations) => {
       let shouldCheckButtons = false
@@ -239,7 +288,9 @@ export const MediaManager = {
           mutation.addedNodes.forEach(node => {
             if (node.nodeType === 1 &&
                 (node.hasAttribute('data-media-mode') ||
-                 node.querySelector('[data-media-mode]'))) {
+                 node.querySelector('[data-media-mode]') ||
+                 node.classList.contains('media-button') ||
+                 node.querySelector('.media-button'))) {
               shouldCheckButtons = true
             }
           })
@@ -247,18 +298,174 @@ export const MediaManager = {
       })
 
       if (shouldCheckButtons) {
-        // Actualizar event listeners para nuevos botones
-        document.querySelectorAll('[data-media-mode="main-image"]').forEach(btn => {
-          btn.removeEventListener('click', () => this.openModal('main-image'))
-          btn.addEventListener('click', () => this.openModal('main-image'))
-        })
+        this.setupMediaButtons()
+      }
+    })
 
-        // Configurar botones para galerías
-        document.querySelectorAll('[data-media-mode="gallery"]').forEach(btn => {
-          const galleryId = btn.getAttribute('data-gallery-id')
-          btn.removeEventListener('click', () => this.openModal('gallery', galleryId))
-          btn.addEventListener('click', () => this.openModal('gallery', galleryId))
-        })
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    })
+  },
+  
+  /**
+   * Configurar todos los botones relacionados con la biblioteca de medios
+   */
+  setupMediaButtons: function() {
+    // console.log('Configurando botones de medios...')
+    
+    // Función auxiliar para crear un manejador de eventos robusto
+    const createRobustClickHandler = (mode, id = null) => {
+      return (e) => {
+        e.preventDefault()
+        console.log(`Clic en botón de modo: ${mode}${id ? ` con ID: ${id}` : ''}`)
+        
+        // Verificar si el modal existe
+        const mediaModal = document.getElementById('media-modal')
+        if (!mediaModal) {
+          console.error('Error: El modal de la biblioteca de medios no existe en el DOM')
+          alert('Error: No se pudo abrir la biblioteca de medios. Por favor, recarga la página.')
+          return
+        }
+        
+        try {
+          // Asegurarse de que el modal esté visible
+          mediaModal.classList.remove('hidden')
+          mediaModal.style.display = ''
+          document.body.classList.add('overflow-hidden')
+          
+          // Llamar al método openModal
+          this.openModal(mode, id)
+        } catch (error) {
+          console.error(`Error al abrir el modal en modo ${mode}:`, error)
+          // Mostrar el modal manualmente como último recurso
+          mediaModal.classList.remove('hidden')
+          mediaModal.style.display = ''
+          document.body.classList.add('overflow-hidden')
+          
+          // Actualizar el estado interno del MediaManager
+          this.currentMode = mode
+          if (mode === 'gallery') {
+            this.currentGalleryId = id
+            this.currentImageId = null
+          } else if (mode === 'image') {
+            this.currentImageId = id
+            this.currentGalleryId = null
+          }
+          
+          // Cargar el contenido de la carpeta actual o la raíz
+          this.loadMedia(this.currentMediaPath || '')
+        }
+      }
+    }
+    
+    // Configurar botón principal de la biblioteca de medios
+    const openMediaBtn = document.getElementById('open-media-library')
+    if (openMediaBtn) {
+      // Eliminar eventos anteriores para evitar duplicados
+      if (openMediaBtn._clickHandler) {
+        openMediaBtn.removeEventListener('click', openMediaBtn._clickHandler)
+      }
+      
+      // Crear y asignar nuevo manejador
+      const clickHandler = createRobustClickHandler('editor')
+      openMediaBtn._clickHandler = clickHandler
+      openMediaBtn.addEventListener('click', clickHandler)
+    }
+    
+    // Actualizar event listeners para botones de imagen principal
+    document.querySelectorAll('[data-media-mode="main-image"]').forEach(btn => {
+      // Eliminar eventos anteriores
+      if (btn._clickHandler) {
+        btn.removeEventListener('click', btn._clickHandler)
+      }
+      
+      // Crear y asignar nuevo manejador
+      const clickHandler = createRobustClickHandler('main-image')
+      btn._clickHandler = clickHandler
+      btn.addEventListener('click', clickHandler)
+    })
+
+    // Configurar botones para galerías
+    document.querySelectorAll('[data-media-mode="gallery"]').forEach(btn => {
+      // Eliminar eventos anteriores
+      if (btn._clickHandler) {
+        btn.removeEventListener('click', btn._clickHandler)
+      }
+      
+      const galleryId = btn.getAttribute('data-gallery-id')
+      
+      // Crear y asignar nuevo manejador
+      const clickHandler = createRobustClickHandler('gallery', galleryId)
+      btn._clickHandler = clickHandler
+      btn.addEventListener('click', clickHandler)
+    })
+    
+    // Configurar botones para campos de imagen
+    document.querySelectorAll('[data-media-mode="image"]').forEach(btn => {
+      // Eliminar eventos anteriores
+      if (btn._clickHandler) {
+        btn.removeEventListener('click', btn._clickHandler)
+      }
+      
+      const imageId = btn.getAttribute('data-image-id')
+      // console.log('Configurando botón de imagen con ID:', imageId)
+      
+      // Crear y asignar nuevo manejador
+      const clickHandler = createRobustClickHandler('image', imageId)
+      btn._clickHandler = clickHandler
+      btn.addEventListener('click', clickHandler)
+    })
+    
+    // Configurar botones con la clase media-button
+    document.querySelectorAll('.media-button').forEach(btn => {
+      // Eliminar eventos anteriores
+      if (btn._clickHandler) {
+        btn.removeEventListener('click', btn._clickHandler)
+      }
+      
+      const mode = btn.getAttribute('data-media-mode') || 'editor'
+      const id = mode === 'gallery' ? btn.getAttribute('data-gallery-id') : 
+                (mode === 'image' ? btn.getAttribute('data-image-id') : null)
+      
+      // console.log('Configurando media-button:', { mode, id })
+      
+      // Crear y asignar nuevo manejador
+      const clickHandler = createRobustClickHandler(mode, id)
+      btn._clickHandler = clickHandler
+      btn.addEventListener('click', clickHandler)
+    })
+  },
+  
+  setupMutationObserver: function () {
+    // Asegurarse de que MutationObserver esté disponible
+    if (typeof window.MutationObserver === 'undefined') {
+      console.warn('MutationObserver no está disponible')
+      return
+    }
+    
+    // Configurar inmediatamente los botones existentes
+    this.setupMediaButtons()
+
+    const observer = new window.MutationObserver((mutations) => {
+      let shouldCheckButtons = false
+
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 &&
+                (node.hasAttribute('data-media-mode') ||
+                 node.querySelector('[data-media-mode]') ||
+                 node.classList.contains('media-button') ||
+                 node.querySelector('.media-button'))) {
+              shouldCheckButtons = true
+            }
+          })
+        }
+      })
+
+      if (shouldCheckButtons) {
+        this.setupMediaButtons()
       }
     })
 
@@ -270,32 +477,83 @@ export const MediaManager = {
 
   /**
    * Abrir el modal de la biblioteca de medios
-   * @param {string} mode - Modo de selección ('editor', 'main-image', 'gallery')
-   * @param {string} galleryId - ID del campo de galería (solo para modo 'gallery')
+   * @param {string} mode - Modo de selección ('editor', 'main-image', 'gallery', 'image')
+   * @param {string} id - ID del campo (galleryId o imageId dependiendo del modo)
    */
-  openModal: function (mode = 'editor', galleryId = null) {
+  openModal: function (mode = 'editor', id = null) {
+    console.log('openModal llamado con modo:', mode, 'y ID:', id)
+    
+    // Verificar y reinicializar el modal si es necesario
+    if (!this.modal) {
+      console.warn('Modal no inicializado, intentando reinicializar...')
+      this.modal = document.getElementById('media-modal')
+      
+      // Si aún no existe, verificar si el HTML del modal está presente
+      if (!this.modal) {
+        console.error('Error: El modal no existe en el DOM')
+        
+        // Verificar si hay un elemento con la clase media-modal
+        const possibleModal = document.querySelector('.media-modal')
+        if (possibleModal) {
+          this.modal = possibleModal
+          console.log('Modal encontrado usando selector alternativo')
+        } else {
+          console.error('No se pudo encontrar el modal en el DOM')
+          alert('Error: No se pudo abrir la biblioteca de medios. Por favor, recarga la página.')
+          return
+        }
+      }
+      
+      // Reinicializar otros elementos importantes
+      this.mediaGrid = this.mediaGrid || document.querySelector('.media-grid')
+      this.mediaLoading = this.mediaLoading || document.querySelector('.media-loading')
+      this.closeModalBtn = this.closeModalBtn || document.getElementById('close-media-modal')
+      
+      // Configurar evento para cerrar el modal si no estaba configurado
+      if (this.closeModalBtn) {
+        this.closeModalBtn.addEventListener('click', () => {
+          this.closeModal()
+        })
+      }
+    }
+
     // Establecer el modo actual
-    this.currentMode = mode
-    this.currentGalleryId = galleryId
+    this.currentMode = mode || 'editor'
+    console.log('Modo establecido a:', this.currentMode)
+    
+    // Guardar el ID según el modo
+    if (mode === 'gallery') {
+      this.currentGalleryId = id
+      this.currentImageId = null
+      console.log('ID de galería establecido a:', this.currentGalleryId)
+    } else if (mode === 'image') {
+      this.currentImageId = id
+      this.currentGalleryId = null
+      console.log('ID de imagen establecido a:', this.currentImageId)
+    } else {
+      this.currentGalleryId = null
+      this.currentImageId = null
+      console.log('IDs de galería e imagen restablecidos')
+    }
+    
     this.selectedImages = []
 
-    // Actualizar UI según el modo
+    // Actualizar la UI según el modo
     this.updateModeUI()
 
     // Mostrar el modal
-    if (this.modal) {
-      this.modal.classList.remove('hidden')
-      this.modal.style.display = 'flex'
+    this.modal.classList.remove('hidden')
+    document.body.classList.add('overflow-hidden')
 
-      // Forzar un reflow para asegurar que los cambios se apliquen
-      this.modal.getBoundingClientRect()
+    // Cargar el contenido de la carpeta actual o la raíz
+    this.loadMedia(this.currentMediaPath || '')
 
-      // Añadir clase para animación de entrada si es necesario
-      this.modal.classList.add('modal-active')
-    }
-
-    // Cargar medios
-    this.loadMedia()
+    // Disparar evento para notificar que el modal ha sido abierto
+    document.dispatchEvent(new CustomEvent('mediaModalOpened', {
+      detail: {
+        mode: this.currentMode
+      }
+    }))
   },
 
   /**
@@ -330,6 +588,9 @@ export const MediaManager = {
         this.modeIndicator.classList.remove('hidden')
       } else if (this.currentMode === 'gallery') {
         this.modeIndicator.textContent = 'Modo: Galería'
+        this.modeIndicator.classList.remove('hidden')
+      } else if (this.currentMode === 'image') {
+        this.modeIndicator.textContent = 'Modo: Seleccionar Imagen'
         this.modeIndicator.classList.remove('hidden')
       } else {
         this.modeIndicator.classList.add('hidden')
@@ -663,6 +924,9 @@ export const MediaManager = {
       // Modo imagen principal: establecer como imagen principal
       this.setMainImage(imageName, relativePath, fullPath)
       this.closeModal()
+    } else if (this.currentMode === 'image') {
+      // Modo imagen: establecer imagen para el campo de tipo imagen
+      this.setImage(imageName, relativePath, fullPath)
     } else if (this.currentMode === 'gallery') {
       // Modo galería: alternar selección
       const images = this.mediaGrid.querySelectorAll('.image-item')
@@ -1029,7 +1293,7 @@ export const MediaManager = {
     // Cualquier otro formato, normalizarlo a /img/
     else {
       // Eliminar cualquier prefijo de ruta relativa
-      const cleanPath = frontMatterPath.replace(/^(\.\.\/)*/g, '')
+      const cleanPath = frontMatterPath.replace(/^(\.\.\/)*/, '')
       // Eliminar public/img/ si ya existe
       const finalPath = cleanPath.replace(/^public\/img\//i, '')
       // Asegurarse de que no comience con /
@@ -1061,6 +1325,94 @@ export const MediaManager = {
 
     // Mostrar mensaje flash
     this.showFlashMessage('Imagen principal establecida')
+  },
+  
+  /**
+   * Establecer imagen para campo de tipo image
+   * @param {string} imageName - Nombre de la imagen
+   * @param {string} imagePath - Ruta de la imagen para markdown
+   * @param {string} fullPath - Ruta completa de la imagen
+   */
+  setImage: function (imageName, imagePath, fullPath) {
+    // Para la vista previa: Mantener la ruta completa con ../../public/
+    const displayPath = this.buildImagePath(imagePath, false)
+
+    // Para el front-matter: Generar una ruta en formato /img/... similar a insertImageToEditor
+    let frontMatterPath = imagePath
+
+    // Si la ruta ya comienza con /img/, usarla tal cual
+    if (frontMatterPath.startsWith('/img/')) {
+      // console.log('Ruta ya tiene formato correcto para front-matter (imagen):', frontMatterPath)
+    }
+    // Si comienza con ../../../public/img/, convertirla al formato /img/
+    else if (frontMatterPath.includes('../../../public/img/')) {
+      frontMatterPath = frontMatterPath.replace('../../../public/img/', '/img/')
+    }
+    // Para compatibilidad con rutas antiguas
+    else if (frontMatterPath.includes('../../public/img/')) {
+      frontMatterPath = frontMatterPath.replace('../../public/img/', '/img/')
+    }
+    // Cualquier otro formato, normalizarlo a /img/
+    else {
+      // Eliminar cualquier prefijo de ruta relativa
+      const cleanPath = frontMatterPath.replace(/^(\.\.\/)*/, '')
+      // Eliminar public/img/ si ya existe
+      const finalPath = cleanPath.replace(/^public\/img\//i, '')
+      // Asegurarse de que no comience con /
+      const pathWithoutLeadingSlash = finalPath.replace(/^\/+/, '')
+      // Construir la ruta completa con el formato correcto
+      frontMatterPath = '/img/' + pathWithoutLeadingSlash
+    }
+
+    // Buscar el campo de imagen correspondiente
+    const imageField = document.querySelector(`.image-field[data-image-id="${this.currentImageId}"]`)
+    if (!imageField) {
+      console.error('No se encontró el campo de imagen con ID:', this.currentImageId)
+      return
+    }
+
+    // Obtener el contenedor de la imagen y el input oculto
+    const imageContainer = imageField.querySelector('.image-container')
+    const hiddenInput = imageField.querySelector('.image-data')
+
+    if (!imageContainer || !hiddenInput) {
+      console.error('No se encontraron los elementos necesarios para el campo de imagen')
+      return
+    }
+
+    // Limpiar el contenedor de imagen
+    imageContainer.innerHTML = ''
+
+    // Establecer el valor en el input oculto
+    hiddenInput.value = frontMatterPath
+
+    // Crear el elemento de vista previa
+    const previewWrapper = document.createElement('div')
+    previewWrapper.className = 'image-preview-wrapper relative mb-2'
+
+    previewWrapper.innerHTML = `
+      <img src="${displayPath}" class="w-full h-auto max-h-48 object-contain border border-neutral-300 dark:border-neutral-700 rounded">
+      <button type="button" class="image-remove absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600" data-path="${frontMatterPath}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    `
+
+    // Añadir al contenedor
+    imageContainer.appendChild(previewWrapper)
+
+    // Actualizar el texto del botón
+    const selectButton = imageField.querySelector('.image-select')
+    if (selectButton) {
+      selectButton.textContent = 'Change Image'
+    }
+
+    // Mostrar mensaje de éxito
+    this.showFlashMessage(`Imagen seleccionada: ${imageName}`, 'success')
+
+    // Cerrar el modal
+    this.closeModal()
   },
 
   /**

@@ -358,6 +358,60 @@ function renderField($field, $values = []) {
             $html .= '<input type="hidden" name="custom_fields_checkbox_state[' . $name . ']" value="included">';
             $html .= '</div>';
             break;
+            
+        case 'image':
+            $description = isset($field['description']) ? $field['description'] : '';
+            
+            // Create a unique ID for this image field
+            $imageId = 'image-' . $name . '-' . uniqid();
+            
+            $html .= '<div class="image-field" data-image-id="' . $imageId . '">';
+            
+            // Description if available
+            if (!empty($description)) {
+                $html .= '<p class="text-sm text-neutral-500 dark:text-neutral-400 mb-2">' . htmlspecialchars($description) . '</p>';
+            }
+            
+            // Container for the selected image
+            $html .= '<div class="image-container mb-3">';
+            
+            // Display existing image if any
+            if (!empty($value)) {
+                // Convert to full path for display
+                $displayPath = $value;
+                if (strpos($value, '/') === 0) {
+                    $displayPath = '../../../public' . $value;
+                } elseif (strpos($value, 'http') !== 0 && strpos($value, '../../../public') !== 0) {
+                    // Si no es una URL completa y no comienza con ../../../public, añadir el prefijo
+                    $displayPath = '../../../public/' . $value;
+                }
+                
+                $html .= '<div class="image-preview-wrapper relative mb-2">';
+                $html .= '<img src="' . htmlspecialchars($displayPath) . '" class="w-full h-auto max-h-48 object-contain border border-neutral-300 dark:border-neutral-700 rounded">';
+                $html .= '<button type="button" class="image-remove absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600" data-path="' . htmlspecialchars($value) . '">';
+                $html .= '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">';
+                $html .= '<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />';
+                $html .= '</svg>';
+                $html .= '</button>';
+                $html .= '</div>';
+            } else {
+                $html .= '<div class="image-placeholder hidden border border-dashed border-neutral-300 dark:border-neutral-700 rounded p-4 text-center text-neutral-500 dark:text-neutral-400 mb-2">';
+                $html .= 'No image selected';
+                $html .= '</div>';
+            }
+            
+            $html .= '</div>';
+            
+            // Add image button
+            $html .= '<button type="button" class="image-select media-button btn neutral" data-media-mode="image" data-image-id="' . $imageId . '">';
+            $html .= empty($value) ? 'Select Image' : 'Change Image';
+            $html .= '</button>';
+            
+            // Hidden input to store the image path
+            $html .= '<input type="hidden" name="custom_fields[' . $name . ']" class="image-data" value="' . htmlspecialchars($value) . '">';
+            
+            $html .= '</div>';
+            break;
     }
     
     $html .= '</div>';

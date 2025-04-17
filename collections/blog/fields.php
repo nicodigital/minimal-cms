@@ -117,5 +117,14 @@ return [
         'description' => 'Precio del producto o servicio'
     ],
 
+    // Ejemplo de campo imagen
+    [
+        'name' => 'featured_image',
+        'label' => 'Imagen Destacada',
+        'location' => 'right',
+        'type' => 'image',
+        'description' => 'Selecciona una imagen destacada para el artículo'
+    ],
+
     // Add more fields as needed
 ];

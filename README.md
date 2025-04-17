@@ -81,6 +81,7 @@ Each collection can define its own custom fields in the `fields.php` file. This 
 - **Checkbox**: True/false toggle
 - **Date**: Date picker with formatting options
 - **Number**: Numeric input with optional min, max, and step attributes
+- **Image**: Single image selection with preview
 - **Gallery**: Multiple image selection
 - **Tags**: Tag input field for categorization
 
@@ -160,6 +161,15 @@ return [
         'max' => 999999,            // Maximum value (optional)
         'step' => 0.01,             // Step increment (optional, for decimal precision)
         'description' => 'Product price'
+    ],
+    
+    // Image field example
+    [
+        'name' => 'featured_image',
+        'label' => 'Featured Image',
+        'location' => 'right',
+        'type' => 'image',
+        'description' => 'Select a single image for the post'
     ],
     
     // Gallery field example
