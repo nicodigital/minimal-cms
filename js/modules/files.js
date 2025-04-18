@@ -46,6 +46,9 @@ export const FileManager = {
 
     // Cargar lista de archivos inicialmente
     this.loadFileList()
+    
+    // Verificar si hay un parámetro 'file' en la URL
+    this.checkUrlForFileParameter()
 
     // console.log('File manager initialized')
   },
@@ -219,6 +222,11 @@ export const FileManager = {
     if (this.currentFileEl) {
       this.currentFileEl.textContent = filename
     }
+    
+    // Actualizar la URL con el parámetro file
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('file', filename);
+    window.history.replaceState({}, '', currentUrl);
 
     // Actualizar la clase 'active' en la lista de archivos
     if (this.mdList) {
@@ -1001,6 +1009,23 @@ export const FileManager = {
   // Obtener el archivo actual
   getCurrentFile: function () {
     return this.currentFile
+  },
+  
+  // Verificar si hay un parámetro 'file' en la URL y cargar el archivo si existe
+  checkUrlForFileParameter: function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileParam = urlParams.get('file');
+    
+    if (fileParam) {
+      // Esperar a que la lista de archivos se cargue antes de intentar cargar el archivo
+      setTimeout(() => {
+        // Verificar si el archivo existe en la lista
+        const fileItem = this.mdList.querySelector(`li[data-filename="${fileParam.toLowerCase()}"]`);
+        if (fileItem) {
+          this.loadFile(fileParam);
+        }
+      }, 500); // Esperar 500ms para asegurar que la lista de archivos está cargada
+    }
   },
 
   // Método para ocultar temporalmente los campos personalizados
