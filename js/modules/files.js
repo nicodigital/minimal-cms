@@ -414,10 +414,7 @@ export const FileManager = {
   saveFile: function () {
     if (!this.currentFile) return
 
-    // Mostrar indicador de carga
-    const saveIndicator = document.createElement('div')
-    saveIndicator.className = 'fixed top-0 left-0 w-full h-1 bg-green-500 animate-pulse z-50'
-    document.body.appendChild(saveIndicator)
+    // Ya no mostramos el indicador de carga (barra verde), solo usamos el Flash Message
 
     // Obtener contenido del editor
     let content = ''
@@ -573,16 +570,15 @@ export const FileManager = {
     }))
 
     // Guardar el archivo con el contenido actualizado
-    this.saveFileToServer(updatedContent, saveIndicator)
+    this.saveFileToServer(updatedContent)
   },
 
   // Método auxiliar para guardar el archivo en el servidor
-  saveFileToServer: function (content, saveIndicator) {
+  saveFileToServer: function (content) {
     // Verificar que tenemos un nombre de archivo válido
     if (!this.currentFile) {
       console.error('Error: No filename specified!')
       alert('Error: No se ha especificado un nombre de archivo.')
-      saveIndicator.remove()
       return
     }
 
@@ -623,7 +619,6 @@ export const FileManager = {
           const response = JSON.parse(xhr.responseText)
           if (response.success) {
             // console.log('Archivo guardado exitosamente via XMLHttpRequest')
-            saveIndicator.remove()
             
             // Guardar el nombre del archivo actual
             const currentFileName = this.currentFile
@@ -641,19 +636,16 @@ export const FileManager = {
           } else {
             console.error('Error al guardar archivo:', response.message)
             alert('Error al guardar archivo: ' + response.message)
-            saveIndicator.remove()
           }
         } catch (error) {
           console.error('Error al procesar respuesta:', error)
           alert('Error al guardar: ' + error.message)
-          saveIndicator.remove()
         }
       }
 
       xhr.onerror = () => {
         console.error('Error de red al guardar archivo')
         alert('Error de red al guardar archivo. Por favor, intente nuevamente.')
-        saveIndicator.remove()
       }
 
       // Enviar la petición con el contenido
@@ -756,9 +748,6 @@ export const FileManager = {
       })
       .then(data => {
         if (data.success) {
-          // Eliminar el indicador de carga
-          saveIndicator.remove()
-
           // Guardar el nombre del archivo actual
           const currentFileName = this.currentFile
 
@@ -776,9 +765,6 @@ export const FileManager = {
           // Mostrar mensaje de error
           alert('Error saving file: ' + (data.error || 'Unknown error'))
 
-          // Eliminar el indicador de carga
-          saveIndicator.remove()
-
           // Disparar evento de error
           document.dispatchEvent(new CustomEvent('fileSaveError', {
             detail: {
@@ -791,9 +777,6 @@ export const FileManager = {
       .catch(error => {
         console.error('Error saving file:', error)
         alert('Error saving file: ' + error.message)
-
-        // Eliminar el indicador de carga
-        saveIndicator.remove()
 
         // Disparar evento de error
         document.dispatchEvent(new CustomEvent('fileSaveError', {

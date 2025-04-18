@@ -3,16 +3,24 @@ excerpt: "Morbi mattis ullamcorper velit. Quisque malesuada placerat nisl. Pelle
 publish_date: "2025-04-25"
 status: "published"
 gallery: ["/img/home/face_8.jpg", "/img/home/hero.webp", "/img/home/can-3.webp"]
-tags: ["Destacado", "Face"]
+tags: ["Destacado", "Face", "Niños"]
 featured: "true"
-comments_enabled: "false"
-price: 23575
-featured_image: "/img/home/face_8.jpg"
+comments_enabled: "true"
+price: 3750
+featured_image: "/img/home/bananas.jpg"
 main_img: "/img/home/can-3.webp"
 ---
-# Título de los niños de oro
+# Título de los Niños de Oro
 
 Morbi mattis ullamcorper velit. Quisque malesuada placerat nisl. Pellentesque ut neque. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Morbi mollis tellus ac sapien.
+
+![alcohol.jpg](/img/home/alcohol.jpg)
+
+Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Phasellus gravida semper nisi. Nam at tortor in tellus interdum sagittis. Aliquam eu nunc. Fusce ac felis sit amet ligula pharetra condimentum.
+
+![bananas.jpg](/img/home/bananas.jpg)
+
+Morbi mattis ullamcorper velit. Aliquam erat volutpat. In auctor lobortis lacus. Sed hendrerit. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis.
 
 ![face_8.jpg](/img/home/face_8.jpg)
 

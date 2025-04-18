@@ -11,7 +11,7 @@ price: 33000
 featured_image: "/img/home/pepsi.jpg"
 main_img: "/img/home/pepsi.jpg"
 ---
-# Título del artículo
+# Título del artículo xxx
 
 ![alcohol.jpg](/img/home/alcohol.jpg)
 

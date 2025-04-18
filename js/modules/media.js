@@ -1323,8 +1323,7 @@ export const MediaManager = {
       }
     }))
 
-    // Mostrar mensaje flash
-    this.showFlashMessage('Imagen principal establecida')
+    // Ya no mostramos mensaje flash al establecer la imagen principal
   },
   
   /**
@@ -1408,8 +1407,7 @@ export const MediaManager = {
       selectButton.textContent = 'Change Image'
     }
 
-    // Mostrar mensaje de éxito
-    this.showFlashMessage(`Imagen seleccionada: ${imageName}`, 'success')
+    // Ya no mostramos mensaje flash al seleccionar imágenes
 
     // Cerrar el modal
     this.closeModal()

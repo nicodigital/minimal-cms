@@ -1,4 +1,4 @@
-a:2:{s:7:"content";s:1535:"---
+a:2:{s:7:"content";s:1539:"---
 excerpt: "Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede."
 publish_date: "2025-05-01"
 status: "published"
@@ -11,7 +11,7 @@ price: 33000
 featured_image: "/img/home/pepsi.jpg"
 main_img: "/img/home/pepsi.jpg"
 ---
-# Título del artículo
+# Título del artículo xxx
 
 ![alcohol.jpg](/img/home/alcohol.jpg)
 
@@ -32,4 +32,4 @@ Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam erat vo
 ![bananas.jpg](/img/home/bananas.jpg)
 
 Pellentesque posuere. Aenean viverra rhoncus pede. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Cras non dolor. Donec id justo.
-";s:12:"lastModified";i:1744939952;}
+";s:12:"lastModified";i:1744976914;}
