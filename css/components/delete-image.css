@@ -1,0 +1,7 @@
+.delete-image-wrap{
+  @apply absolute top-1 right-1 invisible group-hover:visible flex space-x-1;
+}
+
+.delete-image{
+  @apply bg-red-500 hover:bg-red-700 text-white rounded-full p-1 mt-1 mr-1;
+}
