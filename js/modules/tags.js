@@ -23,7 +23,7 @@ export const TagsManager = {
 
     // Si no existe el campo de tags, salir sin error
     if (!this.tagsField) {
-      console.warn('Tags field not found')
+      // console.warn('Tags field not found')
       return
     }
 

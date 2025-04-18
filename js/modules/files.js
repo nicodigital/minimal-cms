@@ -469,7 +469,7 @@ export const FileManager = {
 
             // Obtener el tipo de campo desde window.fieldTypes o usar el tipo detectado
             const realFieldType = window.fieldTypes && window.fieldTypes[name] ? window.fieldTypes[name] : fieldType;
-            console.log(`Formateando campo ${name} como tipo: ${realFieldType}`);
+            // // console.log(`Formateando campo ${name} como tipo: ${realFieldType}`);
             
             // Formatear según el tipo de campo
             switch (realFieldType) {
@@ -479,10 +479,10 @@ export const FileManager = {
                 break
               case 'textarea':
                 // ENFOQUE SIMPLIFICADO: Dejar que PHP maneje el formato YAML
-                console.log('Procesando textarea:', name);
-                console.log('Valor original:', JSON.stringify(formattedValue));
-                console.log('Contiene saltos de línea:', formattedValue.includes('\n'));
-                console.log('Número de líneas:', formattedValue.split('\n').length);
+                // // console.log('Procesando textarea:', name);
+                // // console.log('Valor original:', JSON.stringify(formattedValue));
+                // // console.log('Contiene saltos de línea:', formattedValue.includes('\n'));
+                // // console.log('Número de líneas:', formattedValue.split('\n').length);
                 
                 if (formattedValue.includes('\n')) {
                   // Detectar patrones de texto para usar diferentes separadores
@@ -513,7 +513,7 @@ export const FileManager = {
                     }
                   }
                   
-                  console.log('Texto con separadores simplificados:', result);
+                  // // console.log('Texto con separadores simplificados:', result);
                   
                   // Encerrar en comillas para formato YAML correcto
                   formattedValue = `"${result}"`;
@@ -578,7 +578,7 @@ export const FileManager = {
       return
     }
 
-    console.log('Guardando archivo:', this.currentFile)
+    // console.log('Guardando archivo:', this.currentFile)
 
     // Detectar si hay imágenes base64 (no referencias markdown) y evaluar tamaño
     // Las imágenes base64 contienen 'data:image' seguido de 'base64'
@@ -586,14 +586,14 @@ export const FileManager = {
     const hasBase64Images = content.includes('data:image') && content.includes('base64')
     const contentLength = content.length
 
-    console.log('Tamaño del contenido:', contentLength, 'caracteres')
-    console.log('Contiene imágenes base64:', hasBase64Images ? 'Sí' : 'No')
+    // console.log('Tamaño del contenido:', contentLength, 'caracteres')
+    // console.log('Contiene imágenes base64:', hasBase64Images ? 'Sí' : 'No')
 
     // Solo usamos XMLHttpRequest para imágenes base64 grandes, no para imágenes
     // referenciadas en formato markdown como ![alt](url)
     if (hasBase64Images && contentLength > 500000) {
-      console.log('Detectado contenido grande con imágenes base64. Usando XMLHttpRequest...')
-      console.log('Tamaño del contenido:', contentLength, 'caracteres')
+      // console.log('Detectado contenido grande con imágenes base64. Usando XMLHttpRequest...')
+      // console.log('Tamaño del contenido:', contentLength, 'caracteres')
 
       // Obtener la URL base
       const apiUrl = window.API_BASE_PATH || 'process.php'
@@ -601,7 +601,7 @@ export const FileManager = {
 
       // Construir URL con parámetros básicos
       const xhrUrl = `${apiUrl}?action=write&file=${encodeURIComponent(this.currentFile)}&collection=${encodeURIComponent(collection)}`
-      console.log('URL para XMLHttpRequest:', xhrUrl)
+      // console.log('URL para XMLHttpRequest:', xhrUrl)
 
       // Crear y configurar el objeto XMLHttpRequest
       const xhr = new XMLHttpRequest()
@@ -614,7 +614,7 @@ export const FileManager = {
         try {
           const response = JSON.parse(xhr.responseText)
           if (response.success) {
-            console.log('Archivo guardado exitosamente via XMLHttpRequest')
+            // console.log('Archivo guardado exitosamente via XMLHttpRequest')
             saveIndicator.remove()
             
             // Guardar el nombre del archivo actual
@@ -664,8 +664,8 @@ export const FileManager = {
     const collection = window.CURRENT_COLLECTION || ''
     const url = `${apiUrl}?collection=${encodeURIComponent(collection)}`
 
-    console.log('URL para fetch:', url)
-    console.log('Tamaño del contenido:', contentLength, 'caracteres')
+    // console.log('URL para fetch:', url)
+    // console.log('Tamaño del contenido:', contentLength, 'caracteres')
 
     // Opciones de fetch con URLSearchParams
     // CRÍTICO: Asegurarse de que params se convierta a string para el envío
@@ -680,22 +680,21 @@ export const FileManager = {
       body: params.toString() // Convertir explícitamente a string.toString()
     }
 
-    console.log('Body enviado:', params.toString().substring(0, 150) + '...')
-
-    console.log('Fetch options:', JSON.stringify(fetchOptions, (key, value) => {
-      // No mostrar el contenido del cuerpo de la solicitud en la consola
-      if (key === 'body') return '[Request Body]'
-      return value
-    }, 2))
+    // console.log('Body enviado:', params.toString().substring(0, 150) + '...')
+    // console.log('Fetch options:', JSON.stringify(fetchOptions, (key, value) => {
+    //   // No mostrar el contenido del cuerpo de la solicitud en la consola
+    //   if (key === 'body') return '[Request Body]'
+    //   return value
+    // }, 2))
 
     // Función para procesar respuestas del servidor
     const processResponse = (response, method) => {
       // Guardar la URL para diagnóstico
       const requestUrl = response.url
 
-      console.log(`Respuesta recibida (${method}) - Status:`, response.status, 'Status Text:', response.statusText)
-      console.log('URL completa de la solicitud:', requestUrl)
-      console.log('Encabezados de respuesta:', JSON.stringify(Object.fromEntries([...response.headers])))
+      // console.log(`Respuesta recibida (${method}) - Status:`, response.status, 'Status Text:', response.statusText)
+      // console.log('URL completa de la solicitud:', requestUrl)
+      // console.log('Encabezados de respuesta:', JSON.stringify(Object.fromEntries([...response.headers])))
 
       // Verificar si la respuesta es exitosa (código 200-299)
       if (!response.ok) {
@@ -708,12 +707,12 @@ export const FileManager = {
 
       // Intentar parsear como JSON
       return response.text().then(text => {
-        console.log(`Respuesta completa (${method}):`, text)
+        // console.log(`Respuesta completa (${method}):`, text)
         try {
           return JSON.parse(text)
         } catch (e) {
-          console.error(`Error al parsear JSON (${method}):`, e)
-          console.log(`Respuesta recibida (${method}) (primeros 150 caracteres):`, text.substring(0, 150))
+          // console.error(`Error al parsear JSON (${method}):`, e)
+          // console.log(`Respuesta recibida (${method}) (primeros 150 caracteres):`, text.substring(0, 150))
           throw new Error(`Respuesta no válida: ${text.substring(0, 150)}... (URL: ${requestUrl})`)
         }
       })
@@ -723,13 +722,13 @@ export const FileManager = {
     return fetch(url, fetchOptions)
       .then(response => processResponse(response, 'POST'))
       .catch(error => {
-        console.error('Error en método POST:', error)
-        console.log('Intentando método alternativo GET...')
+        // console.error('Error en método POST:', error)
+        // console.log('Intentando método alternativo GET...')
 
         // Construir URL para método alternativo vía GET
         const getUrl = `${apiUrl}?action=write&file=${encodeURIComponent(this.currentFile)}&content=${encodeURIComponent(content)}&secure_write=true&collection=${encodeURIComponent(collection)}`
 
-        console.log('URL alternativa (truncada):', getUrl.substring(0, 150) + '...')
+        // console.log('URL alternativa (truncada):', getUrl.substring(0, 150) + '...')
 
         // Opciones para solicitud GET
         const getOptions = {
@@ -855,7 +854,7 @@ export const FileManager = {
     const collection = window.CURRENT_COLLECTION || ''
     const url = `${apiUrl}?collection=${encodeURIComponent(collection)}`
 
-    console.log('Creating new file using URL:', url)
+    // console.log('Creating new file using URL:', url)
 
     fetch(url, {
       method: 'POST',
@@ -899,7 +898,7 @@ export const FileManager = {
     const collection = window.CURRENT_COLLECTION || ''
     const url = `${apiUrl}?collection=${encodeURIComponent(collection)}`
 
-    console.log('Deleting file using URL:', url)
+    // console.log('Deleting file using URL:', url)
 
     fetch(url, {
       method: 'POST',

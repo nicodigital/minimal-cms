@@ -347,7 +347,7 @@ export const FieldManager = {
             // Para campos normales (text, textarea, etc.)
             // Si es un textarea, convertir los separadores a saltos de línea
             if (input.tagName === 'TEXTAREA') {
-              console.log('Procesando textarea al cargar:', fieldName);
+              // console.log('Procesando textarea al cargar:', fieldName);
               
               // Convertir separadores a saltos de línea
               let processedValue = fieldValue;
@@ -358,7 +358,7 @@ export const FieldManager = {
               // Luego procesar saltos de línea simples (pipe simple)
               processedValue = processedValue.replace(/ \| /g, '\n');
               
-              console.log('Valor procesado para textarea:', processedValue);
+              // console.log('Valor procesado para textarea:', processedValue);
               input.value = processedValue;
             } else {
               // Otros campos normales
@@ -753,7 +753,7 @@ export const FieldManager = {
     const allFields = [...leftFields, ...rightFields, ...mainFields]
 
     // Log para depuración
-    console.log('Found custom fields:', allFields.length)
+    // // console.log('Found custom fields:', allFields.length)
 
     allFields.forEach(field => {
       const fieldName = field.getAttribute('data-field-name')
@@ -765,7 +765,7 @@ export const FieldManager = {
         // Para checkboxes, guardar el estado booleano
         values[fieldName] = checkboxInput.checked ? 'true' : 'false'
         fieldTypes[fieldName] = 'checkbox'
-        console.log(`Checkbox ${fieldName} = ${checkboxInput.checked}`)
+        // // console.log(`Checkbox ${fieldName} = ${checkboxInput.checked}`)
         return
       }
 
@@ -798,7 +798,7 @@ export const FieldManager = {
         
         // Guardar el tipo de campo
         fieldTypes[fieldName] = fieldType
-        console.log(`Field ${fieldName} detected as type: ${fieldType}`)
+        // console.log(`Field ${fieldName} detected as type: ${fieldType}`)
 
         // Para campos especiales como tags, que almacenan datos en formato JSON
         if (input.classList.contains('tags-data') || input.classList.contains('gallery-data')) {
@@ -814,17 +814,17 @@ export const FieldManager = {
           values[fieldName] = input.value
           
           // Si es un textarea con múltiples líneas, lo marcamos en console.log
-          if (fieldType === 'textarea' && input.value.includes('\n')) {
-            console.log(`Textarea ${fieldName} contiene múltiples líneas`)
-          }
+          // if (fieldType === 'textarea' && input.value.includes('\n')) {
+          //   console.log(`Textarea ${fieldName} contiene múltiples líneas`)
+          // }
         }
-        console.log(`Field ${fieldName} = "${input.value.substring(0, 30)}${input.value.length > 30 ? '...' : ''}"`)
+        // console.log(`Field ${fieldName} = "${input.value.substring(0, 30)}${input.value.length > 30 ? '...' : ''}"`)
       } else {
-        console.warn('Field missing name attribute or input element:', field)
+        // console.warn('Field missing name attribute or input element:', field)
       }
     })
 
-    console.log('Field types collected:', fieldTypes)
+    // console.log('Field types collected:', fieldTypes)
     
     // Guardar los tipos de campo como una propiedad de window para que esté disponible en otras partes
     window.fieldTypes = fieldTypes

@@ -1,8 +1,15 @@
 ---
-excerpt: "Duis lobortis massa imperdiet quam Etiam sollicitudin ipsum eu pulvinar"
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp"]
-tags: ["News", "Destacados"]
-main_img: "/img/home/can-1.webp"
+excerpt: "Duis lobortis massa imperdiet quam Etiam sollicitudin ipsum eu pulvinar. || Duis lobortis massa imperdiet quam Etiam sollicitudin ipsum eu pulvinar."
+project_title: "Título de Last New Post!"
+project_text: "Phasellus dolor. Morbi mollis tellus ac sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Etiam ultricies nisi vel augue. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. || Morbi nec metus. Vestibulum ullamcorper mauris at ligula. Fusce neque. Fusce egestas elit eget lorem. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. || Fusce egestas elit eget lorem. Donec vitae sapien ut libero venenatis faucibus. Nunc sed turpis. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Mauris sollicitudin fermentum libero."
+publish_date: "2025-05-10"
+status: "published"
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
+category: "blog"
+mobile_image: "/img/home/alcohol.jpg"
+desktop_image: "/img/home/pepsi.jpg"
+main_img: "/img/home/pepsi.jpg"
+tags: []
 ---
 # Título 2x4
 
