@@ -8,7 +8,7 @@ category: "blog"
 featured: "true"
 comments_enabled: "false"
 price: 33000
-featured_image: "/img/home/alcohol.jpg"
+featured_image: "/img/home/pepsi.jpg"
 main_img: "/img/home/pepsi.jpg"
 ---
 # Título del artículo
@@ -16,6 +16,8 @@ main_img: "/img/home/pepsi.jpg"
 ![alcohol.jpg](/img/home/alcohol.jpg)
 
 Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Fusce convallis metus id felis luctus adipiscing. Praesent ut ligula non mi varius sagittis. Vestibulum fringilla pede sit amet augue.
+
+![pepsi.jpg](/img/home/pepsi.jpg)
 
 Pellentesque posuere. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas egestas arcu quis ligula mattis placerat. Etiam ut purus mattis mauris sodales aliquam. Donec posuere vulputate arcu.
 

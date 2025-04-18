@@ -159,7 +159,7 @@ function renderField($field, $values = []) {
             break;
             
         case 'textarea':
-            $html .= '<textarea name="custom_fields[' . $name . ']" placeholder="' . htmlspecialchars($placeholder) . '" class="w-full border rounded p-2 bg-transparent border-neutral-300 dark:border-neutral-700" rows="3">' . htmlspecialchars($value) . '</textarea>';
+            $html .= '<textarea name="custom_fields[' . $name . ']" data-type="textarea" placeholder="' . htmlspecialchars($placeholder) . '" class="w-full border rounded p-2 bg-transparent border-neutral-300 dark:border-neutral-700" rows="3">' . htmlspecialchars($value) . '</textarea>';
             break;
             
         case 'select':
@@ -595,6 +595,16 @@ function updateFrontMatterWithFieldValues($content, $fieldValues) {
                     } else {
                         // Convertir valor PHP a string boolean para frontmatter
                         $value = (bool)$value ? 'true' : 'false';
+                    }
+                    break;
+                case 'textarea':
+                    // Manejo simplificado para campos textarea
+                    if (is_string($value)) {
+                        // Simplemente asegurarse de que las comillas estén correctamente formateadas
+                        // Ya no necesitamos manejar múltiples líneas porque ahora usamos separadores
+                        $value = trim($value, '"');
+                        $value = '"' . str_replace('"', '\\"', $value) . '"';
+                        error_log("Valor de textarea formateado: " . substr($value, 0, 50));
                     }
                     break;
                 default:

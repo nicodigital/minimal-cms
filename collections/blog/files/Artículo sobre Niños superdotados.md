@@ -7,7 +7,7 @@ tags: ["Niños"]
 category: "blog"
 featured: "true"
 comments_enabled: "true"
-price: 1200
+price: 1250
 featured_image: "/img/home/face_8.jpg"
 main_img: "/img/home/can-1.webp"
 ---

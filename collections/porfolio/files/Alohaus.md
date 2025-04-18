@@ -1,16 +1,11 @@
 ---
-project_title: "Título de Alohaus"
-project_text: "Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst.
-
-Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst.
-
-Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst."
-publish_date: "2025-04-10"
-status: "archived"
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp", "/img/home/can-3.webp"]
+excerpt: "Morbi ac felis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi."
+project_title: "Este será el título de Alohaus"
+project_text: "Fusce fermentum odio nec arcu. Morbi nec metus. Proin faucibus arcu quis ante. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Fusce fermentum. || Fusce fermentum odio nec arcu. Morbi nec metus. Proin faucibus arcu quis ante. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Fusce fermentum. || Fusce fermentum odio nec arcu. Morbi nec metus. Proin faucibus arcu quis ante. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Fusce fermentum. | Mauris sollicitudin fermentum libero. Curabitur turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Curabitur nisi. Aenean massa."
+publish_date: "2025-05-10"
+status: "draft"
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 category: "blog"
-mobile_image: "/img/home/alcohol.jpg"
-desktop_image: "/img/home/face_8.jpg"
-main_img: "/img/home/can-3.webp"
+main_img: "/img/home/pepsi.jpg"
 tags: []
 ---

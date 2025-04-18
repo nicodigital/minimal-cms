@@ -467,12 +467,63 @@ export const FileManager = {
             // Quitar comillas existentes primero
             formattedValue = value.trim().replace(/^"|"$/g, '')
 
+            // Obtener el tipo de campo desde window.fieldTypes o usar el tipo detectado
+            const realFieldType = window.fieldTypes && window.fieldTypes[name] ? window.fieldTypes[name] : fieldType;
+            console.log(`Formateando campo ${name} como tipo: ${realFieldType}`);
+            
             // Formatear según el tipo de campo
-            switch (fieldType) {
+            switch (realFieldType) {
               case 'select':
               case 'date':
                 formattedValue = `"${formattedValue}"`
                 break
+              case 'textarea':
+                // ENFOQUE SIMPLIFICADO: Dejar que PHP maneje el formato YAML
+                console.log('Procesando textarea:', name);
+                console.log('Valor original:', JSON.stringify(formattedValue));
+                console.log('Contiene saltos de línea:', formattedValue.includes('\n'));
+                console.log('Número de líneas:', formattedValue.split('\n').length);
+                
+                if (formattedValue.includes('\n')) {
+                  // Detectar patrones de texto para usar diferentes separadores
+                  const lines = formattedValue.split('\n');
+                  let result = '';
+                  let currentLineIndex = 0;
+                  
+                  while (currentLineIndex < lines.length) {
+                    // Añadir la línea actual
+                    result += lines[currentLineIndex];
+                    
+                    // Verificar si hay más líneas
+                    if (currentLineIndex < lines.length - 1) {
+                      // Verificar si la siguiente línea está vacía (indica nuevo párrafo)
+                      if (currentLineIndex + 1 < lines.length && lines[currentLineIndex + 1].trim() === '') {
+                        // Nuevo párrafo (doble pipe)
+                        result += ' || ';
+                        // Saltar la línea vacía
+                        currentLineIndex += 2;
+                      } else {
+                        // Simple salto de línea (un pipe)
+                        result += ' | ';
+                        currentLineIndex++;
+                      }
+                    } else {
+                      // Última línea
+                      currentLineIndex++;
+                    }
+                  }
+                  
+                  console.log('Texto con separadores simplificados:', result);
+                  
+                  // Encerrar en comillas para formato YAML correcto
+                  formattedValue = `"${result}"`;
+                  
+                  // Continuar con el proceso normal
+                } else {
+                  // Si es una sola línea, usar el formato normal con comillas
+                  formattedValue = `"${formattedValue}"`;
+                }
+                break;
               default:
                 // Para otros campos string que no son numéricos
                 if (isNaN(formattedValue)) {

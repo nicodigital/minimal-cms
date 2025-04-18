@@ -1,7 +1,7 @@
 ---
 excerpt: "Nulla facilisi. Cras varius. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Etiam rhoncus. Curabitur ullamcorper ultricies nisi."
 project_title: "Este será el título custom de este proyecto"
-project_text: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent ut ligula non mi varius sagittis. Nam adipiscing. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Etiam imperdiet imperdiet orci."
+project_text: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent ut ligula non mi varius sagittis. Nam adipiscing. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Etiam imperdiet imperdiet orci. || In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent ut ligula non mi varius sagittis. Nam adipiscing. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Etiam imperdiet imperdiet orci. | Etiam imperdiet imperdiet orci."
 publish_date: "2025-04-15"
 status: "draft"
 gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/face_8.jpg"]

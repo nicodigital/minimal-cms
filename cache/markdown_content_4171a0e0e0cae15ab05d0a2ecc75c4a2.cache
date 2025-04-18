@@ -1,4 +1,4 @@
-a:2:{s:7:"content";s:1502:"---
+a:2:{s:7:"content";s:1535:"---
 excerpt: "Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede."
 publish_date: "2025-05-01"
 status: "published"
@@ -8,7 +8,7 @@ category: "blog"
 featured: "true"
 comments_enabled: "false"
 price: 33000
-featured_image: "/img/home/alcohol.jpg"
+featured_image: "/img/home/pepsi.jpg"
 main_img: "/img/home/pepsi.jpg"
 ---
 # Título del artículo
@@ -16,6 +16,8 @@ main_img: "/img/home/pepsi.jpg"
 ![alcohol.jpg](/img/home/alcohol.jpg)
 
 Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Fusce convallis metus id felis luctus adipiscing. Praesent ut ligula non mi varius sagittis. Vestibulum fringilla pede sit amet augue.
+
+![pepsi.jpg](/img/home/pepsi.jpg)
 
 Pellentesque posuere. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas egestas arcu quis ligula mattis placerat. Etiam ut purus mattis mauris sodales aliquam. Donec posuere vulputate arcu.
 
@@ -30,4 +32,4 @@ Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam erat vo
 ![bananas.jpg](/img/home/bananas.jpg)
 
 Pellentesque posuere. Aenean viverra rhoncus pede. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Cras non dolor. Donec id justo.
-";s:12:"lastModified";i:1744908858;}
+";s:12:"lastModified";i:1744939952;}
