@@ -1,17 +1,20 @@
 ---
 excerpt: "Morbi mattis ullamcorper velit. Quisque malesuada placerat nisl. Pellentesque ut neque."
-gallery: ["/img/home/can-3.webp", "/img/home/face_8.jpg", "/img/home/hero.webp"]
-tags: ["Destacado"]
-category: "featured"
+publish_date: "2025-04-25"
+status: "published"
+gallery: ["/img/home/face_8.jpg", "/img/home/hero.webp", "/img/home/can-3.webp"]
+tags: ["Destacado", "Face"]
 featured: "true"
 comments_enabled: "false"
-price: 6750
-featured_image: "/img/home/pepsi.jpg"
-main_img: "/img/home/alcohol.jpg"
+price: 23575
+featured_image: "/img/home/face_8.jpg"
+main_img: "/img/home/can-3.webp"
 ---
 # Título de los niños de oro
 
 Morbi mattis ullamcorper velit. Quisque malesuada placerat nisl. Pellentesque ut neque. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Morbi mollis tellus ac sapien.
+
+![face_8.jpg](/img/home/face_8.jpg)
 
 Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed a libero. Nam pretium turpis et arcu. Morbi ac felis. Praesent nec nisl a purus blandit viverra.
 

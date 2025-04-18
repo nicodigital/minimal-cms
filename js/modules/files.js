@@ -79,6 +79,15 @@ export const FileManager = {
           this.saveFile()
         }
       }
+      
+      // Ctrl+R o Cmd+R para guardar (alternativa)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+        e.preventDefault()
+        if (this.currentFile && this.saveBtn && !this.saveBtn.disabled) {
+          this.saveFile()
+          return false // Prevenir cualquier acción adicional del navegador
+        }
+      }
     })
 
     // Escuchar el evento mainImageSelected para guardar la ruta de la imagen principal
@@ -556,6 +565,20 @@ export const FileManager = {
           if (response.success) {
             console.log('Archivo guardado exitosamente via XMLHttpRequest')
             saveIndicator.remove()
+            
+            // Guardar el nombre del archivo actual
+            const currentFileName = this.currentFile
+            
+            // Mostrar mensaje de éxito sin recargar la página
+            this.showFlashMessage('Archivo guardado correctamente', 'success')
+            
+            // Disparar evento después de guardar (para que otros módulos puedan reaccionar)
+            document.dispatchEvent(new CustomEvent('afterFileSave', {
+              detail: {
+                filename: currentFileName,
+                success: true
+              }
+            }))
           } else {
             console.error('Error al guardar archivo:', response.message)
             alert('Error al guardar archivo: ' + response.message)
@@ -678,8 +701,11 @@ export const FileManager = {
           // Eliminar el indicador de carga
           saveIndicator.remove()
 
-          // Guardar el nombre del archivo actual para poder recargarlo después
+          // Guardar el nombre del archivo actual
           const currentFileName = this.currentFile
+
+          // Mostrar mensaje de éxito sin recargar la página
+          this.showFlashMessage('Archivo guardado correctamente', 'success')
 
           // Disparar evento después de guardar (para que otros módulos puedan reaccionar)
           document.dispatchEvent(new CustomEvent('afterFileSave', {
@@ -688,12 +714,6 @@ export const FileManager = {
               success: true
             }
           }))
-
-          // Recargar la página completamente para evitar problemas de caché
-          // Usar un timestamp único como parámetro para forzar la recarga completa
-          const timestamp = new Date().getTime()
-          window.location.href = window.location.pathname +
-            `?file=${encodeURIComponent(currentFileName)}&nocache=${timestamp}`
         } else {
           // Mostrar mensaje de error
           alert('Error saving file: ' + (data.error || 'Unknown error'))

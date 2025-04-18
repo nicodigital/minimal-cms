@@ -1,6 +1,10 @@
-a:2:{s:7:"content";s:491:"---
+a:2:{s:7:"content";s:829:"---
 project_title: "Título de Alohaus"
-project_text: "Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst."
+project_text: "Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst.
+
+Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst.
+
+Curabitur blandit mollis lacus. Fusce pharetra convallis urna. Fusce fermentum. Suspendisse non nisl sit amet velit hendrerit rutrum. In hac habitasse platea dictumst."
 publish_date: "2025-04-10"
 status: "archived"
 gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp", "/img/home/can-3.webp"]
@@ -10,4 +14,4 @@ desktop_image: "/img/home/face_8.jpg"
 main_img: "/img/home/can-3.webp"
 tags: []
 ---
-";s:12:"lastModified";i:1744908210;}
+";s:12:"lastModified";i:1744938008;}
