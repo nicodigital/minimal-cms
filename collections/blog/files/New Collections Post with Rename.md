@@ -1,11 +1,12 @@
 ---
 excerpt: "Aenean commodo ligula eget dolor. Suspendisse non nisl sit amet velit hendrerit rutrum. Pellentesque dapibus hendrerit tortor. Vestibulum facilisis,"
 publish_date: "2025-04-14"
-status: "draft"
-gallery: ["/img/home/can-2.webp", "/img/home/GFC3Dwcr5AEJ823k7fY6Vy-4096x4096.webp"]
-tags: ["News"]
+status: "published"
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
+tags: ["News", "Testing"]
 category: "featured"
 featured: "true"
-comments_enabled: "false"
-main_img: "/img/home/newsletter.webp"
+comments_enabled: "true"
+price: 3200
+main_img: "/img/home/pepsi.jpg"
 ---

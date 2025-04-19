@@ -1,10 +1,12 @@
 ---
 excerpt: "Nulla facilisi. Cras varius. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Etiam rhoncus. Curabitur ullamcorper ultricies nisi."
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 tags: ["News", "Featured"]
 featured: "false"
 comments_enabled: "true"
-main_img: "/img/home/can-3.webp"
+price: 7700
+featured_image: "/img/home/pepsi.jpg"
+main_img: "/img/home/pepsi.jpg"
 ---
 # This is a great new article!
 

@@ -17,7 +17,7 @@
         </div>
       </div>
       
-      <ul class="md-list divide-y divide-neutral-800 dark:divide-neutral-700 mb-6 lg:h-[calc(100vh-18rem)] overflow-y-auto">
+      <ul class="md-list divide-y divide-neutral-800 dark:divide-neutral-700 mb-6 lg:h-[calc(100vh-19.7rem)] overflow-y-auto rounded-lg">
         <!-- Files will be listed here dynamically -->
         <li class="py-2 text-neutral-800 dark:text-neutral-400 italic">Loading files...</li>
       </ul>
