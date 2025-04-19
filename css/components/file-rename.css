@@ -4,16 +4,12 @@
 
 /* Botón de edición */
 .edit-file-name {
+    @apply flex justify-center items-center size-[2.5rem] rounded-full;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease;
 }
 
 .edit-file-name:hover {
-    background-color: var(--color-accent-light);
-    transform: scale(1.05);
-}
-
-.edit-file-name:active {
-    transform: scale(0.95);
+    @apply bg-neutral-700;
 }
 
 /* Elemento de nombre de archivo editable */
