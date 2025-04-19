@@ -1,6 +1,6 @@
 sftp-config.json
 
-\@style.css
+@style.css
 
 .vscode/sftp.json
 
@@ -14,8 +14,11 @@ style - copia.css
 
 txt.txt
 
-\@*.php
+@*.php
 
 prepros.config
 
 node_modules/
+
+# Environment variables file - contains sensitive data
+.env

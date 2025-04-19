@@ -6,6 +6,9 @@
  * y otras configuraciones que no deben estar en el código fuente.
  */
 
+// Cargar el gestor de variables de entorno
+require_once __DIR__ . '/env-loader.php';
+
 // Función para detectar si estamos en localhost
 function is_localhost() {
     $localhost_ips = ['127.0.0.1', '::1'];
@@ -17,20 +20,20 @@ function is_localhost() {
            strpos($server_name, '.test') !== false;
 }
 
-// Configuración de reCAPTCHA
+// Configuración de reCAPTCHA usando variables de entorno
 $config = [
     'recaptcha' => [
-        'site_key' => '6LcUIRYrAAAAAB_mXK7Fb0WkoOKpEdSKN3OdeBQN', // Clave de sitio para pruebas (reemplazar en producción)
-        'secret_key' => '6LcUIRYrAAAAACg1iP56g9xkuocvDqasFcPYGmQj', // Clave secreta para pruebas (reemplazar en producción)
-        'enabled' => !is_localhost(), // Desactivar en localhost, activar en producción
-        'version' => 'v2', // Versión de reCAPTCHA: v2, v3
-        'score_threshold' => 0.5 // Solo para v3: umbral de puntuación (0.0 - 1.0)
+        'site_key' => EnvLoader::get('RECAPTCHA_SITE_KEY'),
+        'secret_key' => EnvLoader::get('RECAPTCHA_SECRET_KEY'),
+        'enabled' => !is_localhost(),
+        'version' => EnvLoader::get('RECAPTCHA_VERSION', 'v2'),
+        'score_threshold' => (float)EnvLoader::get('RECAPTCHA_SCORE_THRESHOLD', 0.5)
     ],
     
     // Otras configuraciones globales pueden añadirse aquí
-    'debug' => false,
-    'timezone' => 'America/Argentina/Buenos_Aires',
-    'session_lifetime' => 86400 // 24 horas en segundos
+    'debug' => filter_var(EnvLoader::get('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
+    'timezone' => EnvLoader::get('TIMEZONE', 'America/Argentina/Buenos_Aires'),
+    'session_lifetime' => (int)EnvLoader::get('SESSION_LIFETIME', 86400) // 24 horas en segundos
 ];
 
 // Establecer zona horaria
