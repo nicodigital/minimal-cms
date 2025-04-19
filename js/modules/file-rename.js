@@ -302,15 +302,11 @@ const FileRenameManager = {
      */
     updateFileName: function(filename) {
         if (this.elements.currentFileEl) {
+            // Eliminar la extensión .md antes de cualquier manipulación
             const displayName = filename.replace(/\.md$/, '');
             
-            // Asegurarse de que el texto se actualice inmediatamente
-            setTimeout(() => {
-                if (this.elements.currentFileEl) {
-                    this.elements.currentFileEl.textContent = displayName;
-                    // console.log('Elemento current-file actualizado a:', displayName);
-                }
-            }, 0);
+            // Actualizar directamente sin setTimeout para evitar flickeo
+            this.elements.currentFileEl.textContent = displayName;
             
             // Actualizar la visibilidad del botón de edición
             this.checkButtonVisibility();

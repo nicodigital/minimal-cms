@@ -220,7 +220,9 @@ export const FileManager = {
     // console.log('Cargando archivo:', filename)
     this.currentFile = filename
     if (this.currentFileEl) {
-      this.currentFileEl.textContent = filename
+      // Eliminar la extensión .md antes de mostrar el nombre del archivo
+      const displayName = filename.replace(/\.md$/, '');
+      this.currentFileEl.textContent = displayName;
     }
     
     // Actualizar la URL con el parámetro file

@@ -1,5 +1,5 @@
 <!-- Right Sidebar -->
-<aside id="aside-right" class="h-[calc(100vh-5rem)]">
+<aside id="aside-right" class="h-[calc(100vh-7rem)]">
   <div class="flex flex-col h-full">
     <?php 
     // Removed main-image.php include
