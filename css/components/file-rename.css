@@ -1,0 +1,46 @@
+/**
+ * Estilos para la funcionalidad de edición de nombres de archivo
+ */
+
+/* Botón de edición */
+.edit-file-name {
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.edit-file-name:hover {
+    background-color: var(--color-accent-light);
+    transform: scale(1.05);
+}
+
+.edit-file-name:active {
+    transform: scale(0.95);
+}
+
+/* Elemento de nombre de archivo editable */
+.current-file {
+    transition: all 0.2s ease-in-out;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: default;
+}
+
+.current-file.editing {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 0 2px var(--color-accent-alpha);
+    cursor: text;
+    padding: 0.25rem 0.5rem;
+    outline: none;
+}
+
+/* Animación de enfoque */
+@keyframes focusPulse {
+    0% { box-shadow: 0 0 0 0 var(--color-accent-alpha); }
+    70% { box-shadow: 0 0 0 4px var(--color-accent-alpha-light); }
+    100% { box-shadow: 0 0 0 0 var(--color-accent-alpha); }
+}
+
+.current-file.editing:focus {
+    animation: focusPulse 1.5s infinite;
+}

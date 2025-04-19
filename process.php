@@ -1314,6 +1314,72 @@ function uploadImage($file, $path = '')
     ];
 }
 
+// Function to rename a markdown file
+function renameMarkdownFile($oldFilename, $newFilename) {
+    global $rootDir, $markdownDir, $collectionDir;
+    
+    writeToLog("Renaming file from {$oldFilename} to {$newFilename}", "INFO");
+    writeToLog("Current markdownDir: {$markdownDir}", "DEBUG");
+    
+    // Validar nombres de archivo (validación básica)
+    if (empty($oldFilename) || empty($newFilename)) {
+        writeToLog("Empty filename provided for rename operation", "ERROR");
+        return ['success' => false, 'message' => 'Nombre de archivo no puede estar vacío'];
+    }
+    
+    // Validar que los nombres terminen en .md
+    if (!str_ends_with(strtolower($oldFilename), '.md') || !str_ends_with(strtolower($newFilename), '.md')) {
+        writeToLog("Filename must end with .md extension", "ERROR");
+        return ['success' => false, 'message' => 'El archivo debe tener extensión .md'];
+    }
+    
+    // Determinar el directorio correcto basado en la colección actual
+    $currentDir = isset($collectionDir) && !empty($collectionDir) ? $collectionDir : $markdownDir;
+    writeToLog("Using directory: {$currentDir}", "DEBUG");
+    
+    $oldPath = $currentDir . '/' . $oldFilename;
+    $newPath = $currentDir . '/' . $newFilename;
+    
+    writeToLog("Old path: {$oldPath}", "DEBUG");
+    writeToLog("New path: {$newPath}", "DEBUG");
+    writeToLog("File exists check: " . (file_exists($oldPath) ? 'YES' : 'NO'), "DEBUG");
+    
+    // Pequeña pausa para dar tiempo al sistema de archivos
+    usleep(100000); // 100ms de pausa
+    
+    // Verificar que el archivo original existe
+    if (!file_exists($oldPath)) {
+        writeToLog("Source file does not exist after delay: {$oldPath}", "ERROR");
+        return ['success' => false, 'message' => 'El archivo original no existe o no se puede acceder'];
+    }
+    
+    // Verificar que el nuevo nombre no exista (excepto si es el mismo archivo con diferente case/capitalización)
+    // Añadir una pequeña pausa para dar tiempo al sistema de archivos
+    usleep(100000); // 100ms de pausa
+    
+    if (file_exists($newPath) && strtolower($oldFilename) !== strtolower($newFilename)) {
+        writeToLog("Destination file already exists after delay: {$newPath}", "ERROR");
+        return ['success' => false, 'message' => 'Ya existe un archivo con ese nombre'];
+    }
+    
+    // Si es el mismo archivo pero con diferente case, permitir la operación
+    writeToLog("Validation passed, allowing rename", "INFO");
+    
+    // Intentar renombrar el archivo
+    if (rename($oldPath, $newPath)) {
+        writeToLog("Successfully renamed file from {$oldFilename} to {$newFilename}", "INFO");
+        
+        // Invalidar caché relacionada
+        invalidateCacheByPrefix('files_');
+        invalidateCacheByPrefix('file_' . md5($oldFilename));
+        
+        return ['success' => true, 'message' => 'File renamed successfully', 'oldName' => $oldFilename, 'newName' => $newFilename];
+    } else {
+        writeToLog("Failed to rename file from {$oldFilename} to {$newFilename}", "ERROR");
+        return ['success' => false, 'message' => 'Failed to rename file. Check permissions.'];
+    }
+}
+
 // Handle API requests
 $action = isset($_GET['action']) ? $_GET['action'] : (isset($_POST['action']) ? $_POST['action'] : '');
 
@@ -1328,6 +1394,28 @@ if ($forceReload) {
 switch ($action) {
     case 'list':
         echo json_encode(getMarkdownFiles());
+        break;
+        
+    case 'rename':
+        $oldFilename = isset($_POST['oldFilename']) ? $_POST['oldFilename'] : '';
+        $newFilename = isset($_POST['newFilename']) ? $_POST['newFilename'] : '';
+        
+        if (empty($oldFilename) || empty($newFilename)) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Old and new filenames are required']);
+            break;
+        }
+        
+        // Asegurarse de que los archivos terminen con .md
+        if (!str_ends_with(strtolower($oldFilename), '.md')) {
+            $oldFilename .= '.md';
+        }
+        if (!str_ends_with(strtolower($newFilename), '.md')) {
+            $newFilename .= '.md';
+        }
+        
+        $result = renameMarkdownFile($oldFilename, $newFilename);
+        echo json_encode($result);
         break;
 
     case 'read':

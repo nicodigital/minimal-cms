@@ -2,14 +2,14 @@
 excerpt: "Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Donec id justo. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Sed a libero. Pellentesque commodo eros a enim."
 publish_date: "2025-04-28"
 status: "published"
-gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp", "/img/home/face_8.jpg"]
+gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
 tags: ["Niños"]
 category: "blog"
 featured: "true"
 comments_enabled: "true"
 price: 1250
 featured_image: "/img/home/face_8.jpg"
-main_img: "/img/home/can-1.webp"
+main_img: "/img/home/pepsi.jpg"
 ---
 # Este es el título
 

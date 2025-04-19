@@ -14,6 +14,7 @@ import { MediaManager } from './modules/media.js'
 import { FieldManager } from './modules/fields.js'
 // Removed mainImageManager import
 import { RecycleBinManager } from './modules/recyclebin.js'
+import { FileRenameManager } from './modules/file-rename.js'
 
 // Crear objeto global App
 window.App = {
@@ -25,7 +26,8 @@ window.App = {
   MediaManager,
   FieldManager,
   // Removed mainImageManager
-  RecycleBinManager
+  RecycleBinManager,
+  FileRenameManager
 }
 
 // Exponer FileManager globalmente para compatibilidad
@@ -84,6 +86,10 @@ function initializeModules () {
   // Inicializar gestor de papelera de reciclaje
   RecycleBinManager.init()
   // console.log('Recycle bin manager initialized')
+
+  // Inicializar gestor de renombrado de archivos
+  FileRenameManager.init()
+  // console.log('File rename manager initialized')
 }
 
 /**

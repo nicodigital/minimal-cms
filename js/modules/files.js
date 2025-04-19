@@ -946,33 +946,38 @@ export const FileManager = {
    * @param {string} message - Mensaje a mostrar
    * @param {string} type - Tipo de mensaje (success, error, warning, info)
    */
-  showFlashMessage: function (message, type = 'info') {
+  showFlashMessage: function (message, type = 'success') { // Cambiado de 'info' a 'success' por defecto
     // Verificar si ya existe un mensaje flash
     let flashMessage = document.querySelector('.flash-message')
 
-    // Si no existe, crearlo
+    // Si no existe, crearlo con clases de éxito por defecto
     if (!flashMessage) {
       flashMessage = document.createElement('div')
-      flashMessage.className = 'flash-message'
+      // Agregar clase de éxito (verde) directamente en la creación
+      flashMessage.className = 'flash-message bg-green-500 text-white'
       document.body.appendChild(flashMessage)
     } else {
-      // Si existe, asegurarse de que solo tenga la clase .flash-message
-      flashMessage.className = 'flash-message'
+      // Si existe, establecer las clases base incluyendo éxito por defecto
+      flashMessage.className = 'flash-message bg-green-500 text-white'
     }
 
-    // Establecer el tipo de mensaje con clases de color apropiadas
-    switch (type) {
-      case 'success':
-        flashMessage.classList.add('bg-green-500', 'text-white')
-        break
-      case 'error':
-        flashMessage.classList.add('bg-red-500', 'text-white')
-        break
-      case 'warning':
-        flashMessage.classList.add('bg-yellow-500', 'text-white')
-        break
-      default:
-        flashMessage.classList.add('bg-blue-500', 'text-white')
+    // Sobrescribir las clases de color según el tipo si no es success
+    if (type !== 'success') {
+      // Eliminar clases de color previas
+      flashMessage.classList.remove('bg-green-500', 'bg-red-500', 'bg-yellow-500', 'bg-blue-500')
+      
+      // Aplicar nuevas clases según el tipo
+      switch (type) {
+        case 'error':
+          flashMessage.classList.add('bg-red-500', 'text-white')
+          break
+        case 'warning':
+          flashMessage.classList.add('bg-yellow-500', 'text-white')
+          break
+        case 'info':
+          flashMessage.classList.add('bg-green-500', 'text-white')
+          break
+      }
     }
 
     // Establecer el mensaje

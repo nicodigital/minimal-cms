@@ -2,14 +2,14 @@ a:2:{s:7:"content";s:2266:"---
 excerpt: "Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Donec id justo. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Sed a libero. Pellentesque commodo eros a enim."
 publish_date: "2025-04-28"
 status: "published"
-gallery: ["/img/home/alcohol.jpg", "/img/home/bananas.jpg", "/img/home/pepsi.jpg"]
+gallery: ["/img/home/can-1.webp", "/img/home/can-2.webp", "/img/home/face_8.jpg"]
 tags: ["Niños"]
 category: "blog"
 featured: "true"
 comments_enabled: "true"
 price: 1250
 featured_image: "/img/home/face_8.jpg"
-main_img: "/img/home/pepsi.jpg"
+main_img: "/img/home/can-1.webp"
 ---
 # Este es el título
 
@@ -37,4 +37,4 @@ Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Nam pretium t
 
 Donec venenatis vulputate lorem. Praesent ac massa at ligula laoreet iaculis. Nam pretium turpis et arcu. Nullam quis ante. Ut a nisl id ante tempus hendrerit.
 
-Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Nam pretium turpis et arcu. Morbi nec metus. Sed libero. Proin faucibus arcu quis ante.";s:12:"lastModified";i:1745070111;}
+Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Nam pretium turpis et arcu. Morbi nec metus. Sed libero. Proin faucibus arcu quis ante.";s:12:"lastModified";i:1744940011;}

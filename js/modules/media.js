@@ -1430,7 +1430,7 @@ export const MediaManager = {
     } else if (type === 'warning') {
       flashElement.classList.add('bg-yellow-500', 'text-white')
     } else {
-      flashElement.classList.add('bg-blue-500', 'text-white')
+      flashElement.classList.add('bg-green-500', 'text-white')
     }
     
     flashElement.textContent = message

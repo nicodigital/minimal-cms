@@ -3,7 +3,7 @@
 }
 
 .CodeMirror.CodeMirror{
-  @apply px-6 md:h-[calc(100vh-13rem)];
+  @apply px-6 md:h-[calc(100vh-15rem)];
 }
 
 .editor-toolbar,
