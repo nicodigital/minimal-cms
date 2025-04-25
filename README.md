@@ -26,6 +26,24 @@ Unlike complex CMS platforms that require databases and extensive server configu
 - **Fast Performance**: Lightweight architecture ensures quick loading times
 - **Responsive Design**: Looks great on devices of all sizes
 
+## Getting Started
+
+Before using Minimal CMS, review the `content/config.php` file. This file defines important constants for directory paths and allowed origins (CORS).
+
+- **Directory constants:** Adjust `ROOT_DIR`, `MEDIA_DIR`, and other path constants if your directory structure differs.
+- **ALLOWED_ORIGINS:** Update the `ALLOWED_ORIGINS` array to include your production domain(s) and any development domains you use. This is critical for CORS security and proper functioning of the CMS.
+
+Example from `config.php`:
+```php
+define('ALLOWED_ORIGINS', [
+  'https://yourdomain.com',
+  'http://localhost',
+  'http://127.0.0.1'
+]);
+```
+
+Make sure to adapt these settings to your own environment before deploying the CMS.
+
 ## Collections
 
 The heart of Minimal CMS is the collections system. Each collection is simply a folder within the `collections` directory. To create a new content type:
