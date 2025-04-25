@@ -28,10 +28,13 @@ Unlike complex CMS platforms that require databases and extensive server configu
 
 ## Getting Started
 
-Before using Minimal CMS, review the `content/config.php` file. This file defines important constants for directory paths and allowed origins (CORS).
+Before using Minimal CMS, you **must** review the `content/config.php` file. This file defines important constants for directory paths and allowed origins (CORS).
 
 - **Directory constants:** Adjust `ROOT_DIR`, `MEDIA_DIR`, and other path constants if your directory structure differs.
-- **ALLOWED_ORIGINS:** Update the `ALLOWED_ORIGINS` array to include your production domain(s) and any development domains you use. This is critical for CORS security and proper functioning of the CMS.
+
+- **ALLOWED_ORIGINS:**
+  > ⚠️ **Important:**
+  > You **must** update the `ALLOWED_ORIGINS` array to include your production domain(s) and any development domains you use. If you do not set this correctly, the CMS may not work as expected and you could expose your site to security risks (CORS errors or unwanted access).
 
 Example from `config.php`:
 ```php
@@ -42,7 +45,7 @@ define('ALLOWED_ORIGINS', [
 ]);
 ```
 
-Make sure to adapt these settings to your own environment before deploying the CMS.
+**Be sure to adapt these settings to your own environment before deploying the CMS!**
 
 ## Collections
 
