@@ -792,12 +792,16 @@ export const FileManager = {
 
   // Crear nuevo archivo
   createNewFile: function () {
-    const filename = this.inputCreate ? this.inputCreate.value.trim() : ''
+    let filename = this.inputCreate ? this.inputCreate.value.trim() : ''
 
     if (!filename) {
       alert('Please enter a filename')
       return
     }
+
+    // Sanitizar el nombre de archivo para evitar caracteres inválidos en Windows
+    // Caracteres inválidos: \\ / : * ? " < > |
+    filename = filename.replace(/[\\/:*?"<>|]/g, '_')
 
     // Añadir extensión .md si no está presente
     const newFilename = filename.endsWith('.md') ? filename : `${filename}.md`

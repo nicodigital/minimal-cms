@@ -557,9 +557,22 @@ function saveMarkdownFile($filename, $content)
 {
     global $markdownDir;
     
-    // Sanitizar nombre de archivo - preservando espacios y caracteres especiales según requisito
-    // pero eliminando posibles componentes de ruta que podrían ser maliciosos
-    $filename = basename(str_replace(['../', '..\\', '/', '\\'], '', $filename));
+    $filename = (string)$filename;
+    // Sanitizar nombre de archivo - reemplazar caracteres inválidos de Windows
+    // Caracteres inválidos: \\ / : * ? " < > |
+    $filename = preg_replace('#[\\/:*?"<>|]#', '_', $filename);
+    // Reemplazar múltiples guiones por uno solo
+    $filename = preg_replace('/-+/', '-', $filename);
+    // Eliminar espacios y guiones al principio y al final
+    $filename = trim($filename);
+    $filename = preg_replace('/^-+/', '', $filename);
+    $filename = preg_replace('/-+$/', '', $filename);
+    // Eliminar componentes de ruta maliciosos
+    $filename = basename(str_replace(['../', '..\\'], '', $filename));
+    // Si queda vacío, asignar nombre por defecto
+    if ($filename === '' || $filename === '.md') {
+        $filename = 'untitled.md';
+    }
     
     // Validar extensión de archivo permitida
     $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
