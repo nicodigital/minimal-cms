@@ -97,6 +97,13 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
     exit('Acceso prohibido');
 }
 
-// Automatically load the .env file
-$envPath = __DIR__ . '/.env';
+// Incluir herramientas utilitarias
+require_once __DIR__ . '/inc/tools.php';
+// Determinar entorno para la ruta del archivo .env usando is_localhost()
+if (is_localhost()) {
+    $envPath = __DIR__ . '/.env';
+} else { // Production
+    $envPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/.env';
+}
+
 EnvLoader::load($envPath);
