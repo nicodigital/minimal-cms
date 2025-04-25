@@ -258,6 +258,21 @@ Failure to maintain this directory structure will result in the CMS not working 
 6. Create users in the `users` directory. Here is documentation: https://github.com/jenstornell/knock#create-a-user
 7. Begin creating collections and adding content. You only have to duplicate the "demo" directory, inside the collections directory and rename it with the name of the new collection.
 
+## Environment Configuration and Security
+
+### .env File Location (Recommended Practice)
+
+For security reasons, your `.env` file should be placed **outside the public web root**. This prevents sensitive environment variables (API keys, database credentials, etc.) from being accessible via the browser.
+
+**How Minimal CMS handles this:**
+- In development (localhost), the `.env` file is loaded from the same directory as the CMS (`content/.env`).
+- In production, the system automatically looks for the `.env` file **one level above** the web root (e.g., `/home/user/.env` if your site is in `/home/user/public_html`).
+
+**Why?**
+Placing `.env` outside the public directory ensures that even if your web server is misconfigured, the file cannot be downloaded or exposed.
+
+> **Tip:** Always keep your `.env` file outside any directory that is directly accessible from the web for maximum security.
+
 ## Security Configuration
 
 Minimal CMS requires proper `.htaccess` configuration to ensure both security and functionality. The included `.htaccess` file contains several important security measures:
