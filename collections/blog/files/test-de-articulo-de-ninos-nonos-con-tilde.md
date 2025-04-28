@@ -1,17 +1,20 @@
 ---
 excerpt: "Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Pellentesque auctor neque nec urna. Quisque ut nisi."
 publish_date: "2025-04-28"
-status: "published"
+status: "draft"
 gallery: []
 tags: []
-featured: "false"
+category: "featured"
+featured: "true"
 comments_enabled: "false"
-featured_image: "/img/home/bananas.jpg"
-property_title: "Este es el Título de Niños con tílde"
+featured_image: "/img/home/alcohol.jpg"
+property_title: "Este es el Título de Niños con tílde 3"
 ---
-# Este será un subtítulo
+# Este será un subtítulo h2
 
 Aliquam erat volutpat. Etiam ultricies nisi vel augue. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Pellentesque auctor neque nec urna. Quisque ut nisi.
+
+## Este será un subtítulo h3
 
 ![alcohol.jpg](/img/home/alcohol.jpg)
 

@@ -46,7 +46,28 @@ export const FileManager = {
 
     // Cargar lista de archivos inicialmente
     this.loadFileList()
-    
+
+    // Polling: tras renderizar la lista, si no hay parámetro 'file', espera a que window.editor exista
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileParam = urlParams.get('file');
+    if (!fileParam) {
+      const tryLoadFirstFile = () => {
+        if (window.editor && this.mdList && this.mdList.children.length > 0) {
+          const firstLi = this.mdList.querySelector('li[data-filename]');
+          if (firstLi) {
+            const firstFile = firstLi.dataset.filename;
+            if (firstFile) {
+              clearInterval(pollInterval);
+              this.loadFile(firstFile);
+            }
+          }
+        }
+      };
+      const pollInterval = setInterval(tryLoadFirstFile, 100);
+      // Intentar una vez inmediatamente (en caso de que ya esté listo)
+      tryLoadFirstFile();
+    }
+
     // Verificar si hay un parámetro 'file' en la URL
     this.checkUrlForFileParameter()
 
