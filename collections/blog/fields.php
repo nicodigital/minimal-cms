@@ -4,6 +4,13 @@
 
 return [
 
+    [
+        'name' => 'property_title',
+        'label' => 'Título',
+        'location' => 'main',
+        'type' => 'text',
+    ],
+
     // Editor field in main area
     // Para ocultar el editor debemos comentar este código
     [

@@ -13,9 +13,14 @@ export const EditorManager = {
   editor: null,
 
   init: function () {
-    // Inicializar SimpleMDE
+    // Solo inicializar SimpleMDE si existe el textarea #editor
+    const editorElement = document.getElementById('editor');
+    if (!editorElement) {
+      console.warn('No se encontró el textarea #editor, SimpleMDE no se inicializa.');
+      return;
+    }
     this.editor = new SimpleMDE({
-      element: document.getElementById('editor'),
+      element: editorElement,
       spellChecker: false,
       autosave: {
         enabled: true

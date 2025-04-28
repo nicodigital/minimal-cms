@@ -192,8 +192,8 @@ function renderField($field, $values = []) {
             break;
             
         case 'editor':
-            // Editor field is handled separately in the main layout
-            $html .= '<div class="editor-field-placeholder"></div>';
+            // Renderizar el editor como un textarea con id="editor"
+            $html .= '<textarea id="editor"></textarea>';
             break;
             
         case 'gallery':
