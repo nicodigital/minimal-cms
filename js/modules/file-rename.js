@@ -131,8 +131,23 @@ const FileRenameManager = {
             return;
         }
         
-        const newName = this.elements.currentFileEl.textContent.trim();
+        // Función para convertir a slug (idéntica a files.js)
+        function slugify(text) {
+            return text
+                .toString()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/--+/g, '-')
+                .trim()
+                .replace(/^-+|-+$/g, '');
+        }
+
+        let newName = this.elements.currentFileEl.textContent.trim();
         const oldName = currentFile.replace(/\.md$/, '');
+        newName = slugify(newName);
         
         // Si no hay cambios o el nombre está vacío, cancelar
         if (newName === oldName || !newName) {

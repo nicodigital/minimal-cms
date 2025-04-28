@@ -799,9 +799,21 @@ export const FileManager = {
       return
     }
 
-    // Sanitizar el nombre de archivo para evitar caracteres inválidos en Windows
-    // Caracteres inválidos: \\ / : * ? " < > |
-    filename = filename.replace(/[\\/:*?"<>|]/g, '_')
+    // Convertir el nombre a slug (minúsculas, sin acentos, espacios a guiones, solo caracteres válidos)
+    function slugify(text) {
+      return text
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // Eliminar diacríticos
+        .replace(/[^\w\s-]/g, '')        // Eliminar caracteres no permitidos
+        .replace(/\s+/g, '-')            // Reemplazar espacios por guiones
+        .replace(/--+/g, '-')             // Eliminar guiones múltiples
+        .trim()                           // Eliminar espacios al inicio y final
+        .replace(/^-+|-+$/g, '');         // Eliminar guiones al inicio y final
+    }
+
+    filename = slugify(filename);
 
     // Añadir extensión .md si no está presente
     const newFilename = filename.endsWith('.md') ? filename : `${filename}.md`
