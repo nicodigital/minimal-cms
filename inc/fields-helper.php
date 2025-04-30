@@ -541,8 +541,33 @@ function updateFrontMatterWithFieldValues($content, $fieldValues) {
     $configuredFields = getConfiguredFields();
 
     // Add/update custom fields
+    // Obtener los nombres de campos configurados
+    $configuredFieldNames = array_map(function($f) { return $f['name']; }, $configuredFields);
+    $customLog = __DIR__ . '/../error.log';
+    error_log('Campos configurados: ' . print_r($configuredFieldNames, true), 3, $customLog);
+    error_log('Valores recibidos: ' . print_r($fieldValues, true), 3, $customLog);
+    // Filtrar $fieldValues para quedarse solo con los que están configurados
+    $fieldValues = array_intersect_key($fieldValues, array_flip($configuredFieldNames));
+
     foreach ($fieldValues as $name => $value) {
-        if (!empty($value)) {
+        // Solo incluir campos que están en la configuración
+        if (!in_array($name, $configuredFieldNames)) {
+            continue;
+        }
+        // Solo agregar arrays si tienen al menos un valor y el campo está en la configuración
+        if (is_array($value)) {
+            if (count($value) === 0) {
+                continue;
+            }
+        }
+        // Para los demás tipos, mantener la lógica previa
+        $shouldInclude = false;
+        if (is_bool($value) || $value === 0 || $value === '0') {
+            $shouldInclude = true;
+        } elseif (!empty($value)) {
+            $shouldInclude = true;
+        }
+        if ($shouldInclude) {
             // Get field type if available
             $fieldType = '';
             foreach ($configuredFields as $field) {

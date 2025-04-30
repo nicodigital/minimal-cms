@@ -1,0 +1,234 @@
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "list",
+        "collection": "porfolio"
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=list&collection=porfolio",
+        "REQUEST_URI": "\/content\/process.php?action=list&collection=porfolio",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "list"
+}
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] URL: /content/process.php?action=list&collection=porfolio
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] GET Params: {"action":"list","collection":"porfolio"}
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:44] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] === Obteniendo archivos Markdown ===
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Directorio de búsqueda: C:\PROYECTOS\MINIMAL\content/collections/porfolio/files
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Colección actual: porfolio
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Caché invalidada para la clave: markdown_files_807a2e2b166d720fd8b43c1f2c91f67d
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Directorio abierto correctamente: C:\PROYECTOS\MINIMAL\content/collections/porfolio/files
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Archivo encontrado: Alohaus.md
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Archivo encontrado: Fantastic New Post.md
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Archivo encontrado: Las New Post!!!.md
+[2025-04-30 00:21:44] [DEBUG] [127.0.0.1] Archivo encontrado: testeando-proyecto-sin-tags.md
+[2025-04-30 00:21:44] [INFO] [127.0.0.1] Total de archivos encontrados: 4
+[2025-04-30 00:21:45] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "read",
+        "file": "testeando-proyecto-sin-tags.md",
+        "t": "1745972504969",
+        "collection": ""
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=read&file=testeando-proyecto-sin-tags.md&t=1745972504969&collection=",
+        "REQUEST_URI": "\/content\/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972504969&collection=",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "read"
+}
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] URL: /content/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972504969&collection=
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] GET Params: {"action":"read","file":"testeando-proyecto-sin-tags.md","t":"1745972504969","collection":""}
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:45] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:21:45] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "read",
+        "file": "testeando-proyecto-sin-tags.md",
+        "t": "1745972505355",
+        "collection": ""
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=read&file=testeando-proyecto-sin-tags.md&t=1745972505355&collection=",
+        "REQUEST_URI": "\/content\/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972505355&collection=",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "read"
+}
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] URL: /content/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972505355&collection=
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] GET Params: {"action":"read","file":"testeando-proyecto-sin-tags.md","t":"1745972505355","collection":""}
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:45] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:45] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "list",
+        "collection": "porfolio"
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=list&collection=porfolio",
+        "REQUEST_URI": "\/content\/process.php?action=list&collection=porfolio",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "list"
+}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] URL: /content/process.php?action=list&collection=porfolio
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] GET Params: {"action":"list","collection":"porfolio"}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:55] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] === Obteniendo archivos Markdown ===
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Directorio de búsqueda: C:\PROYECTOS\MINIMAL\content/collections/porfolio/files
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Colección actual: porfolio
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Caché invalidada para la clave: markdown_files_807a2e2b166d720fd8b43c1f2c91f67d
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Directorio abierto correctamente: C:\PROYECTOS\MINIMAL\content/collections/porfolio/files
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Archivo encontrado: Alohaus.md
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Archivo encontrado: Fantastic New Post.md
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Archivo encontrado: Las New Post!!!.md
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] Archivo encontrado: testeando-proyecto-sin-tags.md
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Total de archivos encontrados: 4
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "read",
+        "file": "testeando-proyecto-sin-tags.md",
+        "t": "1745972515419",
+        "collection": ""
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=read&file=testeando-proyecto-sin-tags.md&t=1745972515419&collection=",
+        "REQUEST_URI": "\/content\/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972515419&collection=",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "read"
+}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] URL: /content/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972515419&collection=
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] GET Params: {"action":"read","file":"testeando-proyecto-sin-tags.md","t":"1745972515419","collection":""}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:55] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:21:55] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "action": "read",
+        "file": "testeando-proyecto-sin-tags.md",
+        "t": "1745972515820",
+        "collection": ""
+    },
+    "POST": [],
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "GET",
+        "QUERY_STRING": "action=read&file=testeando-proyecto-sin-tags.md&t=1745972515820&collection=",
+        "REQUEST_URI": "\/content\/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972515820&collection=",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "read"
+}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Método: GET
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] URL: /content/process.php?action=read&file=testeando-proyecto-sin-tags.md&t=1745972515820&collection=
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] GET Params: {"action":"read","file":"testeando-proyecto-sin-tags.md","t":"1745972515820","collection":""}
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] POST Params: []
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Cuerpo de la solicitud: 
+[2025-04-30 00:21:55] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","accept":"*\/*","sec-ch-ua-mobile":"?0","dnt":"1","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-platform":"\"Windows\"","connection":"close","host":"minimal.test"}
+[2025-04-30 00:21:55] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: 
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] REQUEST DATA: {
+    "GET": {
+        "collection": "porfolio"
+    },
+    "POST": {
+        "action": "write",
+        "file": "testeando-proyecto-sin-tags.md",
+        "content": "---\nproject_title: \"Proyecto sin Tags 5000\"\nproject_text: \"Phasellus blandit leo ut odio. Ut tincidunt tincidunt erat. Sed aliquam ultrices mauris. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Nunc nonummy metus. || Phasellus blandit leo ut odio. Ut tincidunt tincidunt erat. Sed aliquam ultrices mauris. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Nunc nonummy metus.\"\npublish_date: \"2025-04-30\"\nstatus: \"draft\"\ngallery: []\ncategory: \"blog\"\nmobile_image: \"\/img\/home\/alcohol.jpg\"\ndesktop_image: \"\/img\/home\/bananas.jpg\"\n---\n\n"
+    },
+    "FILES": [],
+    "SERVER": {
+        "REQUEST_METHOD": "POST",
+        "QUERY_STRING": "collection=porfolio",
+        "REQUEST_URI": "\/content\/process.php?collection=porfolio",
+        "SCRIPT_NAME": "\/content\/process.php",
+        "DOCUMENT_ROOT": "C:\/PROYECTOS\/MINIMAL"
+    },
+    "action": "none"
+}
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] === NUEVA SOLICITUD ===
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Método: POST
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] URL: /content/process.php?collection=porfolio
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] IP: 127.0.0.1
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] GET Params: {"collection":"porfolio"}
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] POST Params: {"action":"write","file":"testeando-proyecto-sin-tags.md","content":"---\nproject_title: \"Proyecto sin Tags 5000\"\nproject_text: \"Phasellus blandit leo ut odio. Ut tincidunt tincidunt erat. Sed aliquam ultrices mauris. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Nunc nonummy metus. || Phasellus blandit leo ut odio. Ut tincidunt tincidunt erat. Sed aliquam ultrices mauris. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Nunc nonummy metus.\"\npublish_date: \"2025-04-30\"\nstatus: \"draft\"\ngallery: []\ncategory: \"blog\"\nmobile_image: \"\/img\/home\/alcohol.jpg\"\ndesktop_image: \"\/img\/home\/bananas.jpg\"\n---\n\n"}
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Cuerpo de la solicitud: action=write&file=testeando-proyecto-sin-tags.md&content=---%0Aproject_title%3A+%22Proyecto+sin+Tags+5000%22%0Aproject_text%3A+%22Phasellus+blandit+leo+ut+odio.+Ut+tincidunt+tincidunt+erat.+Sed+aliquam+ultrices+mauris.+Pellentesque+libero+tortor%2C+tincidunt+et%2C+tincidunt+eget%2C+semper+nec%2C+quam.+Nunc+nonummy+metus.+%7C%7C+Phasellus+blandit+leo+ut+odio.+Ut+tincidunt+tincidunt+erat.+Sed+aliquam+ultrices+mauris.+Pellentesque+libero+tortor%2C+tincidunt+et%2C+tincidunt+eget%2C+semper+nec%2C+quam.+Nunc+nonummy+metus.%22%0Apublish_date%3A+%222025-04-30%22%0Astatus%3A+%22draft%22%0Agallery%3A+%5B%5D%0Acategory%3A+%22blog%22%0Amobile_image%3A+%22%2Fimg%2Fhome%2Falcohol.jpg%22%0Adesktop_image%3A+%22%2Fimg%2Fhome%2Fbananas.jpg%22%0A---%0A%0A
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Encabezados: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","origin":"http:\/\/localhost:8848","accept":"*\/*","content-type":"application\/x-www-form-urlencoded","dnt":"1","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-mobile":"?0","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","sec-ch-ua-platform":"\"Windows\"","content-length":"746","connection":"close","host":"minimal.test"}
+[2025-04-30 00:22:00] [WARN] [127.0.0.1] Intento de acceso desde origen no permitido: http://localhost:8848
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] === PROCESANDO ACCION WRITE ===
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] IP remota: 127.0.0.1
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Auth Type: ninguno
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Encabezado Authorization: ausente
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Encabezado X-Authorization: ausente
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Encabezados recibidos: {"cookie":"PHPSESSID=k3j4b1tu90rfv17h47no6tbekv; knock_auth=Nicolook","accept-language":"pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,es-ES;q=0.5,es-UY;q=0.4,es;q=0.3","referer":"http:\/\/localhost:8848\/content\/collections\/porfolio\/index.php?file=testeando-proyecto-sin-tags.md","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-origin","origin":"http:\/\/localhost:8848","accept":"*\/*","content-type":"application\/x-www-form-urlencoded","dnt":"1","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/135.0.0.0 Safari\/537.36 Edg\/135.0.0.0","x-requested-with":"XMLHttpRequest","sec-ch-ua-mobile":"?0","sec-ch-ua":"\"Microsoft Edge\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"","sec-ch-ua-platform":"\"Windows\"","content-length":"746","connection":"close","host":"minimal.test"}
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Datos recibidos vía POST
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Método usado: POST
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Nombre del archivo: testeando-proyecto-sin-tags.md
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Longitud del contenido: 587
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Procesamiento de campos personalizado completado
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] ¿Se puede escribir en C:\PROYECTOS\MINIMAL\content/collections/porfolio/files? Sí
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Método estándar: Intentando guardar testeando-proyecto-sin-tags.md
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Iniciando saveMarkdownFile para: testeando-proyecto-sin-tags.md
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Ruta completa del archivo: C:\PROYECTOS\MINIMAL\content/collections/porfolio/files/testeando-proyecto-sin-tags.md
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Tags añadidos al front matter
+[2025-04-30 00:22:00] [DEBUG] [127.0.0.1] Intentando guardar con file_put_contents
+[2025-04-30 00:22:00] [SUCCESS] [127.0.0.1] Archivo guardado exitosamente con file_put_contents: 595 bytes
+[2025-04-30 00:22:00] [INFO] [127.0.0.1] Caché invalidada para el archivo testeando-proyecto-sin-tags.md
+[2025-04-30 00:22:00] [SUCCESS] [127.0.0.1] Archivo guardado exitosamente: testeando-proyecto-sin-tags.md

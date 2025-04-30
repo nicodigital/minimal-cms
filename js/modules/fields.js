@@ -755,7 +755,12 @@ export const FieldManager = {
     // Log para depuración
     // // console.log('Found custom fields:', allFields.length)
 
+    const configuredFields = window.configuredFields || null;
     allFields.forEach(field => {
+      const fieldName = field.getAttribute('data-field-name');
+      if (configuredFields && !configuredFields.includes(fieldName)) {
+        return; // Ignorar campos no configurados
+      }
       const fieldName = field.getAttribute('data-field-name')
 
       // Primero verificar si es un checkbox

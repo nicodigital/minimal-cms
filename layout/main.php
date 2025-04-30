@@ -19,4 +19,12 @@
       ?>
     </div>
   </div>
+  <?php
+    // Exponer los campos configurados globalmente para el JS
+    if (function_exists('getConfiguredFields')) {
+      $configuredFields = getConfiguredFields();
+      $configuredFieldNames = array_map(function($f) { return $f['name']; }, $configuredFields);
+      echo '<script>window.configuredFields = ' . json_encode($configuredFieldNames) . ';</script>';
+    }
+  ?>
 </main>

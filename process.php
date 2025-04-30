@@ -621,20 +621,14 @@ function saveMarkdownFile($filename, $content)
     
     // Verificar si el contenido tiene front matter
     if (!preg_match('/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/', $content, $matches)) {
-        // Si no tiene front matter, añadirlo
-        $content = "---\ntags: []\n---\n\n" . $content;
-        writeToLog("Front matter añadido al contenido", "DEBUG");
+        // Si no tiene front matter, añadirlo vacío
+        $content = "---\n---\n\n" . $content;
+        writeToLog("Front matter añadido al contenido (vacío)", "DEBUG");
     } else {
         $frontMatter = $matches[1];
         $mainContent = $matches[2];
         
-        // Verificar si el front matter ya tiene una sección de tags
-        if (!preg_match('/^tags:\s*\[(.*?)\]/m', $frontMatter)) {
-            // Si no tiene tags, añadirlos al final del front matter
-            $frontMatter .= "\ntags: []";
-            $content = "---\n" . $frontMatter . "\n---\n" . $mainContent;
-            writeToLog("Tags añadidos al front matter", "DEBUG");
-        }
+        // Ya no se agrega una sección de tags por defecto. Solo se agregan los campos realmente enviados.
     }
     
     // Limitar tamaño máximo de archivo para evitar ataques de DoS
