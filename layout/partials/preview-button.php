@@ -64,9 +64,13 @@
       const cleanUrl = currentUrl.split('?')[0].split('#')[0];
       // Dividir por '/' y filtrar elementos vacíos
       const urlParts = cleanUrl.split('/').filter(part => part.length > 0);
-      // El último directorio en la URL es la colección actual
+      // Si el último segmento es 'index.php', tomar el anterior como colección
       if (urlParts.length > 0) {
-        collection = urlParts[urlParts.length - 1];
+        if (urlParts[urlParts.length - 1] === 'index.php' && urlParts.length > 1) {
+          collection = urlParts[urlParts.length - 2];
+        } else {
+          collection = urlParts[urlParts.length - 1];
+        }
         // console.log('Colección obtenida de la URL:', collection);
       }
     } catch (e) {
@@ -101,9 +105,26 @@
     // console.log('Colección final:', collection);
     // console.log('Slug final:', slug);
     
-    // Construir la URL de preview - Asegurarnos de que collection tenga un valor
-    // Usar 'blog' como valor predeterminado si no se detecta la colección
-    const previewUrl = `../../../${collection || 'blog'}/${slug}`;
+    // Construir la URL de preview considerando la profundidad actual
+    // Obtener la ruta actual del panel (por ejemplo: /admin/collections/post/archivo.md)
+    const adminPath = window.location.pathname;
+    // Contar cuántos niveles de directorio hay desde la ubicación actual hasta la raíz pública
+    // Suponemos que la raíz pública es el directorio donde están las colecciones
+    // Ejemplo: si estamos en /subdir/admin/collections/post/archivo.md => niveles = 3 (admin, collections, post)
+    // Queremos volver hasta /subdir/
+    // Filtrar 'index.php' de los pathParts para evitar errores en producción
+    let pathParts = adminPath.split('/').filter(part => part.length > 0 && part !== 'index.php');
+
+    // Buscar el índice de la carpeta 'collections' o 'content' (ajustar según estructura)
+    // Si no existe, usamos todos los niveles menos uno (para evitar quedarse en la raíz absoluta)
+    let baseIndex = pathParts.findIndex(p => p === 'collections' || p === 'content');
+    if (baseIndex === -1) baseIndex = pathParts.length - 1;
+    // Calculamos los niveles a retroceder desde la ubicación actual
+    const levelsUp = pathParts.length - baseIndex;
+    // Generar el prefijo relativo
+    const relativePrefix = '../'.repeat(levelsUp);
+    // Construir la ruta final
+    const previewUrl = `${relativePrefix}${collection || 'blog'}/${slug}`;
     // console.log('URL de preview generada:', previewUrl);
     
     // Actualizar el botón
