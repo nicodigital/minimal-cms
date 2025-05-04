@@ -761,7 +761,6 @@ export const FieldManager = {
       if (configuredFields && !configuredFields.includes(fieldName)) {
         return; // Ignorar campos no configurados
       }
-      const fieldName = field.getAttribute('data-field-name')
 
       // Primero verificar si es un checkbox
       const checkboxInput = field.querySelector('input[type="checkbox"]')

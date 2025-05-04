@@ -168,11 +168,30 @@ export const FileManager = {
         // Crear un fragmento para minimizar reflows
         const fragment = document.createDocumentFragment()
 
-        // Crear una función de manejador de eventos reutilizable
+        // Crear una función de manejador de eventos reutilizable con guardado automático
         const handleFileClick = (file) => (e) => {
           // Solo cargar el archivo si no se hizo clic en el botón de eliminar
           if (!e.target.closest('.delete-file')) {
-            this.loadFile(file)
+            // Si ya estamos en ese archivo, no hacer nada
+            if (this.currentFile && this.currentFile.toLowerCase() === file.toLowerCase()) return;
+
+            // Si hay cambios pendientes (botón de guardar habilitado)
+            if (this.saveBtn && !this.saveBtn.disabled) {
+              // Guardar y luego abrir el nuevo archivo cuando termine
+              const onAfterSave = (evt) => {
+                // Abrir el nuevo archivo solo si el guardado fue exitoso
+                if (evt.detail && evt.detail.success) {
+                  this.loadFile(file);
+                }
+                // Remover el event listener después de ejecutarse
+                document.removeEventListener('afterFileSave', onAfterSave);
+              };
+              document.addEventListener('afterFileSave', onAfterSave);
+              this.saveFile();
+            } else {
+              // Si no hay cambios, abrir directamente el archivo
+              this.loadFile(file);
+            }
           }
         }
 
